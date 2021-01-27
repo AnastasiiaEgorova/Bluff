@@ -22,7 +22,7 @@ public:
 	using Pair = std::pair<SceneNode*, SceneNode*>;
 
 public:
-							SceneNode(Category::Type c = Category::Type::None);
+	SceneNode(Category::Type c = Category::Type::None);
 
 	void					attachChild(Ptr child);
 	Ptr						detachChild(const SceneNode& node);
@@ -40,8 +40,8 @@ public:
 	void					checkSceneCollision(SceneNode& node, std::set<Pair>& collisionPairs);
 	void					checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs);
 
-	void					removeWrecks();	
-	
+	void					removeWrecks();
+
 	virtual bool			isMarkedForRemoval() const;
 	virtual bool			isDestroyed() const;
 
@@ -57,9 +57,10 @@ private:
 
 private:
 	std::vector<Ptr>		children;
-	SceneNode*				parent;						// raw ptr for parent because there is ownership
+	SceneNode* parent;						// raw ptr for parent because there is ownership
 	Category::Type			defaultCategory;
 };
 
 float						calculateDistance(const SceneNode& lhs, const SceneNode& rhs);
 bool						isColliding(const SceneNode& lhs, const SceneNode& rhs);
+

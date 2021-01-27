@@ -28,7 +28,6 @@ public:
 public:
 											Player();
 	void									handleEvent(const sf::Event& event, CommandQueue& commands);
-	void									handleRealTimeInput(CommandQueue& commands);
 
 	void									setMissionStatus(MissionStatus status);
 	MissionStatus							getMissionStatus() const;
@@ -36,7 +35,6 @@ public:
 private:
 	void									initializeKeyBindings();
 	void									initializeActions();
-	static bool								isRealTimeAction(Action action);
 
 private:
 	std::map<sf::Keyboard::Key, Action>		keyBindings;

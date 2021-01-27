@@ -79,8 +79,8 @@ unsigned int SceneNode::getCategory() const
 // invokes checkNodeCollision recursively for all children of node
 void SceneNode::checkSceneCollision(SceneNode& node, std::set<Pair>& collisionPairs)
 {
-    checkNodeCollision(node, collisionPairs);	
-    
+    checkNodeCollision(node, collisionPairs);
+
     for (Ptr& child : node.children)
         checkSceneCollision(*child, collisionPairs);
 }
@@ -89,8 +89,8 @@ void SceneNode::checkSceneCollision(SceneNode& node, std::set<Pair>& collisionPa
 void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs)
 {
     if (this != &node && isColliding(*this, node) && !isDestroyed() && !node.isDestroyed())
-        collisionPairs.insert(std::minmax(this, &node));	
-    
+        collisionPairs.insert(std::minmax(this, &node));
+
     for (Ptr& child : children)
         child->checkNodeCollision(node, collisionPairs);
 }
