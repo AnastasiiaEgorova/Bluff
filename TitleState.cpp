@@ -1,6 +1,5 @@
 #include "TitleState.h"
 #include <SFML/Graphics/RenderWindow.hpp>
-//#include "State.h"
 #include "Utility.h"
 #include "ResourceHolder.h"
 
@@ -10,7 +9,7 @@ TitleState::TitleState(StateStack& stack, Context context)
 	, showText(true)
 	, textEffectTime(sf::Time::Zero)
 {
-	backgroundSprite.setTexture(context.textures->get(TextureID::TitleScreen));
+	//backgroundSprite.setTexture(context.textures->get(TextureID::TitleScreen));
 
 	text.setFont(context.fonts->get(FontID::Main));
 	text.setString("Press any key to start");

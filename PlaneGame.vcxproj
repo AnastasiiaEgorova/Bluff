@@ -24,6 +24,7 @@
     <ProjectGuid>{92daf059-8b74-49cf-8442-18e69a334cdd}</ProjectGuid>
     <RootNamespace>PlaneGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Bluff</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

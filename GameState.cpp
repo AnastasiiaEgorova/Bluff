@@ -7,7 +7,8 @@ GameState::GameState(StateStack& stack, Context context)
 	, world(*context.window, *context.fonts, *context.sounds)
 	, player(*context.player)
 {
-	context.music->play(MusicID::MissionTheme);
+	//TO DO
+	//context.music->play(MusicID::MissionTheme);
 }
 
 void GameState::draw()

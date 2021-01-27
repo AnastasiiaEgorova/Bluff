@@ -12,7 +12,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 {
 	sf::Font& font = context.fonts->get(FontID::Main);
 
-	backgroundSprite.setTexture(context.textures->get(TextureID::TitleScreen));
+	//backgroundSprite.setTexture(context.textures->get(TextureID::TitleScreen));
 
 	sf::Text playOption;
 	playOption.setFont(font);

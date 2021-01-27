@@ -12,7 +12,7 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Application::Application()
-    : window(sf::VideoMode(1280, 720), "SFML works!")
+    : window(sf::VideoMode(1280, 720), "Bluff")
     , textures()
     , fonts()
     , player()
@@ -26,13 +26,13 @@ Application::Application()
     window.setKeyRepeatEnabled(false);
 
     fonts.load(FontID::Main, "Media/Sansation.ttf");
-    textures.load(TextureID::TitleScreen, "Media/Textures/TitleScreen.png");	
+    //textures.load(TextureID::TitleScreen, "Media/Textures/TitleScreen.png");	
     
     statsText.setFont(fonts.get(FontID::Main));
     statsText.setPosition(5.f, 5.f);
     statsText.setCharacterSize(10u);	
     registerStates();
-    stateStack.pushState(StateID::Title);
+    stateStack.pushState(StateID::Game);
 
     music.setVolume(25.f);
 }
@@ -104,6 +104,8 @@ void Application::updateStatistics(sf::Time et)
 void Application::registerStates()
 {
     stateStack.registerState<TitleState>(StateID::Title);
+    //TO DO
+    // add instruction state
     stateStack.registerState<MenuState>(StateID::Menu);
     stateStack.registerState<GameState>(StateID::Game);
     stateStack.registerState<PauseState>(StateID::Pause);

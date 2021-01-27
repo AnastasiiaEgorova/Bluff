@@ -7,9 +7,8 @@
 #include <cassert>
 
 enum class TextureID {
-	Landscape,
-	Airplane,
-	Missile
+	Board,
+	Dice
 };
 
 class TextureHolder

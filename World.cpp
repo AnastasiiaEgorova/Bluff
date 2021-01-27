@@ -12,8 +12,8 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 {
 	//sceneTexture.create(target.getSize().x, target.getSize().y);
 
-	//loadTextures();
-	//buildScene();
+	loadTextures();
+	buildScene();
 
 }
 
@@ -44,22 +44,15 @@ void World::draw()
 
 void World::loadTextures()
 {
-	textures.load(TextureID::Desert, "Media/Textures/Desert.png");
-
-	textures.load(TextureID::Jungle, "Media/Textures/Jungle.png");
-	textures.load(TextureID::Explosion, "Media/Textures/Explosion.png");
-	textures.load(TextureID::Particle, "Media/Textures/Particle.png");
-	textures.load(TextureID::FinishLine, "Media/Textures/FinishLine.png");
-
-	textures.load(TextureID::Entities, "Media/Textures/Entities.png");
+	textures.load(TextureID::Board, "Media/Textures/TitleScreen.png");
 }
 
 void World::buildScene()
 {
 
 	// prepare background texture
-	sf::Texture& texture = textures.get(TextureID::Jungle);
-	texture.setRepeated(true);
+	sf::Texture& texture = textures.get(TextureID::Board);
+	texture.setRepeated(false);
 
 }
 
