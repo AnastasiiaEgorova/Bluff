@@ -2,6 +2,7 @@
 #include "ResourceHolder.h"
 #include "ResourceIdentifiers.h"
 #include "SceneNode.h"
+#include "SpriteNode.h"
 #include "CommandQueue.h"
 #include "Command.h"
 #include "SoundPlayer.h"
@@ -10,6 +11,7 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
 
 #include <array>
 
@@ -37,15 +39,25 @@ private:
 
 
 private:
+
+	enum Layer {
+		BoardLayer,
+		ChipLayer,
+		LayerCount
+	};
+
 	sf::RenderTarget&					target;
-	//sf::RenderTexture					sceneTexture;
+	sf::RenderTexture					sceneTexture;
 	sf::View							worldView;
 	TextureHolder_t						textures;
 	const FontHolder_t&					fonts;
 	SoundPlayer&						sounds;
 
 	SceneNode							sceneGraph;
+	std::array<SceneNode*, LayerCount>	sceneLayers;	
 	CommandQueue						commandQueue;
+
+	sf::FloatRect						worldBounds;		// to determine the temporary window size
 
 	//Player*							player;
 
