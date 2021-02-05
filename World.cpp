@@ -70,6 +70,7 @@ void World::buildScene()
 
 	std::unique_ptr<SpriteNode> table(new SpriteNode(texture));
 	table->setPosition(worldBounds.left, worldBounds.top);
+	table->setScale(1.5, 1.5);
 	sceneLayers[TableLayer]->attachChild(std::move(table));
 
 	//board
@@ -77,7 +78,9 @@ void World::buildScene()
 	textureBoard.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> board(new SpriteNode(textureBoard));
-	board->setPosition(150.f, 100.f);
+	board->setPosition(worldView.getCenter().x - textureBoard.getSize().x / 1.5, 
+						worldView.getCenter().y - textureBoard.getSize().y / 1.5);
+	board->setScale(1.25, 1.25);
 	sceneLayers[BoardLayer]->attachChild(std::move(board));
 }
 

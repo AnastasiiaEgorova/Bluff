@@ -12,7 +12,7 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Application::Application()
-    : window(sf::VideoMode(852, 480), "Bluff")
+    : window(sf::VideoMode(1278, 720), "Bluff")
     , textures()
     , fonts()
     , player()
