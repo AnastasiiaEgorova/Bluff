@@ -41,6 +41,7 @@ private:
 private:
 
 	enum Layer {
+		TableLayer,
 		BoardLayer,
 		ChipLayer,
 		LayerCount

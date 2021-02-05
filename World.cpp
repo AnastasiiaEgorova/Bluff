@@ -1,5 +1,4 @@
 #include "World.h"
-//#include "SpriteNode.h"
 
 World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& sounds)
 	: target(outputTarget)
@@ -10,7 +9,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	, sounds(sounds)
 	, sceneGraph()
 	, sceneLayers()
-	, worldBounds(0.f, 0.f, worldView.getSize().x, 6000.f)
+	, worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
 	//, playerAircraft(nullptr)     // will populate later
 {
 	sceneTexture.create(target.getSize().x, target.getSize().y);
@@ -46,6 +45,7 @@ void World::draw()
 
 void World::loadTextures()
 {
+	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
 	textures.load(TextureID::Board, "Media/Textures/Board.jpg");
 }
 
@@ -53,7 +53,7 @@ void World::buildScene()
 {
 	for (std::size_t i = 0; i < LayerCount; ++i) {
 
-		Category::Type category = (i == BoardLayer) ? Category::Type::Board : Category::Type::EverythingElse;
+		Category::Type category = (i == TableLayer) ? Category::Type::Table : Category::Type::EverythingElse;
 
 		SceneNode::Ptr layer(new SceneNode(category));
 		sceneLayers[i] = layer.get();
@@ -61,16 +61,23 @@ void World::buildScene()
 		sceneGraph.attachChild(std::move(layer));
 	}
 
-	// prepare background texture
-	sf::Texture& texture = textures.get(TextureID::Board);
-	texture.setRepeated(false);
-
 	float viewHeight = worldView.getSize().y;
 	sf::IntRect textureRect(worldBounds);
-	textureRect.height += static_cast<int>(viewHeight);
 
-	std::unique_ptr<SpriteNode> board(new SpriteNode(texture, textureRect));
-	board->setPosition(0.f, -76.f);
+	// table
+	sf::Texture& texture = textures.get(TextureID::Table);
+	texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> table(new SpriteNode(texture));
+	table->setPosition(worldBounds.left, worldBounds.top);
+	sceneLayers[TableLayer]->attachChild(std::move(table));
+
+	//board
+	sf::Texture& textureBoard = textures.get(TextureID::Board);
+	textureBoard.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> board(new SpriteNode(textureBoard));
+	board->setPosition(150.f, 100.f);
 	sceneLayers[BoardLayer]->attachChild(std::move(board));
 }
 

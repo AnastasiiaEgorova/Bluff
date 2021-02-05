@@ -26,6 +26,7 @@ enum class MusicID
 };
 
 enum class TextureID {
+	Table,
 	Board,
 };
 
