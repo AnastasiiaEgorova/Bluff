@@ -2,6 +2,8 @@
 #include "MusicPlayer.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <algorithm>
+
 GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
 	, world(*context.window, *context.fonts, *context.sounds)
@@ -9,6 +11,10 @@ GameState::GameState(StateStack& stack, Context context)
 {
 	//TO DO
 	//context.music->play(MusicID::MissionTheme);
+
+	for (int i = 0; i < 5; ++i) {
+		playingDice.push_back(Dice());
+	}
 }
 
 void GameState::draw()
