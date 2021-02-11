@@ -47,6 +47,7 @@ void World::loadTextures()
 {
 	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
 	textures.load(TextureID::Board, "Media/Textures/Board.jpg");
+	textures.load(TextureID::Dice2, "Media/Textures/Dice2.jpg");
 }
 
 void World::buildScene()
@@ -82,6 +83,14 @@ void World::buildScene()
 						worldView.getCenter().y - textureBoard.getSize().y / 1.5);
 	board->setScale(1.25, 1.25);
 	sceneLayers[BoardLayer]->attachChild(std::move(board));
+
+	// dice
+	sf::Texture& diceTexture = textures.get(TextureID::Dice2);
+	diceTexture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice(new SpriteNode(diceTexture));
+	dice->setPosition(worldBounds.width - 120, worldBounds.height - 120);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice));
 }
 
 
