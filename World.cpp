@@ -43,18 +43,66 @@ void World::draw()
 	target.draw(sceneGraph);
 }
 
+void World::drawDice(std::vector<Dice> playersDice)
+{
+	// dice1
+	sf::Texture& dice1Texture = textures.get(loadDice(playersDice.at(0).getFace()));
+	dice1Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
+	dice1->setPosition(worldBounds.width - 120, worldBounds.height - 120);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
+
+	// dice2
+	sf::Texture& dice2Texture = textures.get(loadDice(playersDice.at(1).getFace()));
+	dice2Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
+	dice2->setPosition(worldBounds.width - 200, worldBounds.height - 180);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
+
+	// dice3
+	sf::Texture& dice3Texture = textures.get(loadDice(playersDice.at(2).getFace()));
+	dice3Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
+	dice3->setPosition(worldBounds.width - 200, worldBounds.height - 120);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
+
+	// dice4
+	sf::Texture& dice4Texture = textures.get(loadDice(playersDice.at(3).getFace()));
+	dice4Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
+	dice4->setPosition(worldBounds.width - 120, worldBounds.height - 180);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
+
+	// dice5
+	sf::Texture& dice5Texture = textures.get(loadDice(playersDice.at(4).getFace()));
+	dice5Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
+	dice5->setPosition(worldBounds.width - 160, worldBounds.height - 240);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
+}
+
 void World::loadTextures()
 {
 	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
 	textures.load(TextureID::Board, "Media/Textures/Board.jpg");
+	textures.load(TextureID::Dice1, "Media/Textures/Dice1.jpg");
 	textures.load(TextureID::Dice2, "Media/Textures/Dice2.jpg");
+	textures.load(TextureID::Dice3, "Media/Textures/Dice3.jpg");
+	textures.load(TextureID::Dice4, "Media/Textures/Dice4.jpg");
+	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
+	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
 }
 
 void World::buildScene()
 {
 	for (std::size_t i = 0; i < LayerCount; ++i) {
 
-		Category::Type category = (i == TableLayer) ? Category::Type::Table : Category::Type::EverythingElse;
+		Category::Type category = (i == TableLayer) ? Category::Type::Table : Category::Type::Dice;
 
 		SceneNode::Ptr layer(new SceneNode(category));
 		sceneLayers[i] = layer.get();
@@ -84,13 +132,6 @@ void World::buildScene()
 	board->setScale(1.25, 1.25);
 	sceneLayers[BoardLayer]->attachChild(std::move(board));
 
-	// dice
-	sf::Texture& diceTexture = textures.get(TextureID::Dice2);
-	diceTexture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice(new SpriteNode(diceTexture));
-	dice->setPosition(worldBounds.width - 120, worldBounds.height - 120);
-	sceneLayers[BoardLayer]->attachChild(std::move(dice));
 }
 
 
@@ -98,4 +139,28 @@ void World::updateSounds()
 {
 	//sounds.setListenerPosition(playerAircraft->getWorldPosition());
 	//sounds.removeStoppedSounds();
+}
+
+TextureID World::loadDice(Dice::Face face)
+{
+	switch (face) {
+
+	case Dice::Face::One:
+		return TextureID::Dice1;
+
+	case Dice::Face::Two:
+		return TextureID::Dice2;
+
+	case Dice::Face::Three:
+		return TextureID::Dice3;
+
+	case Dice::Face::Four:
+		return TextureID::Dice4;
+
+	case Dice::Face::Five:
+		return TextureID::Dice5;
+
+	default:
+		return TextureID::DiceStar;
+	}
 }

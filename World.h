@@ -14,6 +14,7 @@
 #include <SFML/Graphics/RenderTexture.hpp>
 
 #include <array>
+#include "Dice.h"
 
 namespace sf {
 	class RenderTarget;
@@ -25,6 +26,7 @@ public:
 	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds);
 	void								update(sf::Time dt);
 	void								draw();
+	void								drawDice(std::vector<Dice> playersDice);
 	CommandQueue&						getCommands();
 
 	//bool								hasAlivePlayer() const;
@@ -35,7 +37,7 @@ public:
 private:
 	void								loadTextures();
 	void								buildScene();
-
+	TextureID							loadDice(Dice::Face face);
 
 
 private:

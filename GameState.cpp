@@ -15,6 +15,8 @@ GameState::GameState(StateStack& stack, Context context)
 	for (int i = 0; i < 5; ++i) {
 		playingDice.push_back(Dice());
 	}
+
+	world.drawDice(playingDice);
 }
 
 void GameState::draw()

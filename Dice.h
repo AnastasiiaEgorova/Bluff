@@ -13,7 +13,8 @@ public:
 		Star
 	};
 
-	Dice();
+							Dice();
+	Dice::Face				getFace();
 
 private:
 	Face rollDice();

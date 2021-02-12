@@ -28,7 +28,12 @@ enum class MusicID
 enum class TextureID {
 	Table,
 	Board,
+	Dice1,
 	Dice2,
+	Dice3,
+	Dice4,
+	Dice5,
+	DiceStar
 };
 
 enum class FontID {

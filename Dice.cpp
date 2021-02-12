@@ -8,6 +8,11 @@ Dice::Dice() {
 	face = rollDice();
 }
 
+Dice::Face Dice::getFace()
+{
+	return face;
+}
+
 Dice::Face Dice::rollDice() {
 
 	auto roll = dist(Dice::rEng);
