@@ -4,7 +4,7 @@
 class Dice
 {
 public:
-	enum Face {
+	enum class Face {
 		One,
 		Two,
 		Three,
@@ -13,16 +13,16 @@ public:
 		Star
 	};
 
-							Dice();
-	Dice::Face				getFace();
+													Dice();
+	Dice::Face										getFace();
 
 private:
-	Face rollDice();
+	Face											rollDice();
 
 private:
-	std::uniform_int_distribution<unsigned int> dist{ 1, 6 };
-	static std::mt19937 rEng;
+	std::uniform_int_distribution<unsigned int>		dist{ 1, 6 };
+	static std::mt19937								rEng;
 
-	Face face;
+	Face											face;
 };
 

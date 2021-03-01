@@ -149,6 +149,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Bid.cpp" />
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Dice.cpp" />
@@ -173,6 +175,8 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Bid.h" />
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandQueue.h" />
@@ -183,6 +187,7 @@
     <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceHolder.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="SceneNode.h" />
@@ -196,6 +201,9 @@
     <ClInclude Include="TitleState.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Bluff.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
