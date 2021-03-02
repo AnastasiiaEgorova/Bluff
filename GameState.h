@@ -3,6 +3,7 @@
 #include "World.h"
 #include "Player.h"
 #include "Dice.h"
+#include "Board.h"
 
 class GameState : public State
 {
@@ -19,6 +20,7 @@ private:
 
 	//TO BE std::vactor<Player>
 	Player&			player;
+	Board			board;
 
 	std::vector<Dice> playingDice;
 

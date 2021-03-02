@@ -8,6 +8,7 @@ GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
 	, world(*context.window, *context.fonts, *context.sounds)
 	, player(*context.player)
+	, board()
 {
 	//TO DO
 	//context.music->play(MusicID::MissionTheme);
