@@ -15,11 +15,11 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	sf::Font& font = context.fonts->get(FontID::Main);
 	sf::Vector2f windowSize(context.window->getSize());	
 	
-	gameOverText.setFont(font);
-	if (context.player->getMissionStatus() == Player::MissionStatus::Failure)
-		gameOverText.setString("Mission failed!");
-	else
-		gameOverText.setString("Mission successful!");	
+	//gameOverText.setFont(font);
+	//if (context.player->getMissionStatus() == Player::MissionStatus::Failure)
+	//	gameOverText.setString("Mission failed!");
+	//else
+	//	gameOverText.setString("Mission successful!");	
 	
 	gameOverText.setCharacterSize(100);
 	centerOrigin(gameOverText);

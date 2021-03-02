@@ -35,7 +35,7 @@ bool GameState::update(sf::Time dt)
 bool GameState::handleEvent(const sf::Event& event)
 {
 	CommandQueue& commands = world.getCommands();
-	player.handleEvent(event, commands);
+	//player.handleEvent(event, commands);
 
 	// Escape pressed, trigger the pause screen
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)

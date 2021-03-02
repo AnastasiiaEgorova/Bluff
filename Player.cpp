@@ -3,40 +3,39 @@
 #include <algorithm>
 
 Player::Player()
-	: currentMissionStatus(MissionStatus::Running)
 {
-	// bindings
 	initializeKeyBindings();
-	initializeActions();
+	//initializeActions();
+
+	for (int i = 0; i < 5; ++i) {
+		playersDice.push_back(Dice());
+	}
 }
 
 void Player::initializeKeyBindings()
 {   // map from key to action
-	keyBindings[sf::Keyboard::Left] = Action::MoveLeft;
-	keyBindings[sf::Keyboard::Right] = Action::MoveRight;
-	keyBindings[sf::Keyboard::Up] = Action::MoveUp;
-	keyBindings[sf::Keyboard::Down] = Action::MoveDown;
-	keyBindings[sf::Keyboard::Space] = Action::Fire;
-	keyBindings[sf::Keyboard::M] = Action::LaunchMissile;
+	keyBindings[sf::Keyboard::M] = Action::MakeMove;
+	keyBindings[sf::Keyboard::B] = Action::CallBluff;
 }
 
-void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
+Bid Player::makeMove(int numberOfPlayers)
 {
+	// will do makeBid OR callBluff
+	return Bid(2, Dice::Face::Star);
 }
 
-
-void Player::setMissionStatus(MissionStatus status)
+std::vector<Dice> Player::showDice() 
 {
-	currentMissionStatus = status;
+	return playersDice;
 }
 
-Player::MissionStatus Player::getMissionStatus() const
+Bid Player::makeBid(int numberOfPlayers) 
 {
-	return currentMissionStatus;
+	return Bid(2, Dice::Face::Star);
 }
 
-void Player::initializeActions()
+Bid Player::callBluff()
 {
-
+	return Bid(0, Dice::Face::One);
 }
 

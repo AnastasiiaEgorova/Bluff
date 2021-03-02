@@ -7,7 +7,7 @@
 
 enum class BidsNames {
 
-	One_Ones = 0,
+	One_Ones = 1,
 	One_Twos = 2,
 	One_Threes = 3,
 	One_Fours = 4,

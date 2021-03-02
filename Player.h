@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
 #include "Command.h"
+#include "Dice.h"
+#include "Bid.h"
 #include <map>
 
 // forward declaration
@@ -10,35 +12,32 @@ class Player
 {
 public:
 	enum class Action {
-		MoveLeft,
-		MoveRight,
-		MoveUp,
-		MoveDown,
-		Fire,
-		LaunchMissile,
+		MakeMove,
+		CallBluff,
 		ActionCount
-	};
-
-	enum class MissionStatus {
-		Running,
-		Success,
-		Failure,
 	};
 
 public:
 											Player();
-	void									handleEvent(const sf::Event& event, CommandQueue& commands);
+	//void									handleEvent(const sf::Event& event, CommandQueue& commands);
 
-	void									setMissionStatus(MissionStatus status);
-	MissionStatus							getMissionStatus() const;
+	Bid										makeMove(int numberOfPlayers);
+	std::vector<Dice>						showDice();
+
+private:
+
+	Bid										makeBid(int numberOfPlayers);
+	Bid										callBluff();
 
 private:
 	void									initializeKeyBindings();
-	void									initializeActions();
+	//void									initializeActions();
 
 private:
+	//TO DO move to HumanPlayer
 	std::map<sf::Keyboard::Key, Action>		keyBindings;
 	std::map<Action, Command>				actionBindings;
-	MissionStatus							currentMissionStatus;
+
+	std::vector<Dice>						playersDice;
 };
 
