@@ -2,6 +2,7 @@
 #include "State.h"
 #include "World.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 #include "Dice.h"
 #include "Board.h"
 
@@ -20,6 +21,8 @@ private:
 
 	//TO BE std::vector<Player>
 	HumanPlayer&    player;
+
+	AIPlayer		npc1;
 
 	Board			board;
 };
