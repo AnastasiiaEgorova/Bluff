@@ -6,6 +6,7 @@
 #include "CommandQueue.h"
 #include "Command.h"
 #include "SoundPlayer.h"
+#include "TextNode.h"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -61,6 +62,8 @@ private:
 	CommandQueue						commandQueue;
 
 	sf::FloatRect						worldBounds;		// to determine the temporary window size
+
+	TextNode*							currentBid;
 
 	//Player*							player;
 

@@ -26,12 +26,9 @@ CommandQueue& World::getCommands() {
 
 void World::update(sf::Time dt)
 {
-
-
 	while (!commandQueue.isEmpty()) {
 		sceneGraph.onCommand(commandQueue.pop(), dt);
 	}
-
 
 	sceneGraph.update(dt, getCommands());
 	updateSounds();
@@ -132,6 +129,12 @@ void World::buildScene()
 	board->setScale(1.25, 1.25);
 	sceneLayers[BoardLayer]->attachChild(std::move(board));
 
+	//Current Bid (for now)
+	std::unique_ptr<TextNode> currentBidField(new TextNode(fonts, "Current Bid: "));
+	currentBidField->setPosition(worldView.getCenter().x - 30,
+								30);
+	currentBid = currentBidField.get();
+	sceneLayers[TableLayer]->attachChild(std::move(currentBidField));
 }
 
 

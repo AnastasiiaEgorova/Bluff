@@ -47,7 +47,7 @@ bool GameState::handleEvent(const sf::Event& event)
 
 void GameState::getNextPlayer()
 {
-	currentPlayer = (currentPlayer == 0) ? 1 : 0;
+	currentPlayer = (currentPlayer + 1) % players.size();
 }
 
 bool GameState::isValidMove()
