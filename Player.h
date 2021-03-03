@@ -11,33 +11,17 @@ class CommandQueue;
 class Player
 {
 public:
-	enum class Action {
-		MakeMove,
-		CallBluff,
-		ActionCount
-	};
+						Player();
+	virtual				~Player() {};
 
-public:
-											Player();
-	//void									handleEvent(const sf::Event& event, CommandQueue& commands);
-
-	Bid										makeMove(int numberOfPlayers);
-	std::vector<Dice>						showDice();
+	//virtual Bid			makeMove(int numberOfPlayers) = 0;
+	std::vector<Dice>	showDice();
 
 private:
+	//virtual Bid			makeBid(int numberOfPlayers) = 0;
+	//virtual Bid			callBluff() = 0;
 
-	Bid										makeBid(int numberOfPlayers);
-	Bid										callBluff();
-
-private:
-	void									initializeKeyBindings();
-	//void									initializeActions();
-
-private:
-	//TO DO move to HumanPlayer
-	std::map<sf::Keyboard::Key, Action>		keyBindings;
-	std::map<Action, Command>				actionBindings;
-
-	std::vector<Dice>						playersDice;
+protected:
+	std::vector<Dice>	playersDice;
 };
 

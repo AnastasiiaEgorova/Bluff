@@ -5,7 +5,7 @@
 #include "ResourceHolder.h"
 #include "ResourceIdentifiers.h"
 #include "StateStack.h"
-#include "Player.h"
+#include "HumanPlayer.h"
 #include "MusicPlayer.h"
 #include "SoundPlayer.h"
 
@@ -30,7 +30,7 @@ private:
 	sf::RenderWindow		window;
 	TextureHolder_t			textures;
 	FontHolder_t			fonts;
-	Player					player;
+	HumanPlayer				player;
 	MusicPlayer				music;
 	SoundPlayer				sounds;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "State.h"
 #include "World.h"
-#include "Player.h"
+#include "HumanPlayer.h"
 #include "Dice.h"
 #include "Board.h"
 
@@ -18,12 +18,8 @@ public:
 private:
 	World			world;
 
-	//TO BE std::vactor<Player>
-	Player&			player;
+	//TO BE std::vector<Player>
+	HumanPlayer&    player;
 	Board			board;
-
-	std::vector<Dice> playingDice;
-
-	
 };
 

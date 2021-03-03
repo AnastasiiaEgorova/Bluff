@@ -30,7 +30,7 @@ State::Context State::getContext()
 State::Context::Context(sf::RenderWindow& window, 
 	TextureHolder_t& textures, 
 	FontHolder_t& fonts, 
-	Player& player,
+	HumanPlayer& player,
 	MusicPlayer& music,
 	SoundPlayer& sounds)
 	// in context all fields are pointers => taking addresses of objects

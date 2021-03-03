@@ -2,6 +2,7 @@
 
 #include "StateIdentifiers.h"
 #include "ResourceIdentifiers.h"
+#include "HumanPlayer.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
@@ -12,7 +13,7 @@ namespace sf {
 	class RenderWindow;
 }
 
-class Player;
+class HumanPlayer;
 class StateStack;
 class MusicPlayer;
 class SoundPlayer;
@@ -28,14 +29,14 @@ public:
 		Context(sf::RenderWindow& window,
 			TextureHolder_t& textures,
 			FontHolder_t& fonts,
-			Player& player,
+			HumanPlayer& player,
 			MusicPlayer& music,
 			SoundPlayer& sounds);
 
 		sf::RenderWindow*	window;
 		TextureHolder_t*	textures;
 		FontHolder_t*		fonts;
-		Player*				player;
+		HumanPlayer*		player;
 		MusicPlayer*		music;
 		SoundPlayer*		sounds;
 	};
