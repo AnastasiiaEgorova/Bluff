@@ -20,6 +20,7 @@ private:
 
 	//TO BE std::vector<Player>
 	HumanPlayer&    player;
+
 	Board			board;
 };
 

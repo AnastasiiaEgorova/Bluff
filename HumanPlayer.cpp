@@ -12,13 +12,13 @@ void HumanPlayer::initializeKeyBindings()
 	keyBindings[sf::Keyboard::B] = Action::CallBluff;
 }
 
-Bid HumanPlayer::makeMove(int numberOfPlayers)
+Bid HumanPlayer::makeMove()
 {
 	// will do makeBid OR callBluff
 	return Bid(2, Dice::Face::Star);
 }
 
-Bid HumanPlayer::makeBid(int numberOfPlayers)
+Bid HumanPlayer::makeBid()
 {
 	return Bid(2, Dice::Face::Star);
 }
