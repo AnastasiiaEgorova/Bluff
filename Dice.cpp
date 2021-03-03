@@ -8,7 +8,7 @@ Dice::Dice() {
 	face = rollDice();
 }
 
-Dice::Face Dice::getFace()
+Dice::Face Dice::getFace() const
 {
 	return face;
 }

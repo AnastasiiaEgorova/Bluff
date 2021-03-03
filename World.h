@@ -7,6 +7,9 @@
 #include "Command.h"
 #include "SoundPlayer.h"
 #include "TextNode.h"
+#include "Bid.h"
+#include <sstream>
+#include <string>
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -34,6 +37,7 @@ public:
 	//void								adaptPlayerPosition();
 
 	void								updateSounds();
+	void								updateCurrentBidText(Bid b);
 
 private:
 	void								loadTextures();

@@ -32,6 +32,14 @@ void World::update(sf::Time dt)
 
 	sceneGraph.update(dt, getCommands());
 	updateSounds();
+	updateCurrentBidText(Bid(0, Dice::Face::One));
+}
+
+void World::updateCurrentBidText(Bid b)
+{
+	std::stringstream stream;
+	stream << b;
+	currentBid->setString("Current Bid: " + stream.str());
 }
 
 void World::draw()

@@ -14,7 +14,7 @@ public:
 	};
 
 													Dice();
-	Dice::Face										getFace();
+	Dice::Face										getFace() const;
 
 private:
 	Face											rollDice();
