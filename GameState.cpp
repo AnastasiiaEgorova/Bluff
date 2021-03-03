@@ -8,13 +8,17 @@ GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
 	, world(*context.window, *context.fonts, *context.sounds)
 	, player(*context.player)
-	, npc1()
+	, currentPlayer(0)
 	, board()
+	, isBluffCalled(false)
 {
 	//TO DO
 	//context.music->play(MusicID::MissionTheme);
 
-	world.drawDice(player.showDice());
+	players.push_back(&player);
+	players.push_back(new AIPlayer());
+
+	world.drawDice(players.front()->showDice());
 }
 
 void GameState::draw()
@@ -39,4 +43,14 @@ bool GameState::handleEvent(const sf::Event& event)
 		requestStackPush(StateID::Pause);
 
 	return false;
+}
+
+void GameState::getNextPlayer()
+{
+	currentPlayer = (currentPlayer == 0) ? 1 : 0;
+}
+
+bool GameState::isValidMove()
+{
+	return true;
 }

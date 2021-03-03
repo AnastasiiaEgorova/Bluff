@@ -17,13 +17,19 @@ public:
 	virtual bool	handleEvent(const sf::Event& event) override;
 
 private:
+	void			getNextPlayer();
+	//bool			isBluffCalled();
+	bool			isValidMove();
+
+private:
 	World			world;
 
-	//TO BE std::vector<Player>
-	HumanPlayer&    player;
-
-	AIPlayer		npc1;
+	std::vector<Player*> players;
+	HumanPlayer& player;
 
 	Board			board;
+
+	int				currentPlayer;
+	bool			isBluffCalled;
 };
 
