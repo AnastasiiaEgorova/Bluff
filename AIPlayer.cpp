@@ -7,7 +7,7 @@ AIPlayer::AIPlayer() : Player()
 Bid AIPlayer::makeMove()
 {
 	// will do makeBid OR callBluff
-	return Bid(2, Dice::Face::Star);
+	return Bid(3, Dice::Face::Star);
 }
 
 Bid AIPlayer::makeBid()

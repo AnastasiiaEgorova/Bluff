@@ -17,9 +17,11 @@ public:
 	virtual bool	handleEvent(const sf::Event& event) override;
 
 private:
-	void			getNextPlayer();
+	void			nextPlayer();
 	//bool			isBluffCalled();
 	bool			isValidMove();
+
+	void			play();
 
 private:
 	World			world;
@@ -31,5 +33,8 @@ private:
 
 	int				currentPlayer;
 	bool			isBluffCalled;
+	std::string		errorMessage;
+
+	const int		BLUFF = 0;
 };
 

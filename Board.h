@@ -152,7 +152,6 @@ class Board
 {
 public:
 	static std::map<BidsNames, Bid> const AllBids;
-	//static std::unordered_map<Bid, BidsNames> AllBids2;
 
 				Board();
 

@@ -28,11 +28,26 @@ std::string Bid::convertFaceToString() const
 	}
 }
 
+int Bid::getNumber() const
+{
+	return number;
+}
+
 bool Bid::operator==(const Bid& rhs) const 
 {
 	return (this->number == rhs.number
 		&& this->face == rhs.face);
 }
+
+//bool Bid::operator>(const Bid& rhs) const
+//{
+//	bool isNumberGreater = this->number > rhs.number;
+//	bool isNumberEqual = this->number == rhs.number;
+//
+//	return (this->number == rhs.number
+//		&& this->face == rhs.face);
+//}
+
 
 std::ostream& operator<< (std::ostream & os, const Bid & b) 
 {

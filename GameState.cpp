@@ -30,6 +30,9 @@ bool GameState::update(sf::Time dt)
 {
 	world.update(dt);
 	world.updateCurrentBidText(board.getCurrentBid());
+
+	play();
+
 	return true;
 }
 
@@ -45,7 +48,7 @@ bool GameState::handleEvent(const sf::Event& event)
 	return false;
 }
 
-void GameState::getNextPlayer()
+void GameState::nextPlayer()
 {
 	currentPlayer = (currentPlayer + 1) % players.size();
 }
@@ -53,4 +56,27 @@ void GameState::getNextPlayer()
 bool GameState::isValidMove()
 {
 	return true;
+}
+
+void GameState::play()
+{
+	while (!isBluffCalled) {
+
+		Bid newBid = players[currentPlayer]->makeMove();
+
+		if (newBid.getNumber() != BLUFF) {
+
+			if (board.isMoveValid(newBid)) {
+				board.setCurrentBid(newBid);
+				nextPlayer();
+			}
+			else
+				errorMessage = "Invalid move. Please try again";
+		}
+		else
+			isBluffCalled = true;
+
+		draw();
+		//update();
+	}
 }

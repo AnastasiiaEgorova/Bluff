@@ -10,8 +10,10 @@ public:
 						Bid(int n, Dice::Face f);
 
 	std::string			convertFaceToString() const;
+	int					getNumber() const;
 
 	bool operator==(const Bid& rhs) const;
+	//bool operator>(const Bid& rhs) const;
 
 	friend std::ostream& operator<<(std::ostream& strm, const Bid& b);
 
