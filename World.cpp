@@ -32,7 +32,6 @@ void World::update(sf::Time dt)
 
 	sceneGraph.update(dt, getCommands());
 	updateSounds();
-	updateCurrentBidText(Bid(0, Dice::Face::One));
 }
 
 void World::updateCurrentBidText(Bid b)

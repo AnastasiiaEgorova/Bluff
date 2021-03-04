@@ -29,7 +29,7 @@ void GameState::draw()
 bool GameState::update(sf::Time dt)
 {
 	world.update(dt);
-
+	world.updateCurrentBidText(board.getCurrentBid());
 	return true;
 }
 
