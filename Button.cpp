@@ -7,16 +7,13 @@ Button::Button(float x, float y, float width, float height, const FontHolder_t& 
 	shape.setPosition(sf::Vector2f(x, y));
 	shape.setSize(sf::Vector2f(width, height));
 
-	//this->font = font;
-
 	this->text.setFont(fonts.get(FontID::Main));
 	this->text.setString(text);
 	this->text.setFillColor(sf::Color::White);
 	this->text.setCharacterSize(12);
 	this->text.setPosition(
-		this->shape.getPosition().x / 2.f - this->text.getGlobalBounds().width / 2.f,
-		this->shape.getPosition().y / 2.f - this->text.getGlobalBounds().height / 2.f
-	);
+		this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2.f - this->text.getGlobalBounds().width / 2.f,
+		this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2.f - this->text.getGlobalBounds().height / 2.f - 5.f);
 
 	this->idleColour = sf::Color(20, 20, 20, 200);
 	this->hoverColour = sf::Color::Yellow;
@@ -28,6 +25,7 @@ Button::Button(float x, float y, float width, float height, const FontHolder_t& 
 void Button::render(sf::RenderTarget* target)
 {
 	target->draw(this->shape);
+	target->draw(this->text);
 }
 
 void Button::update(const sf::Vector2i mousePosition)

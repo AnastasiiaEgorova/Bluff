@@ -19,7 +19,7 @@ GameState::GameState(StateStack& stack, Context context)
 	players.push_back(&player);
 	players.push_back(new AIPlayer());
 
-	btnCallBluff = new Button(1100.f, 100.f, 100.f, 25.f, *context.fonts, "Call Bluff");
+	btnCallBluff = std::unique_ptr<Button>(new Button(1100.f, 100.f, 100.f, 25.f, *context.fonts, "Call Bluff"));
 
 	world.drawDice(players.front()->showDice());
 }
@@ -57,9 +57,7 @@ bool GameState::handleEvent(const sf::Event& event)
 
 void GameState::updateMousePosition()
 {
-	//this->mousePosition = sf::Mouse::getPosition(world.getRenderTarget());
 	this->mousePosition = sf::Mouse::getPosition(this->window);
-	//this->mousePosition = sf::Mouse::getPosition(*this->world.);
 }
 
 void GameState::nextPlayer()
@@ -76,9 +74,13 @@ void GameState::play()
 {
 	if (!isBluffCalled) {
 
-		//if (currentPlayer == 0)
-		//	handleEvent();
-		//else 
+		Bid newBid;
+
+		if (currentPlayer == 0)
+			if (btnCallBluff->isPressed())
+				isBluffCalled = true;
+
+		else 
 			Bid newBid = players[currentPlayer]->makeMove();
 
 		if (newBid.getNumber() != BLUFF) {
@@ -95,4 +97,6 @@ void GameState::play()
 
 		draw();
 	}
+	else
+		requestStackPush(StateID::GameOver);
 }

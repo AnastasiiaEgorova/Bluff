@@ -20,31 +20,31 @@ public:
 	void			updateMousePosition();
 
 private:
+
 	void			nextPlayer();
 	bool			isValidMove();
 
 	void			play();
 
 private:
-	sf::RenderWindow& window;
+	sf::RenderWindow&			window;
 
-	World			world;
+	World						world;
 
-	//sf::Vector2i	mousePosScreen;
-	sf::Vector2i	mousePosition;
+	sf::Vector2i				mousePosition;
 
-	std::vector<Player*> players;
-	HumanPlayer& player;
+	std::vector<Player*>		players;
+	HumanPlayer&				player;
 
-	Board			board;
+	Board						board;
 
-	Button*			btnCallBluff;
+	std::unique_ptr<Button>		btnCallBluff;
 
-	int				currentPlayer;
-	bool			isBluffCalled;
-	std::string		errorMessage;
+	int							currentPlayer;
+	bool						isBluffCalled;
+	std::string					errorMessage;
 
-	const int		BLUFF = 0;
+	const int					BLUFF = 0;
 
 };
 

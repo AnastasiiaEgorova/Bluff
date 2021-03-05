@@ -31,7 +31,6 @@ private:
 	size_t					buttonState;
 
 	sf::RectangleShape		shape;
-	//const FontHolder_t& 	font;
 	sf::Text				text;
 
 	sf::Color				idleColour;
