@@ -60,9 +60,12 @@ bool GameState::isValidMove()
 
 void GameState::play()
 {
-	while (!isBluffCalled) {
+	if (!isBluffCalled) {
 
-		Bid newBid = players[currentPlayer]->makeMove();
+		//if (currentPlayer == 0)
+		//	handleEvent();
+		//else 
+			Bid newBid = players[currentPlayer]->makeMove();
 
 		if (newBid.getNumber() != BLUFF) {
 
@@ -77,6 +80,5 @@ void GameState::play()
 			isBluffCalled = true;
 
 		draw();
-		//update();
 	}
 }
