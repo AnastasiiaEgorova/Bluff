@@ -14,6 +14,8 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 {
 	sceneTexture.create(target.getSize().x, target.getSize().y);
 
+	//btnCallBluff = new Button(worldView.getCenter().x, worldView.getCenter().y, 100.f, 50.f, fonts, "Call Bluff");
+
 	loadTextures();
 	buildScene();
 
@@ -32,6 +34,8 @@ void World::update(sf::Time dt)
 
 	sceneGraph.update(dt, getCommands());
 	updateSounds();
+
+	//btnCallBluff->update(sf::Vector2f(2.f, 2.f));
 }
 
 void World::updateCurrentBidText(Bid b)
@@ -173,4 +177,9 @@ TextureID World::loadDice(Dice::Face face)
 	default:
 		return TextureID::DiceStar;
 	}
+}
+
+sf::RenderTarget& World::getRenderTarget()
+{
+	return target;
 }

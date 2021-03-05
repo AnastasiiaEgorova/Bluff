@@ -8,6 +8,7 @@
 #include "SoundPlayer.h"
 #include "TextNode.h"
 #include "Bid.h"
+#include "Button.h"
 #include <sstream>
 #include <string>
 
@@ -35,6 +36,8 @@ public:
 
 	//bool								hasAlivePlayer() const;
 	//void								adaptPlayerPosition();
+
+	sf::RenderTarget&					getRenderTarget();
 
 	void								updateSounds();
 	void								updateCurrentBidText(Bid b);
@@ -68,6 +71,9 @@ private:
 	sf::FloatRect						worldBounds;		// to determine the temporary window size
 
 	TextNode*							currentBid;
+
+	
+    //Button*								btnCallBluff;
 
 	//Player*							player;
 

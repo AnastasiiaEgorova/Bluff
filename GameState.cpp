@@ -18,12 +18,15 @@ GameState::GameState(StateStack& stack, Context context)
 	players.push_back(&player);
 	players.push_back(new AIPlayer());
 
+	btnCallBluff = new Button(10.f, 10.f, 100.f, 50.f, *context.fonts, "Call Bluff");
+
 	world.drawDice(players.front()->showDice());
 }
 
 void GameState::draw()
 {
 	world.draw();
+	btnCallBluff->render(&world.getRenderTarget());
 }
 
 bool GameState::update(sf::Time dt)

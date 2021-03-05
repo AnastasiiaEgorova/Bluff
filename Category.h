@@ -8,5 +8,6 @@ namespace Category
 		Table				= 1 << 0,
 		Board				= 2 << 0,		// 000000001
 		Dice				= 3 << 0,
+		Button				= 4 << 0,
 	};
 }

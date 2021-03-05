@@ -152,6 +152,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Bid.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Dice.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Bid.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandQueue.h" />

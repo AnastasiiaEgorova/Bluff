@@ -5,6 +5,7 @@
 #include "AIPlayer.h"
 #include "Dice.h"
 #include "Board.h"
+#include "Button.h"
 
 class GameState : public State
 {
@@ -30,6 +31,8 @@ private:
 	HumanPlayer& player;
 
 	Board			board;
+
+	Button*			btnCallBluff;
 
 	int				currentPlayer;
 	bool			isBluffCalled;
