@@ -6,6 +6,7 @@
 
 GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
+	, window(*context.window)
 	, world(*context.window, *context.fonts, *context.sounds)
 	, player(*context.player)
 	, currentPlayer(0)
@@ -18,7 +19,7 @@ GameState::GameState(StateStack& stack, Context context)
 	players.push_back(&player);
 	players.push_back(new AIPlayer());
 
-	btnCallBluff = new Button(10.f, 10.f, 100.f, 50.f, *context.fonts, "Call Bluff");
+	btnCallBluff = new Button(1100.f, 100.f, 100.f, 25.f, *context.fonts, "Call Bluff");
 
 	world.drawDice(players.front()->showDice());
 }
@@ -33,6 +34,9 @@ bool GameState::update(sf::Time dt)
 {
 	world.update(dt);
 	world.updateCurrentBidText(board.getCurrentBid());
+
+	updateMousePosition();
+	btnCallBluff->update(mousePosition);
 
 	play();
 
@@ -49,6 +53,13 @@ bool GameState::handleEvent(const sf::Event& event)
 		requestStackPush(StateID::Pause);
 
 	return false;
+}
+
+void GameState::updateMousePosition()
+{
+	//this->mousePosition = sf::Mouse::getPosition(world.getRenderTarget());
+	this->mousePosition = sf::Mouse::getPosition(this->window);
+	//this->mousePosition = sf::Mouse::getPosition(*this->world.);
 }
 
 void GameState::nextPlayer()

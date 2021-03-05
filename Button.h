@@ -8,7 +8,6 @@
 
 #include "ResourceHolder.h"
 #include "ResourceIdentifiers.h"
-#include "SceneNode.h"
 
 enum ButtonStates {
 	BtnIdle = 0,
@@ -16,13 +15,13 @@ enum ButtonStates {
 	BtnPressed,
 };
 
-class Button : public SceneNode
+class Button
 {
 public:
 							Button(float x, float y, float width, float height, const FontHolder_t& fonts, std::string text);
 
 	void					render(sf::RenderTarget* target);
-	void					update(const sf::Vector2f mousePosition);
+	void					update(const sf::Vector2i mousePosition);
 
 	bool					isPressed() const;
 			

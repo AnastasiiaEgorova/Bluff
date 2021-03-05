@@ -37,6 +37,7 @@ public:
 	//bool								hasAlivePlayer() const;
 	//void								adaptPlayerPosition();
 
+	// to add buttons
 	sf::RenderTarget&					getRenderTarget();
 
 	void								updateSounds();

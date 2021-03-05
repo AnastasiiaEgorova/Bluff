@@ -17,15 +17,21 @@ public:
 	virtual bool	update(sf::Time dt) override;
 	virtual bool	handleEvent(const sf::Event& event) override;
 
+	void			updateMousePosition();
+
 private:
 	void			nextPlayer();
-	//bool			isBluffCalled();
 	bool			isValidMove();
 
 	void			play();
 
 private:
+	sf::RenderWindow& window;
+
 	World			world;
+
+	//sf::Vector2i	mousePosScreen;
+	sf::Vector2i	mousePosition;
 
 	std::vector<Player*> players;
 	HumanPlayer& player;
@@ -39,5 +45,6 @@ private:
 	std::string		errorMessage;
 
 	const int		BLUFF = 0;
+
 };
 

@@ -18,11 +18,11 @@ Button::Button(float x, float y, float width, float height, const FontHolder_t& 
 		this->shape.getPosition().y / 2.f - this->text.getGlobalBounds().height / 2.f
 	);
 
-	this->idleColour = sf::Color::Magenta;
+	this->idleColour = sf::Color(20, 20, 20, 200);
 	this->hoverColour = sf::Color::Yellow;
 	this->pressedColour = sf::Color::Green;
 
-	this->shape.setFillColor(sf::Color::Cyan);
+	this->shape.setFillColor(sf::Color(100, 100, 100, 200));
 }
 
 void Button::render(sf::RenderTarget* target)
@@ -30,13 +30,13 @@ void Button::render(sf::RenderTarget* target)
 	target->draw(this->shape);
 }
 
-void Button::update(const sf::Vector2f mousePosition)
+void Button::update(const sf::Vector2i mousePosition)
 {
 	// Idle
 	this->buttonState = BtnIdle;
 
 	// Hover
-	if (this->shape.getGlobalBounds().contains(mousePosition)) {
+	if (this->shape.getGlobalBounds().contains(sf::Vector2f(mousePosition.x, mousePosition.y))) {
 		this->buttonState = BtnHover;
 
 		// Pressed
