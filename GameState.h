@@ -7,6 +7,8 @@
 #include "Board.h"
 #include "Button.h"
 
+#include <algorithm>
+
 class GameState : public State
 {
 public:
@@ -17,9 +19,12 @@ public:
 	virtual bool	update(sf::Time dt) override;
 	virtual bool	handleEvent(const sf::Event& event) override;
 
+private:
 	void			updateMousePosition();
 
-private:
+	void			initializeButtons(const FontHolder_t& fonts);
+	void			updateMousePositionsForButtons();
+	void			drawButtons();
 
 	void			nextPlayer();
 	bool			isValidMove();
@@ -39,6 +44,16 @@ private:
 	Board						board;
 
 	std::unique_ptr<Button>		btnCallBluff;
+	std::unique_ptr<Button>		btnMakeMove;
+
+	std::vector<std::unique_ptr<Button>> numberButtons;
+	std::vector<std::unique_ptr<Button>> faceButtons;
+	//Button*						btnNumber1;
+	//Button*						btnNumber2;
+	//Button*						btnFace1;
+	//Button*						btnFace2;
+
+	
 
 	int							currentPlayer;
 	bool						isBluffCalled;
