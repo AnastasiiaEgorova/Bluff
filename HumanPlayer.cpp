@@ -14,13 +14,31 @@ void HumanPlayer::initializeKeyBindings()
 
 Bid HumanPlayer::makeMove()
 {
-	// will do makeBid OR callBluff
-	return Bid(2, Dice::Face::Star);
+	if (btnCallBluff->isPressed())
+		return callBluff();
+	else {
+		Bid newBid = makeBid();
+		return newBid;
+	}
 }
 
 Bid HumanPlayer::makeBid()
 {
-	return Bid(2, Dice::Face::Star);
+	if (!areButtonsPressedToMakeMove())
+		return Bid(-1, Dice::Face::One);
+	else
+	{
+		std::string num;
+		getValueFormButton(num, numberButtons);
+
+		std::string face;
+		getValueFormButton(face, faceButtons);
+
+		int number = Bid::numberNames.find(num)->second;
+		Dice::Face faceFace = Bid::faceNames.find(face)->second;
+
+		return Bid(number, faceFace);
+	}
 }
 
 Bid HumanPlayer::callBluff()
@@ -82,13 +100,25 @@ bool HumanPlayer::areButtonsPressedToMakeMove()
 	bool numberChosen = false;
 	bool faceChosen = false;
 
-	for (auto& b : numberButtons)
-		if (b->isPressed())
+	for (auto& b : numberButtons) 
+		if (b->getIsChosen()) {
 			numberChosen = true;
+			break;
+		}
 
 	for (auto& b : faceButtons)
-		if (b->isPressed())
+		if (b->getIsChosen()) {
 			faceChosen = true;
+			break;
+		}
 
 	return (numberChosen && faceChosen);
+}
+
+void HumanPlayer::getValueFormButton(std::string& str, std::vector<std::unique_ptr<Button>>& buttons)
+{
+	for (auto& b : buttons) {
+		if (b->getIsChosen())
+			str = b->getName();
+	}
 }

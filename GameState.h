@@ -22,12 +22,6 @@ public:
 private:
 	void			updateMousePosition();
 
-	//void			initializeButtons(const FontHolder_t& fonts);
-	//void			updateMousePositionsForButtons();
-	//void			drawButtons();
-
-	//bool			areButtonsPressedToMakeMove();
-
 	void			nextPlayer();
 	bool			isValidMove();
 
@@ -44,12 +38,6 @@ private:
 	HumanPlayer&				player;
 
 	Board						board;
-
-	//std::unique_ptr<Button>		btnCallBluff;
-	//std::unique_ptr<Button>		btnMakeMove;
-
-	//std::vector<std::unique_ptr<Button>> numberButtons;
-	//std::vector<std::unique_ptr<Button>> faceButtons;	
 
 	int							currentPlayer;
 	bool						isBluffCalled;

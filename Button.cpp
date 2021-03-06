@@ -77,3 +77,14 @@ bool Button::isPressed() const
 {
 	return this->buttonState == BtnPressed;
 }
+
+
+bool Button::getIsChosen() const
+{
+	return isChosen;
+}
+
+std::string Button::getName() const
+{
+	return text.getString().toAnsiString();
+}

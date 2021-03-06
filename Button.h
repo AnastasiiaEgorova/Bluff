@@ -24,6 +24,9 @@ public:
 	void					update(const sf::Vector2i mousePosition);
 
 	bool					isPressed() const;
+
+	bool					getIsChosen() const;
+	std::string				getName() const;
 			
 
 private:

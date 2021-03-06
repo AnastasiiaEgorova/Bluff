@@ -26,6 +26,8 @@ public:
 
 	bool									areButtonsPressedToMakeMove();
 
+	void									getValueFormButton(std::string& str, std::vector<std::unique_ptr<Button>>& buttons);
+
 private:
 	Bid										makeBid() override;
 	Bid										callBluff() override;
