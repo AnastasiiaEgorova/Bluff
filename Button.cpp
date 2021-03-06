@@ -20,6 +20,7 @@ Button::Button(float x, float y, float width, float height, const FontHolder_t& 
 	this->idleColour = sf::Color(20, 20, 20, 200);
 	this->hoverColour = sf::Color::Yellow;
 	this->pressedColour = sf::Color::Green;
+	this->isChosenColour = sf::Color::Magenta;
 
 	this->shape.setFillColor(sf::Color(100, 100, 100, 200));
 }
@@ -32,21 +33,21 @@ void Button::render(sf::RenderTarget* target)
 
 void Button::update(const sf::Vector2i mousePosition)
 {
-	if(!isChosen) {
-		// Idle
-		this->buttonState = BtnIdle;
+	// Idle
+	this->buttonState = BtnIdle;
 
-		// Hover
-		if (this->shape.getGlobalBounds().contains(sf::Vector2f(mousePosition.x, mousePosition.y))) {
-			this->buttonState = BtnHover;
+	// Hover
+	if (this->shape.getGlobalBounds().contains(sf::Vector2f(mousePosition.x, mousePosition.y))) {
+		this->buttonState = BtnHover;
 
-			// Pressed
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-				isChosen = true;
-				this->buttonState = BtnPressed;
-			}
+		// Pressed
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			isChosen = !isChosen;
+			this->buttonState = BtnPressed;
 		}
+	}
 
+	if (!isChosen) {
 		switch (this->buttonState)
 		{
 		case BtnIdle:
@@ -65,6 +66,10 @@ void Button::update(const sf::Vector2i mousePosition)
 			this->shape.setFillColor(sf::Color::Red);
 			break;
 		}
+	}
+	else
+	{
+		shape.setFillColor(isChosenColour);
 	}
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Button.h"
 
 class HumanPlayer : public Player
 {
@@ -19,6 +20,12 @@ public:
 
 	Bid										makeMove() override;
 
+	void									initializeButtons(const FontHolder_t& fonts);
+	void									updateMousePositionsForButtons(sf::Vector2i mousePos);
+	void									drawButtons(sf::RenderTarget* target);
+
+	bool									areButtonsPressedToMakeMove();
+
 private:
 	Bid										makeBid() override;
 	Bid										callBluff() override;
@@ -26,5 +33,11 @@ private:
 private:
 	std::map<sf::Keyboard::Key, Action>		keyBindings;
 	std::map<Action, Command>				actionBindings;
+
+	std::unique_ptr<Button>					btnCallBluff;
+	std::unique_ptr<Button>					btnMakeMove;
+
+	std::vector<std::unique_ptr<Button>>	numberButtons;
+	std::vector<std::unique_ptr<Button>>	faceButtons;
 };
 

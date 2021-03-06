@@ -38,5 +38,6 @@ private:
 	sf::Color				idleColour;
 	sf::Color				hoverColour;
 	sf::Color				pressedColour;
+	sf::Color				isChosenColour;
 };
 
