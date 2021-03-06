@@ -128,6 +128,9 @@ void GameState::play()
 		if (currentPlayer == 0)
 			if (btnCallBluff->isPressed())
 				isBluffCalled = true;
+			else if (btnMakeMove->isPressed())
+				if (areButtonsPressedToMakeMove())
+					isBluffCalled = true;
 
 		else 
 			Bid newBid = players[currentPlayer]->makeMove();
@@ -148,4 +151,20 @@ void GameState::play()
 	}
 	else
 		requestStackPush(StateID::GameOver);
+}
+
+bool GameState::areButtonsPressedToMakeMove()
+{
+	bool numberChosen = false;
+	bool faceChosen = false;
+
+	for (auto& b : numberButtons)
+		if (b->isPressed())
+			numberChosen = true;
+
+	for (auto& b : faceButtons)
+		if (b->isPressed())
+			faceChosen = true;
+
+	return (numberChosen && faceChosen);
 }

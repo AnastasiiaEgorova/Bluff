@@ -26,6 +26,8 @@ private:
 	void			updateMousePositionsForButtons();
 	void			drawButtons();
 
+	bool			areButtonsPressedToMakeMove();
+
 	void			nextPlayer();
 	bool			isValidMove();
 

@@ -30,6 +30,8 @@ private:
 
 	size_t					buttonState;
 
+	bool					isChosen;
+
 	sf::RectangleShape		shape;
 	sf::Text				text;
 

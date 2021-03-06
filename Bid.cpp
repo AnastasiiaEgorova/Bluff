@@ -1,5 +1,27 @@
 #include "Bid.h"
 
+std::map<std::string, int> const Bid::numberNames{
+	{"1", 1},
+	{"2", 2},
+	{"3", 3},
+	{"4", 4},
+	{"5", 5},
+	{"6", 6},
+	{"7", 7},
+	{"8", 8},
+	{"9", 9},
+	{"10", 10}
+};
+
+std::map<std::string, Dice::Face> const Bid::faceNames{
+	{"Ones", Dice::Face::One},
+	{"Twos", Dice::Face::Two},
+	{"Threes", Dice::Face::Three},
+	{"Fours", Dice::Face::Four},
+	{"Fives", Dice::Face::Five},
+	{"Stars", Dice::Face::Star}
+};
+
 Bid::Bid() {
 	number = 1;
 	face = Dice::Face::One;

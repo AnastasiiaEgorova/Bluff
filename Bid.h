@@ -2,10 +2,15 @@
 #include "Dice.h"
 #include <string>
 #include <iostream>
+#include <map>
 
 class Bid {
 
 public:
+
+	static std::map<std::string, int> const numberNames;
+	static std::map<std::string, Dice::Face> const faceNames;
+
 						Bid();
 						Bid(int n, Dice::Face f);
 
