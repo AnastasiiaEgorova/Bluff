@@ -4,15 +4,17 @@ AIPlayer::AIPlayer() : Player()
 {
 }
 
-Bid AIPlayer::makeMove()
+Bid AIPlayer::makeMove(Bid currentBid)
 {
-	// will do makeBid OR callBluff
-	return Bid(3, Dice::Face::Star);
+	if (currentBid.getNumber() > 5)
+		callBluff();
+	else
+		return makeBid(currentBid);
 }
 
-Bid AIPlayer::makeBid()
+Bid AIPlayer::makeBid(Bid currentBid)
 {
-	return Bid(2, Dice::Face::Star);
+	return Bid(++currentBid);
 }
 
 Bid	AIPlayer::callBluff()

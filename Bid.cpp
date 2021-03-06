@@ -61,15 +61,29 @@ bool Bid::operator==(const Bid& rhs) const
 		&& this->face == rhs.face);
 }
 
-//bool Bid::operator>(const Bid& rhs) const
-//{
-//	bool isNumberGreater = this->number > rhs.number;
-//	bool isNumberEqual = this->number == rhs.number;
-//
-//	return (this->number == rhs.number
-//		&& this->face == rhs.face);
-//}
+Bid& Bid::operator++()
+{
+	if (face == Dice::Face::One)
+		face = Dice::Face::Two;
+	else if (face == Dice::Face::Two)
+		face = Dice::Face::Three;
+	else if (face == Dice::Face::Three)
+		face = Dice::Face::Four;
+	else if (face == Dice::Face::Four)
+		face = Dice::Face::Five;
 
+	else if (face == Dice::Face::Five) {
+		++number;
+		face = Dice::Face::One;
+	}
+
+	else if (face == Dice::Face::Star) {
+		number *= 2;
+		face = Dice::Face::One;
+	}
+
+	return *this;
+}
 
 std::ostream& operator<< (std::ostream & os, const Bid & b) 
 {

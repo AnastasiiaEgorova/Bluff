@@ -84,6 +84,11 @@ bool Button::getIsChosen() const
 	return isChosen;
 }
 
+void Button::setIsChosen(bool value)
+{
+	isChosen = value;
+}
+
 std::string Button::getName() const
 {
 	return text.getString().toAnsiString();

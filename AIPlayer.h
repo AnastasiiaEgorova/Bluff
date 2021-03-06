@@ -5,10 +5,10 @@ class AIPlayer : public Player
 {
 public:
 					AIPlayer();
-	Bid				makeMove() override;
+	Bid				makeMove(Bid currentBid) override;
 
 private:
-	Bid				makeBid() override;
+	Bid				makeBid(Bid currentBid) override;
 	Bid				callBluff() override;
 };
 

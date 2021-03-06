@@ -149,7 +149,7 @@ Board::Board()
 	//currentBidName = BidsNames::One_Ones;
 }
 
-Bid Board::getCurrentBid() 
+Bid Board::getCurrentBid() const
 {
 	return currentBid;
 }

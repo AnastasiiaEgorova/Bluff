@@ -12,17 +12,18 @@ void HumanPlayer::initializeKeyBindings()
 	keyBindings[sf::Keyboard::B] = Action::CallBluff;
 }
 
-Bid HumanPlayer::makeMove()
+Bid HumanPlayer::makeMove(Bid currentBid)
 {
-	if (btnCallBluff->isPressed())
+	if (btnCallBluff->isPressed()) {
+		resetButtons();
 		return callBluff();
+	}
 	else {
-		Bid newBid = makeBid();
-		return newBid;
+		return makeBid(currentBid);
 	}
 }
 
-Bid HumanPlayer::makeBid()
+Bid HumanPlayer::makeBid(Bid currentBid)
 {
 	if (!areButtonsPressedToMakeMove())
 		return Bid(-1, Dice::Face::One);
@@ -37,6 +38,7 @@ Bid HumanPlayer::makeBid()
 		int number = Bid::numberNames.find(num)->second;
 		Dice::Face faceFace = Bid::faceNames.find(face)->second;
 
+		resetButtons();
 		return Bid(number, faceFace);
 	}
 }
@@ -92,6 +94,15 @@ void HumanPlayer::drawButtons(sf::RenderTarget* target)
 
 	for (auto& b : faceButtons)
 		b->render(target);
+}
+
+void HumanPlayer::resetButtons()
+{
+	for (auto& b : numberButtons)
+		b->setIsChosen(false);
+
+	for (auto& b : faceButtons)
+		b->setIsChosen(false);
 }
 
 

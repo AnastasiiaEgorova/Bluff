@@ -26,6 +26,8 @@ public:
 	bool					isPressed() const;
 
 	bool					getIsChosen() const;
+	void					setIsChosen(bool value);
+
 	std::string				getName() const;
 			
 

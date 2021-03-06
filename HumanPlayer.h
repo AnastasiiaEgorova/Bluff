@@ -18,18 +18,19 @@ public:
 	void									initializeKeyBindings();
 	//void									initializeActions();
 
-	Bid										makeMove() override;
+	Bid										makeMove(Bid currentBid) override;
 
 	void									initializeButtons(const FontHolder_t& fonts);
 	void									updateMousePositionsForButtons(sf::Vector2i mousePos);
 	void									drawButtons(sf::RenderTarget* target);
+	void									resetButtons();
 
 	bool									areButtonsPressedToMakeMove();
 
 	void									getValueFormButton(std::string& str, std::vector<std::unique_ptr<Button>>& buttons);
 
 private:
-	Bid										makeBid() override;
+	Bid										makeBid(Bid currentBid) override;
 	Bid										callBluff() override;
 
 private:

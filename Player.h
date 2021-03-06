@@ -14,11 +14,11 @@ public:
 						Player();
 	virtual				~Player() {};
 
-	virtual Bid			makeMove() = 0;
+	virtual Bid			makeMove(Bid currentBid) = 0;
 	std::vector<Dice>	showDice();
 
 private:
-	virtual Bid			makeBid() = 0;
+	virtual Bid			makeBid(Bid currentBid) = 0;
 	virtual Bid			callBluff() = 0;
 
 protected:

@@ -75,7 +75,7 @@ void GameState::play()
 {
 	if (!isBluffCalled) {
 
-		Bid newBid = players[currentPlayer]->makeMove();
+		Bid newBid = players[currentPlayer]->makeMove(board.getCurrentBid());
 
 		if (newBid.getNumber() != BLUFF) {
 

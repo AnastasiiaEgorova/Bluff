@@ -154,7 +154,7 @@ public:
 
 				Board();
 
-	Bid			getCurrentBid();
+	Bid			getCurrentBid() const;
 	void		setCurrentBid(Bid bid);
 
 	bool		isMoveValid(Bid& bid);

@@ -18,7 +18,7 @@ public:
 	int					getNumber() const;
 
 	bool operator==(const Bid& rhs) const;
-	//bool operator>(const Bid& rhs) const;
+	Bid& operator++();
 
 	friend std::ostream& operator<<(std::ostream& strm, const Bid& b);
 
@@ -28,5 +28,4 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const Bid& b);
-
 
