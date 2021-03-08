@@ -12,7 +12,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, currentPlayer(0)
 	, board()
 	, isBluffCalled(false)
-	, errorMessage("Error Message!!!")
+	, errorMessage("")
 {
 	//TO DO
 	//context.music->play(MusicID::MissionTheme);
@@ -79,19 +79,23 @@ void GameState::play()
 
 		Bid newBid = players[currentPlayer]->makeMove(board.getCurrentBid());
 
-		if (newBid.getNumber() != BLUFF) {
+		if (newBid.getNumber() != -1) {
 
-			if (board.isMoveValid(newBid)) {
-				board.setCurrentBid(newBid);
-				nextPlayer();
+			if (newBid.getNumber() != BLUFF) {
+
+				if (board.isMoveValid(newBid)) {
+					board.setCurrentBid(newBid);
+					errorMessage = "";
+					nextPlayer();
+				}
+				else
+					errorMessage = "Invalid move. Please try again";
 			}
 			else
-				errorMessage = "Invalid move. Please try again";
-		}
-		else
-			isBluffCalled = true;
+				isBluffCalled = true;
 
-		draw();
+			draw();
+		}
 	}
 	else
 		requestStackPush(StateID::GameOver);

@@ -142,14 +142,14 @@ void World::buildScene()
 
 	//Current Bid (for now)
 	std::unique_ptr<TextNode> currentBidField(new TextNode(fonts, "Current Bid: "));
-	currentBidField->setPosition(worldView.getCenter().x - 30,
-								30);
+	currentBidField->setPosition(worldView.getCenter().x - 30, 90);
+
 	currentBid = currentBidField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(currentBidField));
 
 	//Error Message for user
 	std::unique_ptr<TextNode> errorMessageField(new TextNode(fonts, ""));
-	errorMessageField->setPosition(worldView.getCenter().x - 30, 60);
+	errorMessageField->setPosition(worldView.getCenter().x - 30, 30);
 
 	errorMessage = errorMessageField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
