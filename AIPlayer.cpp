@@ -6,8 +6,8 @@ AIPlayer::AIPlayer() : Player()
 
 Bid AIPlayer::makeMove(Bid currentBid)
 {
-	if (currentBid.getNumber() > 5)
-		callBluff();
+	if ((++currentBid).getNumber() > 5)
+		return callBluff();
 	else
 		return makeBid(currentBid);
 }

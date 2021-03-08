@@ -54,7 +54,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	dice1Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
-	dice1->setPosition(worldBounds.width - 120, worldBounds.height - 120);
+	dice1->setPosition(worldBounds.width - 280, worldBounds.height - 90);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
 	// dice2
@@ -62,7 +62,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	dice2Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
-	dice2->setPosition(worldBounds.width - 200, worldBounds.height - 180);
+	dice2->setPosition(worldBounds.width - 320, worldBounds.height - 150);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
@@ -70,7 +70,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	dice3Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
-	dice3->setPosition(worldBounds.width - 200, worldBounds.height - 120);
+	dice3->setPosition(worldBounds.width - 380, worldBounds.height - 120);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
@@ -78,7 +78,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	dice4Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
-	dice4->setPosition(worldBounds.width - 120, worldBounds.height - 180);
+	dice4->setPosition(worldBounds.width - 440, worldBounds.height - 130);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
@@ -86,7 +86,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	dice5Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
-	dice5->setPosition(worldBounds.width - 160, worldBounds.height - 240);
+	dice5->setPosition(worldBounds.width - 500, worldBounds.height - 100);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 

@@ -38,7 +38,7 @@ private:
 	std::map<Action, Command>				actionBindings;
 
 	std::unique_ptr<Button>					btnCallBluff;
-	std::unique_ptr<Button>					btnMakeMove;
+	//std::unique_ptr<Button>					btnMakeMove;
 
 	std::vector<std::unique_ptr<Button>>	numberButtons;
 	std::vector<std::unique_ptr<Button>>	faceButtons;

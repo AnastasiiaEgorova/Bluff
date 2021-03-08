@@ -17,12 +17,12 @@ Button::Button(float x, float y, float width, float height, const FontHolder_t& 
 		this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2.f - this->text.getGlobalBounds().width / 2.f,
 		this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2.f - this->text.getGlobalBounds().height / 2.f - 5.f);
 
-	this->idleColour = sf::Color(20, 20, 20, 200);
+	this->idleColour = sf::Color(163, 162, 156, 200);
 	this->hoverColour = sf::Color::Yellow;
 	this->pressedColour = sf::Color::Green;
 	this->isChosenColour = sf::Color::Magenta;
 
-	this->shape.setFillColor(sf::Color(100, 100, 100, 200));
+	this->shape.setFillColor(sf::Color(207, 218, 234, 200));
 }
 
 void Button::render(sf::RenderTarget* target)
