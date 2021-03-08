@@ -31,6 +31,7 @@ public:
 	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds);
 	void								update(sf::Time dt);
 	void								draw();
+	void								updateErrorMessage(std::string message);
 	void								drawDice(std::vector<Dice> playersDice);
 	CommandQueue&						getCommands();
 
@@ -72,11 +73,6 @@ private:
 	sf::FloatRect						worldBounds;		// to determine the temporary window size
 
 	TextNode*							currentBid;
-
-	
-    //Button*								btnCallBluff;
-
-	//Player*							player;
-
+	TextNode*							errorMessage;
 };
 

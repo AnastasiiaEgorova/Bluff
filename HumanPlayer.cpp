@@ -50,8 +50,6 @@ Bid HumanPlayer::callBluff()
 
 void HumanPlayer::initializeButtons(const FontHolder_t& fonts)
 {
-	//btnMakeMove = std::unique_ptr<Button>(new Button(1100.f, 450.f, 100.f, 25.f, fonts, "Make Move"));
-
 	numberButtons.push_back(std::unique_ptr<Button>(new Button(1150.f, 30.f, 45.f, 25.f, fonts, "1")));
 	numberButtons.push_back(std::unique_ptr<Button>(new Button(1150.f, 60.f, 45.f, 25.f, fonts, "2")));
 	numberButtons.push_back(std::unique_ptr<Button>(new Button(1150.f, 90.f, 45.f, 25.f, fonts, "3")));
@@ -86,7 +84,6 @@ void HumanPlayer::initializeButtons(const FontHolder_t& fonts)
 void HumanPlayer::updateMousePositionsForButtons(sf::Vector2i mousePos)
 {
 	btnCallBluff->update(mousePos);
-	//btnMakeMove->update(mousePos);
 
 	for (auto& b : numberButtons)
 		b->update(mousePos);
@@ -98,7 +95,6 @@ void HumanPlayer::updateMousePositionsForButtons(sf::Vector2i mousePos)
 void HumanPlayer::drawButtons(sf::RenderTarget* target)
 {
 	btnCallBluff->render(target);
-	//btnMakeMove->render(target);
 
 	for (auto& b : numberButtons)
 		b->render(target);

@@ -10,7 +10,6 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	, sceneGraph()
 	, sceneLayers()
 	, worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
-	//, playerAircraft(nullptr)     // will populate later
 {
 	sceneTexture.create(target.getSize().x, target.getSize().y);
 
@@ -45,6 +44,11 @@ void World::draw()
 {
 	target.setView(worldView);
 	target.draw(sceneGraph);
+}
+
+void World::updateErrorMessage(std::string message)
+{
+	errorMessage->setString(message);
 }
 
 void World::drawDice(std::vector<Dice> playersDice)
@@ -142,6 +146,13 @@ void World::buildScene()
 								30);
 	currentBid = currentBidField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(currentBidField));
+
+	//Error Message for user
+	std::unique_ptr<TextNode> errorMessageField(new TextNode(fonts, ""));
+	errorMessageField->setPosition(worldView.getCenter().x - 30, 60);
+
+	errorMessage = errorMessageField.get();
+	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
 }
 
 

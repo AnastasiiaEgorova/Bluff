@@ -12,6 +12,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, currentPlayer(0)
 	, board()
 	, isBluffCalled(false)
+	, errorMessage("Error Message!!!")
 {
 	//TO DO
 	//context.music->play(MusicID::MissionTheme);
@@ -34,6 +35,7 @@ bool GameState::update(sf::Time dt)
 {
 	world.update(dt);
 	world.updateCurrentBidText(board.getCurrentBid());
+	world.updateErrorMessage(errorMessage);
 
 	updateMousePosition();
 
