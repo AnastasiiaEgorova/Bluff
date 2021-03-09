@@ -29,11 +29,17 @@ void GameState::draw()
 {
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
+
+	if (currentPlayer != 0)
+		world.drawSandTimer();
 }
 
 bool GameState::update(sf::Time dt)
 {
+	play();
+	
 	world.update(dt);
+	
 	world.updateCurrentBidText(board.getCurrentBid());
 	world.updateErrorMessage(errorMessage);
 
@@ -41,7 +47,7 @@ bool GameState::update(sf::Time dt)
 
 	player.updateMousePositionsForButtons(mousePosition);
 
-	play();
+
 
 	return true;
 }
@@ -87,6 +93,8 @@ void GameState::play()
 					board.setCurrentBid(newBid);
 					errorMessage = "";
 					nextPlayer();
+					//TO DO change later
+					std::this_thread::sleep_for(std::chrono::seconds(1));
 				}
 				else
 					errorMessage = "Invalid move. Please try again";

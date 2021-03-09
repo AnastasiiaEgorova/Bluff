@@ -33,7 +33,8 @@ enum class TextureID {
 	Dice3,
 	Dice4,
 	Dice5,
-	DiceStar
+	DiceStar,
+	Clock
 };
 
 enum class FontID {

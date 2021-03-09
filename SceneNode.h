@@ -57,7 +57,7 @@ private:
 
 private:
 	std::vector<Ptr>		children;
-	SceneNode* parent;						// raw ptr for parent because there is ownership
+	SceneNode*				parent;						// raw ptr for parent because there is ownership
 	Category::Type			defaultCategory;
 };
 

@@ -15,7 +15,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 
 	loadTextures();
 	buildScene();
-
+	setSandTimerSpriteNode();
 }
 
 CommandQueue& World::getCommands() {
@@ -94,6 +94,15 @@ void World::drawDice(std::vector<Dice> playersDice)
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
+void World::setSandTimerSpriteNode()
+{
+	sf::Texture& clockTexture = textures.get(TextureID::Clock);
+	clockTexture.setRepeated(false);
+	clock = (new SpriteNode(clockTexture));
+	clock->setPosition(100, 100);
+	clock->setScale(0.75, 0.75);
+}
+
 void World::loadTextures()
 {
 	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
@@ -104,6 +113,7 @@ void World::loadTextures()
 	textures.load(TextureID::Dice4, "Media/Textures/Dice4.jpg");
 	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
+	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
 }
 
 void World::buildScene()
@@ -189,4 +199,9 @@ TextureID World::loadDice(Dice::Face face)
 sf::RenderTarget& World::getRenderTarget()
 {
 	return target;
+}
+
+void World::drawSandTimer()
+{
+	target.draw(*clock);
 }

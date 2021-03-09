@@ -44,10 +44,13 @@ public:
 	void								updateSounds();
 	void								updateCurrentBidText(Bid b);
 
+	void								drawSandTimer();
+
 private:
 	void								loadTextures();
 	void								buildScene();
 	TextureID							loadDice(Dice::Face face);
+	void								setSandTimerSpriteNode();
 
 
 private:
@@ -74,5 +77,7 @@ private:
 
 	TextNode*							currentBid;
 	TextNode*							errorMessage;
+
+	SpriteNode*						    clock;
 };
 

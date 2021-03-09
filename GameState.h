@@ -8,6 +8,8 @@
 #include "Button.h"
 
 #include <algorithm>
+#include <chrono>
+#include <thread>
 
 class GameState : public State
 {
