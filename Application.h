@@ -36,7 +36,6 @@ private:
 
 	StateStack				stateStack;
 
-	sf::Text				statsText;
 	sf::Time				statsUpdateTime;
 	std::size_t				statsNumFrames;
 };

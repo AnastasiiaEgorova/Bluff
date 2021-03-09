@@ -33,6 +33,7 @@ public:
 	void								draw();
 	void								updateErrorMessage(std::string message);
 	void								drawDice(std::vector<Dice> playersDice);
+	void								drawOpponentDice(std::vector<Dice> playersDice);
 	CommandQueue&						getCommands();
 
 	//bool								hasAlivePlayer() const;

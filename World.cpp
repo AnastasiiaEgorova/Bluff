@@ -94,6 +94,49 @@ void World::drawDice(std::vector<Dice> playersDice)
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
+void World::drawOpponentDice(std::vector<Dice> playersDice)
+{
+	// dice1
+	sf::Texture& dice1Texture = textures.get(loadDice(playersDice.at(0).getFace()));
+	dice1Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
+	dice1->setPosition(60, 30);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
+
+	// dice2
+	sf::Texture& dice2Texture = textures.get(loadDice(playersDice.at(1).getFace()));
+	dice2Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
+	dice2->setPosition(30, 90);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
+
+	// dice3
+	sf::Texture& dice3Texture = textures.get(loadDice(playersDice.at(2).getFace()));
+	dice3Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
+	dice3->setPosition(120, 70);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
+
+	// dice4
+	sf::Texture& dice4Texture = textures.get(loadDice(playersDice.at(3).getFace()));
+	dice4Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
+	dice4->setPosition(30, 150);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
+
+	// dice5
+	sf::Texture& dice5Texture = textures.get(loadDice(playersDice.at(4).getFace()));
+	dice5Texture.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
+	dice5->setPosition(120, 140);
+	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
+}
+
 void World::setSandTimerSpriteNode()
 {
 	sf::Texture& clockTexture = textures.get(TextureID::Clock);

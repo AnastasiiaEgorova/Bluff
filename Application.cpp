@@ -19,7 +19,6 @@ Application::Application()
     , music()
     , sounds()
     , stateStack(State::Context(window, textures, fonts, player, music, sounds))
-    , statsText()
     , statsUpdateTime()
     , statsNumFrames(0)
 {
@@ -27,10 +26,7 @@ Application::Application()
 
     fonts.load(FontID::Main, "Media/Sansation.ttf");
     //textures.load(TextureID::TitleScreen, "Media/Textures/TitleScreen.png");	
-    
-    statsText.setFont(fonts.get(FontID::Main));
-    statsText.setPosition(5.f, 5.f);
-    statsText.setCharacterSize(10u);	
+   
     registerStates();
     stateStack.pushState(StateID::Game);
 
@@ -84,7 +80,6 @@ void Application::render()
     stateStack.draw();
 
     window.setView(window.getDefaultView());
-    window.draw(statsText);
     window.display();
 }
 
@@ -94,8 +89,6 @@ void Application::updateStatistics(sf::Time et)
     statsNumFrames += 1;
 
     if (statsUpdateTime >= sf::seconds(1.0f)) {
-        statsText.setString("Frames / Second = " + std::to_string(statsNumFrames) + "\n" +
-            "Time / Update = " + std::to_string(statsUpdateTime.asMicroseconds() / statsNumFrames) + "us");
         statsUpdateTime -= sf::seconds(1.0f);
         statsNumFrames = 0;
     }
