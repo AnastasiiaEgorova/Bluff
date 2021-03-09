@@ -15,5 +15,7 @@ public:
 private:
 	sf::Text		gameOverText;
 	sf::Time		elapsedTime;
+
+	sf::Color		backgroundColour;
 };
 

@@ -2,14 +2,26 @@
 
 HumanPlayer::HumanPlayer() : Player()
 {
-	initializeKeyBindings();
+	//initializeKeyBindings();
 	//initializeActions();
+
+	currentStatus = Status::Playing;
 }
 
 void HumanPlayer::initializeKeyBindings()
 {   // map from key to action
-	keyBindings[sf::Keyboard::M] = Action::MakeMove;
-	keyBindings[sf::Keyboard::B] = Action::CallBluff;
+	//keyBindings[sf::Keyboard::M] = Action::MakeMove;
+	//keyBindings[sf::Keyboard::B] = Action::CallBluff;
+}
+
+void HumanPlayer::setStatus(Status status)
+{
+	currentStatus = status;
+}
+
+HumanPlayer::Status HumanPlayer::getStatus() const
+{
+	return currentStatus;
 }
 
 Bid HumanPlayer::makeMove(Bid currentBid)

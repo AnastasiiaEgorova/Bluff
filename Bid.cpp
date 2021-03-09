@@ -55,6 +55,11 @@ int Bid::getNumber() const
 	return number;
 }
 
+Dice::Face Bid::getFace() const
+{
+	return face;
+}
+
 bool Bid::operator==(const Bid& rhs) const 
 {
 	return (this->number == rhs.number

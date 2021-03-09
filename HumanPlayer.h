@@ -5,10 +5,10 @@
 class HumanPlayer : public Player
 {
 public:
-	enum class Action {
-		MakeMove,
-		CallBluff,
-		ActionCount
+	enum class Status {
+		Playing,
+		Success,
+		Failure,
 	};
 
 public:
@@ -17,6 +17,9 @@ public:
 
 	void									initializeKeyBindings();
 	//void									initializeActions();
+
+	void									setStatus(Status status);
+	Status									getStatus() const;
 
 	Bid										makeMove(Bid currentBid) override;
 
@@ -34,12 +37,14 @@ private:
 	Bid										callBluff() override;
 
 private:
-	std::map<sf::Keyboard::Key, Action>		keyBindings;
-	std::map<Action, Command>				actionBindings;
+	//std::map<sf::Keyboard::Key, Action>		keyBindings;
+	//std::map<Action, Command>				actionBindings;
 
 	std::unique_ptr<Button>					btnCallBluff;
 
 	std::vector<std::unique_ptr<Button>>	numberButtons;
 	std::vector<std::unique_ptr<Button>>	faceButtons;
+
+	Status									currentStatus;
 };
 

@@ -15,11 +15,15 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	sf::Font& font = context.fonts->get(FontID::Main);
 	sf::Vector2f windowSize(context.window->getSize());	
 	
-	//gameOverText.setFont(font);
-	//if (context.player->getMissionStatus() == Player::MissionStatus::Failure)
-	//	gameOverText.setString("Mission failed!");
-	//else
-	//	gameOverText.setString("Mission successful!");	
+	gameOverText.setFont(font);
+	if (context.player->getStatus() == HumanPlayer::Status::Failure) {
+		gameOverText.setString("What a Loser!!!");
+		backgroundColour = sf::Color(255, 0, 0, 100);
+	}
+	else {
+		gameOverText.setString("You won!");
+		backgroundColour = sf::Color(0, 255, 0, 100);
+	}
 	
 	gameOverText.setCharacterSize(100);
 	centerOrigin(gameOverText);
@@ -32,7 +36,7 @@ void GameOverState::draw()
 	window.setView(window.getDefaultView());
 
 	sf::RectangleShape backgroundShape;
-	backgroundShape.setFillColor(sf::Color(255, 0, 0, 100));
+	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(window.getView().getSize());
 
 	window.draw(backgroundShape);
@@ -44,10 +48,10 @@ bool GameOverState::update(sf::Time dt)
 	const int COUNTDOWN_TIME = 3;
 
 	elapsedTime += dt;
-	if (elapsedTime > sf::seconds(COUNTDOWN_TIME)) {
-		requestStackClear();
-		requestStackPush(StateID::Menu);
-	}
+	//if (elapsedTime > sf::seconds(COUNTDOWN_TIME)) {
+	//	requestStackClear();
+	//	requestStackPush(StateID::Menu);
+	//}
 
     return false;
 }

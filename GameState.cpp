@@ -33,7 +33,7 @@ void GameState::draw()
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
 
-	if (currentPlayer != 0)
+	if (currentPlayer != 0 && !isBluffCalled)
 		world.drawSandTimer();
 }
 
@@ -82,6 +82,32 @@ bool GameState::isValidMove()
 	return true;
 }
 
+void GameState::setIsHumanPlayerWon()
+{
+	std::vector<Dice> allDice;
+
+	for (auto d : players[0]->showDice())
+		allDice.push_back(d);
+
+	for (auto d : players[1]->showDice())
+		allDice.push_back(d);
+		
+	int numberOfFaceOnTable = 0;
+
+	for (auto d : allDice)
+		if (d.getFace() == board.getCurrentBid().getFace() || d.getFace() == Dice::Face::Star)
+			numberOfFaceOnTable++;
+
+	bool isCallingBluffWon = true;
+	if (board.getCurrentBid().getNumber() <= numberOfFaceOnTable)
+		isCallingBluffWon = false;
+
+	if ((currentPlayer == 0 && isCallingBluffWon) || (currentPlayer != 0 && !isCallingBluffWon))
+		player.setStatus(HumanPlayer::Status::Success);
+	else
+		player.setStatus(HumanPlayer::Status::Failure);
+}
+
 void GameState::play()
 {
 	if (!isBluffCalled) {
@@ -94,6 +120,7 @@ void GameState::play()
 
 				if (board.isMoveValid(newBid)) {
 					board.setCurrentBid(newBid);
+					//if ()
 					errorMessage = "";
 					nextPlayer();
 					//TO DO change later
@@ -102,8 +129,10 @@ void GameState::play()
 				else
 					errorMessage = "Invalid move. Please try again";
 			}
-			else
+			else {
 				isBluffCalled = true;
+				setIsHumanPlayerWon();
+			}
 
 			draw();
 		}

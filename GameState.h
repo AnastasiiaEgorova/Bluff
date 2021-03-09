@@ -27,6 +27,8 @@ private:
 	void			nextPlayer();
 	bool			isValidMove();
 
+	void			setIsHumanPlayerWon();
+
 	void			play();
 
 private:

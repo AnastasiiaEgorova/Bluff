@@ -15,7 +15,9 @@ public:
 						Bid(int n, Dice::Face f);
 
 	std::string			convertFaceToString() const;
+
 	int					getNumber() const;
+	Dice::Face			getFace() const;
 
 	bool operator==(const Bid& rhs) const;
 	Bid& operator++();
