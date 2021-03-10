@@ -162,6 +162,7 @@ void World::loadTextures()
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
 	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
 	textures.load(TextureID::Cup, "Media/Textures/Cup6.jpg");
+	textures.load(TextureID::Chip1, "Media/Textures/Chip1Red.png");
 }
 
 void World::buildScene()
@@ -211,6 +212,16 @@ void World::buildScene()
 
 	errorMessage = errorMessageField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
+
+	//Chip
+	sf::Texture& textureChip = textures.get(TextureID::Chip1);
+	textureChip.setRepeated(false);
+
+	std::unique_ptr<SpriteNode> chip1(new SpriteNode(textureChip));
+	chip1->setPosition(358, 185);
+	chip1->setScale(0.4, 0.4);
+	chip1->setRotation(-6.f);
+	sceneLayers[ChipLayer]->attachChild(std::move(chip1));
 }
 
 

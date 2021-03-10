@@ -36,10 +36,6 @@ public:
 	void								drawOpponentDice(std::vector<Dice> playersDice);
 	CommandQueue&						getCommands();
 
-	//bool								hasAlivePlayer() const;
-	//void								adaptPlayerPosition();
-
-	// to add buttons
 	sf::RenderTarget&					getRenderTarget();
 
 	void								updateSounds();
@@ -83,5 +79,7 @@ private:
 
 	SpriteNode*						    clock;
 	SpriteNode*							cup;
+
+	SpriteNode*							chip;
 };
 
