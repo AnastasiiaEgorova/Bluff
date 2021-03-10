@@ -14,3 +14,8 @@ void SpriteNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) 
 {
 	target.draw(sprite, states);
 }
+
+void SpriteNode::setTexture(const sf::Texture& texture)
+{
+	sprite.setTexture(texture);
+}

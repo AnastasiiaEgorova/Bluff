@@ -32,6 +32,8 @@ void GameState::draw()
 
 	world.drawCup();
 
+	world.drawChip();
+
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
 
@@ -51,8 +53,6 @@ bool GameState::update(sf::Time dt)
 	updateMousePosition();
 
 	player.updateMousePositionsForButtons(mousePosition);
-
-
 
 	return true;
 }

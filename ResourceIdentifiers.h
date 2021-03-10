@@ -37,6 +37,11 @@ enum class TextureID {
 	Clock,
 	Cup,
 	Chip1,
+	Chip2,
+	Chip3,
+	Chip4,
+	Chip5,
+	ChipStar
 };
 
 enum class FontID {

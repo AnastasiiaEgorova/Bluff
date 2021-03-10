@@ -18,6 +18,9 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 
 	clock = setSpriteNode(TextureID::Clock, sf::Vector2f(150, 140), 0.3);
 	cup = setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9);
+
+	chip = setSpriteNode(TextureID::Chip1, sf::Vector2f(358, 185), 0.4);
+	chip->setRotation(-6.f);
 }
 
 CommandQueue& World::getCommands() {
@@ -161,8 +164,13 @@ void World::loadTextures()
 	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
 	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
-	textures.load(TextureID::Cup, "Media/Textures/Cup6.jpg");
-	textures.load(TextureID::Chip1, "Media/Textures/Chip1Red.png");
+	textures.load(TextureID::Cup, "Media/Textures/Cup.jpg");
+	textures.load(TextureID::Chip1, "Media/Textures/Chip1.png");
+	textures.load(TextureID::Chip2, "Media/Textures/Chip2.png");
+	textures.load(TextureID::Chip3, "Media/Textures/Chip3.png");
+	textures.load(TextureID::Chip4, "Media/Textures/Chip4.png");
+	textures.load(TextureID::Chip5, "Media/Textures/Chip5.png");
+	textures.load(TextureID::ChipStar, "Media/Textures/ChipStar.png");
 }
 
 void World::buildScene()
@@ -212,16 +220,6 @@ void World::buildScene()
 
 	errorMessage = errorMessageField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
-
-	//Chip
-	sf::Texture& textureChip = textures.get(TextureID::Chip1);
-	textureChip.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> chip1(new SpriteNode(textureChip));
-	chip1->setPosition(358, 185);
-	chip1->setScale(0.4, 0.4);
-	chip1->setRotation(-6.f);
-	sceneLayers[ChipLayer]->attachChild(std::move(chip1));
 }
 
 
@@ -268,4 +266,14 @@ void World::drawSandTimer()
 void World::drawCup()
 {
 	target.draw(*cup);
+}
+
+void World::drawChip()
+{
+	target.draw(*chip);
+}
+
+void World::moveChip(Bid bid)
+{
+	chip->setTexture(textures.get(TextureID::Chip1));
 }

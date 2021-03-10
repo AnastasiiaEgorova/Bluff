@@ -43,6 +43,9 @@ public:
 
 	void								drawSandTimer();
 	void								drawCup();
+	void								drawChip();
+
+	void								moveChip(Bid bid);
 
 private:
 	void								loadTextures();
@@ -51,6 +54,9 @@ private:
 
 	SpriteNode*							setSpriteNode(TextureID text, sf::Vector2f pos, float scale);
 
+	void								setChipPosition();
+	void								setChipRotation();
+	void								setChipTexture();
 
 private:
 
