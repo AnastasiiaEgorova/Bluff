@@ -52,8 +52,8 @@ private:
 	void								loadTextures();
 	void								buildScene();
 	TextureID							loadDice(Dice::Face face);
-	void								setSandTimerSpriteNode();
-	void								setCupSpriteNode();
+
+	SpriteNode*							setSpriteNode(TextureID text, sf::Vector2f pos, float scale);
 
 
 private:
