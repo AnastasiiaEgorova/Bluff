@@ -30,6 +30,8 @@ void GameState::draw()
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
 
+	world.drawCup();
+
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
 

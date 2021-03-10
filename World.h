@@ -46,12 +46,14 @@ public:
 	void								updateCurrentBidText(Bid b);
 
 	void								drawSandTimer();
+	void								drawCup();
 
 private:
 	void								loadTextures();
 	void								buildScene();
 	TextureID							loadDice(Dice::Face face);
 	void								setSandTimerSpriteNode();
+	void								setCupSpriteNode();
 
 
 private:
@@ -80,5 +82,6 @@ private:
 	TextNode*							errorMessage;
 
 	SpriteNode*						    clock;
+	SpriteNode*							cup;
 };
 

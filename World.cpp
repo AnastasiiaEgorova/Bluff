@@ -16,6 +16,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	loadTextures();
 	buildScene();
 	setSandTimerSpriteNode();
+	setCupSpriteNode();
 }
 
 CommandQueue& World::getCommands() {
@@ -101,7 +102,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice1Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
-	dice1->setPosition(60, 30);
+	dice1->setPosition(60, 180);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
 	// dice2
@@ -109,7 +110,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice2Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
-	dice2->setPosition(30, 90);
+	dice2->setPosition(30, 240);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
@@ -117,7 +118,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice3Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
-	dice3->setPosition(120, 70);
+	dice3->setPosition(120, 220);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
@@ -125,7 +126,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice4Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
-	dice4->setPosition(30, 150);
+	dice4->setPosition(30, 300);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
@@ -133,7 +134,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice5Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
-	dice5->setPosition(120, 140);
+	dice5->setPosition(120, 290);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
@@ -142,8 +143,17 @@ void World::setSandTimerSpriteNode()
 	sf::Texture& clockTexture = textures.get(TextureID::Clock);
 	clockTexture.setRepeated(false);
 	clock = (new SpriteNode(clockTexture));
-	clock->setPosition(100, 100);
-	clock->setScale(0.75, 0.75);
+	clock->setPosition(150, 140);
+	clock->setScale(0.3, 0.3);
+}
+
+void World::setCupSpriteNode()
+{
+	sf::Texture& cupTexture = textures.get(TextureID::Cup);
+	cupTexture.setRepeated(false);
+	cup = (new SpriteNode(cupTexture));
+	cup->setPosition(50, 30);
+	cup->setScale(0.9, 0.9);
 }
 
 void World::loadTextures()
@@ -157,6 +167,7 @@ void World::loadTextures()
 	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
 	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
+	textures.load(TextureID::Cup, "Media/Textures/Cup6.jpg");
 }
 
 void World::buildScene()
@@ -247,4 +258,9 @@ sf::RenderTarget& World::getRenderTarget()
 void World::drawSandTimer()
 {
 	target.draw(*clock);
+}
+
+void World::drawCup()
+{
+	target.draw(*cup);
 }
