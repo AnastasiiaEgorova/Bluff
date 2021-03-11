@@ -23,6 +23,9 @@ GameState::GameState(StateStack& stack, Context context)
 	player.initializeButtons(*context.fonts);	
 
 	world.drawDice(players.front()->showDice());
+
+	//Bid b = Bid(3, Dice::Face::One);
+	world.moveChip(board.getCurrentBid());
 }
 
 void GameState::draw()
@@ -127,6 +130,7 @@ void GameState::play()
 					nextPlayer();
 					//TO DO change later
 					std::this_thread::sleep_for(std::chrono::seconds(1));
+					world.moveChip(newBid);
 				}
 				else
 					errorMessage = "Invalid move. Please try again";

@@ -19,8 +19,9 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	clock = setSpriteNode(TextureID::Clock, sf::Vector2f(150, 140), 0.3);
 	cup = setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9);
 
-	chip = setSpriteNode(TextureID::Chip1, sf::Vector2f(358, 185), 0.4);
-	chip->setRotation(-6.f);
+	chip = new SpriteNode(textures.get(TextureID::Chip1));
+	//chip = setSpriteNode(TextureID::Chip1, sf::Vector2f(403, 185), 0.4);
+	//chip->setRotation(-36.f);
 }
 
 CommandQueue& World::getCommands() {
@@ -270,10 +271,63 @@ void World::drawCup()
 
 void World::drawChip()
 {
+	chip->setScale(0.4, 0.4);
 	target.draw(*chip);
 }
 
 void World::moveChip(Bid bid)
 {
-	chip->setTexture(textures.get(TextureID::Chip1));
+	if (bid.getFace() != Dice::Face::Star) {
+		setChipPosition(bid.getNumber());
+		setChipRotation(bid.getNumber());
+		setChipTexture(bid.getFace());
+	}
+	else
+		setStarChip(bid.getNumber());
+}
+
+void World::setChipPosition(int number)
+{
+	sf::Vector2f pos = Board::BidPositions.find(number)->second;
+	chip->setPosition(pos);
+}
+
+void World::setChipRotation(int number)
+{
+	float rot = Board::BidRotations.find(number)->second;
+	chip->setRotation(rot);
+}
+
+void World::setChipTexture(Dice::Face face)
+{
+	switch (face) {
+		case Dice::Face::One:
+			chip->setTexture(textures.get(TextureID::Chip1));
+			break;
+		case Dice::Face::Two:
+			chip->setTexture(textures.get(TextureID::Chip2));
+			break;
+		case Dice::Face::Three:
+			chip->setTexture(textures.get(TextureID::Chip3));
+			break;
+		case Dice::Face::Four:
+			chip->setTexture(textures.get(TextureID::Chip4));
+			break;
+		case Dice::Face::Five:
+			chip->setTexture(textures.get(TextureID::Chip5));
+			break;
+		default:
+			chip->setTexture(textures.get(TextureID::ChipStar));
+	}
+}
+
+void World::setStarChip(int number)
+{
+	sf::Vector2f pos = Board::BidStarsPositions.find(number)->second;
+	chip->setPosition(pos);
+
+	float rot = Board::BidStarsRotations.find(number)->second;
+	chip->setRotation(rot);
+
+	chip->setTexture(textures.get(TextureID::ChipStar));
 }

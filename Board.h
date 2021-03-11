@@ -3,6 +3,10 @@
 #include <map>
 #include "Dice.h"
 #include "Bid.h"
+#include "ResourceIdentifiers.h"
+
+#include <SFML/System/Vector2.hpp>
+
 
 enum class BidsNames {
 
@@ -151,6 +155,12 @@ class Board
 {
 public:
 	static std::map<BidsNames, Bid> const AllBids;
+
+	static std::map<int, sf::Vector2f> const BidPositions;
+	static std::map<int, sf::Vector2f> const BidStarsPositions;
+
+	static std::map<int, float> const BidRotations;
+	static std::map<int, float> const BidStarsRotations;
 
 				Board();
 

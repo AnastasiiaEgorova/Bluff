@@ -1,5 +1,4 @@
 #include "Board.h"
-
 std::map<BidsNames, Bid> const Board::AllBids{
 
 	{BidsNames::One_Ones, Bid(1, Dice::Face::One)},
@@ -141,6 +140,78 @@ std::map<BidsNames, Bid> const Board::AllBids{
 	{BidsNames::Twenty_Threes, Bid(20, Dice::Face::Three)},
 	{BidsNames::Twenty_Fours, Bid(20, Dice::Face::Four)},
 	{BidsNames::Twenty_Fives, Bid(20, Dice::Face::Five)}
+};
+
+std::map<int, sf::Vector2f> const Board::BidPositions {
+	{1, sf::Vector2f(358, 185)},
+	{2, sf::Vector2f(472, 181)},
+	{3, sf::Vector2f(518, 180)},
+	{4, sf::Vector2f(608, 178)},
+	{5, sf::Vector2f(650, 187)},
+	{6, sf::Vector2f(758, 179)},
+	{7, sf::Vector2f(803, 177)},
+	{8, sf::Vector2f(858, 248)},
+	{9, sf::Vector2f(866, 296)},
+	{10, sf::Vector2f(854, 405)},
+	{11, sf::Vector2f(849, 469)},
+	{12, sf::Vector2f(777, 476)},
+	{13, sf::Vector2f(713, 470)},
+	{14, sf::Vector2f(613, 467)},
+	{15, sf::Vector2f(549, 487)},
+	{16, sf::Vector2f(443, 482)},
+	{17, sf::Vector2f(397, 480)},
+	{18, sf::Vector2f(351, 400)},
+	{19, sf::Vector2f(355, 353)},
+	{20, sf::Vector2f(350, 255)}
+};
+
+std::map<int, sf::Vector2f> const Board::BidStarsPositions{
+	{1, sf::Vector2f(403, 185)},
+	{2, sf::Vector2f(557, 188)},
+	{3, sf::Vector2f(699, 189)},
+	{4, sf::Vector2f(846, 200)},
+	{5, sf::Vector2f(850, 358)},
+	{6, sf::Vector2f(810, 485)},
+	{7, sf::Vector2f(669, 475)},
+	{8, sf::Vector2f(504, 477)},
+	{9, sf::Vector2f(349, 447)},
+	{10, sf::Vector2f(348, 311)}
+};
+
+std::map<int, float> const Board::BidRotations {
+	{1, -6.f},
+	{2, 32.f},
+	{3, 20.f},
+	{4, 6.f},
+	{5, -22.f},
+	{6, 18.f},
+	{7, 9.f},
+	{8, 19.f},
+	{9, 43.f},
+	{10, 15.f},
+	{11, -25.f},
+	{12, 41.f},
+	{13, 12.f},
+	{14, 13.f},
+	{15, -18.f},
+	{16, -20.f},
+	{17, 15.f},
+	{18, -21.f},
+	{19, -17.f},
+	{20, -13.f}
+};
+
+std::map<int, float> const Board::BidStarsRotations{
+	{1, -36.f},
+	{2, -10.f},
+	{3, -42.f},
+	{4, -10.f},
+	{5, -7.f},
+	{6, 1.f},
+	{7, 36.f},
+	{8, 9.f},
+	{9, -12.f},
+	{10, -32.f}
 };
 
 Board::Board()

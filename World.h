@@ -9,6 +9,7 @@
 #include "TextNode.h"
 #include "Bid.h"
 #include "Button.h"
+#include "Board.h"
 #include <sstream>
 #include <string>
 
@@ -54,9 +55,11 @@ private:
 
 	SpriteNode*							setSpriteNode(TextureID text, sf::Vector2f pos, float scale);
 
-	void								setChipPosition();
-	void								setChipRotation();
-	void								setChipTexture();
+	void								setChipPosition(int number);
+	void								setChipRotation(int number);
+	void								setChipTexture(Dice::Face face);
+
+	void								setStarChip(int number);
 
 private:
 
