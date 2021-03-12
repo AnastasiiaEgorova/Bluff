@@ -24,7 +24,6 @@ GameState::GameState(StateStack& stack, Context context)
 
 	world.drawDice(players.front()->showDice());
 
-	//Bid b = Bid(3, Dice::Face::One);
 	world.moveChip(board.getCurrentBid());
 }
 

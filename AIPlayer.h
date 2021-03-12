@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include <algorithm>
 
 class AIPlayer : public Player
 {
@@ -10,5 +11,8 @@ public:
 private:
 	Bid				makeBid(Bid currentBid) override;
 	Bid				callBluff() override;
+
+	Dice::Face		topFace;
+	int				amountTopFace;
 };
 
