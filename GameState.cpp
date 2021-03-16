@@ -18,7 +18,7 @@ GameState::GameState(StateStack& stack, Context context)
 	//context.music->play(MusicID::MissionTheme);
 
 	players.push_back(&player);
-	players.push_back(new AIPlayer());
+	players.push_back(new AIPlayer1(1));
 
 	player.initializeButtons(*context.fonts);	
 
@@ -119,12 +119,10 @@ void GameState::play()
 		Bid newBid = players[currentPlayer]->makeMove(board.getCurrentBid());
 
 		if (newBid.getNumber() != -1) {
-
 			if (newBid.getNumber() != BLUFF) {
 
 				if (board.isMoveValid(newBid)) {
 					board.setCurrentBid(newBid);
-					//if ()
 					errorMessage = "";
 					nextPlayer();
 					//TO DO change later
@@ -142,6 +140,8 @@ void GameState::play()
 			draw();
 		}
 	}
-	else
+	else {
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 		requestStackPush(StateID::GameOver);
+	}
 }

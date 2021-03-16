@@ -2,7 +2,7 @@
 #include "State.h"
 #include "World.h"
 #include "HumanPlayer.h"
-#include "AIPlayer.h"
+#include "AIPlayer1.h"
 #include "Dice.h"
 #include "Board.h"
 #include "Button.h"
