@@ -15,6 +15,7 @@ public:
 	virtual				~Player() {};
 
 	virtual Bid			makeMove(Bid currentBid) = 0;
+
 	std::vector<Dice>	showDice();
 
 private:

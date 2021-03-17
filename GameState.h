@@ -3,6 +3,7 @@
 #include "World.h"
 #include "HumanPlayer.h"
 #include "AIPlayer1.h"
+#include "AIPlayer2.h"
 #include "Dice.h"
 #include "Board.h"
 #include "Button.h"

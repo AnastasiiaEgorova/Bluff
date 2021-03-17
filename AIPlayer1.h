@@ -10,7 +10,8 @@ public:
 
 private:
 	Bid				makeBid(Bid currentBid) override;
-	//Bid				callBluff() override;
+
+	Dice::Face		findTopFaceInHand(std::map<Dice::Face, int> &counters);
 
 private:
 	Dice::Face		topFace;

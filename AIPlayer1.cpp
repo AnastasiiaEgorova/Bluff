@@ -10,15 +10,7 @@ AIPlayer1::AIPlayer1(int n) : AIPlayer(n)
 	for (auto& f : playersDice)
 		++counters[f.getFace()];
 
-	for (auto it = counters.begin(); it != counters.end(); ++it) 
-		if ((it->second > amountTopFace)) {
-			topFace = it->first;
-			amountTopFace = it->second;
-		}
-
-	for (auto it = counters.begin(); it != counters.end(); ++it)
-		if (it->first == Dice::Face::Star)
-			++amountTopFace;
+	topFace = findTopFaceInHand(counters);
 }
 
 Bid AIPlayer1::makeMove(Bid currentBid)
@@ -35,4 +27,21 @@ Bid AIPlayer1::makeBid(Bid currentBid)
 		return Bid(currentBid.getNumber() + 1, topFace);
 	else
 		return ++currentBid;
+}
+
+Dice::Face AIPlayer1::findTopFaceInHand(std::map<Dice::Face, int> &counters)
+{
+	amountTopFace = 0;
+	 
+	for (auto it = counters.begin(); it != counters.end(); ++it)
+		if ((it->second > amountTopFace)) {
+			topFace = it->first;
+			amountTopFace = it->second;
+		}
+
+	for (auto it = counters.begin(); it != counters.end(); ++it)
+		if (it->first == Dice::Face::Star)
+			++amountTopFace;
+
+	return topFace;
 }
