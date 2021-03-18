@@ -2,7 +2,7 @@
 
 AIPlayer1::AIPlayer1(int n) : AIPlayer(n) 
 {
-	numberOfOpponents = n;
+	numberOfPlayers = n;
 
 	amountTopFace = 0;
 

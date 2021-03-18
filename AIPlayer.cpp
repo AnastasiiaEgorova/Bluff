@@ -1,8 +1,8 @@
 #include "AIPlayer.h"
 
-AIPlayer::AIPlayer(int opponetns) : Player()
+AIPlayer::AIPlayer(int players) : Player()
 {
-	numberOfOpponents = opponetns;
+	numberOfPlayers = players;
 }
 
 Bid AIPlayer::callBluff()

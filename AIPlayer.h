@@ -10,6 +10,6 @@ protected:
 	Bid				callBluff() override;
 
 protected:
-	int				numberOfOpponents;
+	int				numberOfPlayers;
 };
 

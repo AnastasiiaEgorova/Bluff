@@ -18,7 +18,7 @@ GameState::GameState(StateStack& stack, Context context)
 	//context.music->play(MusicID::MissionTheme);
 
 	players.push_back(&player);
-	players.push_back(new AIPlayer2(1));
+	players.push_back(new AIPlayer2(2));
 
 	player.initializeButtons(*context.fonts);	
 
