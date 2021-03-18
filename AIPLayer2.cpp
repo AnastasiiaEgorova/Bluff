@@ -6,7 +6,6 @@ AIPlayer2::AIPlayer2(int n) : AIPlayer(n)
 
 	setPlayersDiceAmount();
 
-	//initializePlayedBids();
 	initializeFacesWerePlayed();
 }
 
@@ -20,7 +19,7 @@ Bid AIPlayer2::makeMove(Bid currentBid)
 	}
 	else
 	{
-		if ((currentBid).getNumber() > numberOfPlayers * 3)
+		if ((currentBid).getNumber() > numberOfPlayers * playersDice.size() / 3)
 			return callBluff();
 		else
 			return makeBid(currentBid);
@@ -73,16 +72,6 @@ void AIPlayer2::setPlayersDiceAmount()
 	}
 }
 
-//void AIPlayer2::initializePlayedBids()
-//{
-//	playedBids[Dice::Face::One] = 0;
-//	playedBids[Dice::Face::Two] = 0;
-//	playedBids[Dice::Face::Three] = 0;
-//	playedBids[Dice::Face::Four] = 0;
-//	playedBids[Dice::Face::Five] = 0;
-//	playedBids[Dice::Face::Star] = 0;
-//}
-
 void AIPlayer2::initializeFacesWerePlayed()
 {
 	facesWerePlayed[Dice::Face::One] = 0;
@@ -93,8 +82,12 @@ void AIPlayer2::initializeFacesWerePlayed()
 	facesWerePlayed[Dice::Face::Star] = 0;
 }
 
-void AIPlayer2::updatePlayedBids(Bid bid)
+void AIPlayer2::updateInfoForPlayer(const Bid& bid)
 {
-	//playedBids.find(bid.getFace())->second = bid.getNumber();
+	updateFacesWerePlayed(bid);
+}
+
+void AIPlayer2::updateFacesWerePlayed(const Bid& bid)
+{
 	facesWerePlayed.find(bid.getFace())->second++;
 }

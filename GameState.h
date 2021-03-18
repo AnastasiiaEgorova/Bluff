@@ -4,6 +4,7 @@
 #include "HumanPlayer.h"
 #include "AIPlayer1.h"
 #include "AIPlayer2.h"
+#include "AIPlayer3.h"
 #include "Dice.h"
 #include "Board.h"
 #include "Button.h"

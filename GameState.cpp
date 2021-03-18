@@ -18,7 +18,7 @@ GameState::GameState(StateStack& stack, Context context)
 	//context.music->play(MusicID::MissionTheme);
 
 	players.push_back(&player);
-	players.push_back(new AIPlayer2(2));
+	players.push_back(new AIPlayer3(2));
 
 	player.initializeButtons(*context.fonts);	
 
@@ -125,7 +125,7 @@ void GameState::play()
 					board.setCurrentBid(newBid);
 
 					if (currentPlayer != 1)
-						(dynamic_cast<AIPlayer2*>(players[1]))->updatePlayedBids(newBid);
+						(dynamic_cast<AIPlayer3*>(players[1]))->updateInfoForPlayer(newBid);
 
 					errorMessage = "";
 					nextPlayer();
