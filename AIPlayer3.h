@@ -19,6 +19,8 @@ private:
 	void							updateBidsPlayed(const Bid& bid);
 	void							updateFacesWerePlayed(const Bid& bid);
 
+	Dice::Face						calculateFaceValue();
+
 private:
 	std::map<Dice::Face, int>		playersDiceAmount;
 	std::map<Dice::Face, int>		facesWerePlayed;			// how many times the faces were used in bids by other players
