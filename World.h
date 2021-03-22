@@ -48,9 +48,12 @@ public:
 
 	void								moveChip(Bid bid);
 	void								setChipNewPosition(Bid bid);
+	void								setNewChipAngle(Bid bid);
 
 	sf::Vector2f						getChipPosition();
 	sf::Vector2f						getNewChipPosition();
+	float								getNewChipAngle();
+	void								setChipTexture(Dice::Face face);
 
 private:
 	void								loadTextures();
@@ -61,7 +64,6 @@ private:
 
 	void								setChipPosition(int number);
 	void								setChipRotation(int number);
-	void								setChipTexture(Dice::Face face);
 
 	void								setStarChip(int number);
 
@@ -101,5 +103,8 @@ private:
 	sf::Vector2f						newChipPosition;
 	float								dx;
 	float								dy;
+
+	float								newChipAngle;
+	float								dAngle;
 };
 

@@ -297,11 +297,14 @@ void World::moveChip(Bid bid)
 {
 	float currentPosX = chip->getPosition().x;
 	float currentPosY = chip->getPosition().y;
+	float currentAngle = chip->getRotation();
 
-	if (currentPosX != newChipPosition.x)
+	if (currentPosX != newChipPosition.x)										// move x position
 		chip->setPosition(currentPosX += dx / 40.f, currentPosY);
-	if (currentPosY != newChipPosition.y)
+	if (currentPosY != newChipPosition.y)										// move y position
 		chip->setPosition(currentPosX, currentPosY += dy / 40.f);
+	if (chip->getRotation() != newChipAngle)									// move rotation
+		chip->setRotation(currentAngle += dAngle);
 
 	if (abs(currentPosX - newChipPosition.x) < 10.f && abs(currentPosY - newChipPosition.y) < 10.f) {
 		chip->setPosition(newChipPosition);
@@ -366,7 +369,11 @@ void World::setStarChip(int number)
 
 void World::setChipNewPosition(Bid bid)
 {
-	newChipPosition = sf::Vector2f(Board::BidPositions.find(bid.getNumber())->second);
+	if (bid.getFace() != Dice::Face::Star)
+		newChipPosition = sf::Vector2f(Board::BidPositions.find(bid.getNumber())->second);
+	else 
+		newChipPosition = sf::Vector2f(Board::BidStarsPositions.find(bid.getNumber())->second);
+
 	dx = newChipPosition.x - chip->getPosition().x;
 	dy = newChipPosition.y - chip->getPosition().y;
 }
@@ -379,4 +386,19 @@ sf::Vector2f World::getChipPosition()
 sf::Vector2f World::getNewChipPosition()
 {
 	return newChipPosition;
+}
+
+void World::setNewChipAngle(Bid bid)
+{
+	if (bid.getFace() != Dice::Face::Star)
+		newChipAngle = Board::BidRotations.find(bid.getNumber())->second;
+	else
+		newChipAngle = Board::BidStarsRotations.find(bid.getNumber())->second;
+
+	dAngle = newChipAngle - chip->getRotation();
+}
+
+float World::getNewChipAngle()
+{
+	return newChipAngle;
 }

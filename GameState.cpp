@@ -141,13 +141,13 @@ void GameState::play()
 						(dynamic_cast<AIPlayer3*>(players[2]))->updateInfoForPlayer(newBid);
 
 					errorMessage = "";
+					world.setChipTexture(newBid.getFace());
 
 					//TO DO change later
 					if (currentPlayer != 0)
 						std::this_thread::sleep_for(std::chrono::seconds(2));
 
 					world.setChipNewPosition(newBid);
-					//world.moveChip(newBid);
 					nextPlayer();
 				}
 				else
