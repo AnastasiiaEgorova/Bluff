@@ -19,9 +19,14 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	clock = setSpriteNode(TextureID::Clock, sf::Vector2f(150, 140), 0.3);
 	cup = setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9);
 
+	clock2 = setSpriteNode(TextureID::Clock, sf::Vector2f(1000, 140), 0.3);
+	cup2 = setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9);
+
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
-	//chip = setSpriteNode(TextureID::Chip1, sf::Vector2f(403, 185), 0.4);
-	//chip->setRotation(-36.f);
+	setChipPosition(1);
+	setChipRotation(1);
+
+	newChipPosition = sf::Vector2f(358.f, 185.f);
 }
 
 CommandQueue& World::getCommands() {
@@ -50,6 +55,15 @@ void World::draw()
 {
 	target.setView(worldView);
 	target.draw(sceneGraph);
+
+	//float currentPosX = world.getChipPosition().x;
+	//float currentPosY = world.getChipPosition().y;
+	//while (currentPosX != world.getNewChipPosition().x && currentPosY != world.getNewChipPosition().y) {
+	//	world.moveChip(board.getCurrentBid());
+	//	world.drawChip();
+	//}
+
+	//target.draw(*clock2);
 }
 
 void World::updateErrorMessage(std::string message)
@@ -259,14 +273,18 @@ sf::RenderTarget& World::getRenderTarget()
 	return target;
 }
 
-void World::drawSandTimer()
+void World::drawSandTimer(int player)
 {
-	target.draw(*clock);
+	if (player == 1)
+		target.draw(*clock);
+	else if (player == 2)
+		target.draw(*clock2);
 }
 
 void World::drawCup()
 {
 	target.draw(*cup);
+	target.draw(*cup2);
 }
 
 void World::drawChip()
@@ -277,13 +295,27 @@ void World::drawChip()
 
 void World::moveChip(Bid bid)
 {
-	if (bid.getFace() != Dice::Face::Star) {
-		setChipPosition(bid.getNumber());
+	float currentPosX = chip->getPosition().x;
+	float currentPosY = chip->getPosition().y;
+
+	if (currentPosX != newChipPosition.x)
+		chip->setPosition(currentPosX += dx / 40.f, currentPosY);
+	if (currentPosY != newChipPosition.y)
+		chip->setPosition(currentPosX, currentPosY += dy / 40.f);
+
+	if (abs(currentPosX - newChipPosition.x) < 10.f && abs(currentPosY - newChipPosition.y) < 10.f) {
+		chip->setPosition(newChipPosition);
 		setChipRotation(bid.getNumber());
 		setChipTexture(bid.getFace());
 	}
-	else
-		setStarChip(bid.getNumber());
+
+	//if (bid.getFace() != Dice::Face::Star) {
+	//	setChipPosition(bid.getNumber());
+	//	setChipRotation(bid.getNumber());
+	//	setChipTexture(bid.getFace());
+	//}
+	//else
+	//	setStarChip(bid.getNumber());
 }
 
 void World::setChipPosition(int number)
@@ -330,4 +362,21 @@ void World::setStarChip(int number)
 	chip->setRotation(rot);
 
 	chip->setTexture(textures.get(TextureID::ChipStar));
+}
+
+void World::setChipNewPosition(Bid bid)
+{
+	newChipPosition = sf::Vector2f(Board::BidPositions.find(bid.getNumber())->second);
+	dx = newChipPosition.x - chip->getPosition().x;
+	dy = newChipPosition.y - chip->getPosition().y;
+}
+
+sf::Vector2f World::getChipPosition()
+{
+	return chip->getPosition();
+}
+
+sf::Vector2f World::getNewChipPosition()
+{
+	return newChipPosition;
 }

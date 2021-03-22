@@ -49,6 +49,8 @@ private:
 	bool						isBluffCalled;
 	std::string					errorMessage;
 
+	//sf::Vector2f				newChipPosition;
+
 	const int					BLUFF = 0;
 
 };

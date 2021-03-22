@@ -18,34 +18,47 @@ GameState::GameState(StateStack& stack, Context context)
 	//context.music->play(MusicID::MissionTheme);
 
 	players.push_back(&player);
-	players.push_back(new AIPlayer3(2));
+	players.push_back(new AIPlayer1(3));
+	players.push_back(new AIPlayer3(3));
 
 	player.initializeButtons(*context.fonts);	
 
 	world.drawDice(players.front()->showDice());
 
 	world.moveChip(board.getCurrentBid());
+
+	//newChipPosition = sf::Vector2f(358.f, 185.f);
 }
 
 void GameState::draw()
 {
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
-
 	world.drawCup();
-
+	//world.moveChip(board.getCurrentBid());
 	world.drawChip();
+
+	//float currentPosX = world.getChipPosition().x;
+	//float currentPosY = world.getChipPosition().y;
 
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
 
 	if (currentPlayer != 0 && !isBluffCalled)
-		world.drawSandTimer();
+		world.drawSandTimer(currentPlayer);
 }
 
 bool GameState::update(sf::Time dt)
 {
-	play();
+	if (world.getChipPosition().x == world.getNewChipPosition().x && world.getChipPosition().y == world.getNewChipPosition().y)
+		play();
+	else {
+		world.draw();
+		player.drawButtons(&world.getRenderTarget());
+		world.drawCup();
+		world.moveChip(board.getCurrentBid());
+		world.drawChip();
+	}
 	
 	world.update(dt);
 	
@@ -124,14 +137,18 @@ void GameState::play()
 				if (board.isMoveValid(newBid)) {
 					board.setCurrentBid(newBid);
 
-					if (currentPlayer != 1)
-						(dynamic_cast<AIPlayer3*>(players[1]))->updateInfoForPlayer(newBid);
+					if (currentPlayer != 2)
+						(dynamic_cast<AIPlayer3*>(players[2]))->updateInfoForPlayer(newBid);
 
 					errorMessage = "";
-					nextPlayer();
+
 					//TO DO change later
-					std::this_thread::sleep_for(std::chrono::seconds(1));
-					world.moveChip(newBid);
+					if (currentPlayer != 0)
+						std::this_thread::sleep_for(std::chrono::seconds(2));
+
+					world.setChipNewPosition(newBid);
+					//world.moveChip(newBid);
+					nextPlayer();
 				}
 				else
 					errorMessage = "Invalid move. Please try again";
@@ -140,8 +157,8 @@ void GameState::play()
 				isBluffCalled = true;
 				setIsHumanPlayerWon();
 			}
-
 			draw();
+
 		}
 	}
 	else {

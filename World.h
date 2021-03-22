@@ -42,11 +42,15 @@ public:
 	void								updateSounds();
 	void								updateCurrentBidText(Bid b);
 
-	void								drawSandTimer();
+	void								drawSandTimer(int player);
 	void								drawCup();
 	void								drawChip();
 
 	void								moveChip(Bid bid);
+	void								setChipNewPosition(Bid bid);
+
+	sf::Vector2f						getChipPosition();
+	sf::Vector2f						getNewChipPosition();
 
 private:
 	void								loadTextures();
@@ -89,6 +93,13 @@ private:
 	SpriteNode*						    clock;
 	SpriteNode*							cup;
 
+	SpriteNode*							clock2;
+	SpriteNode*							cup2;
+
 	SpriteNode*							chip;
+
+	sf::Vector2f						newChipPosition;
+	float								dx;
+	float								dy;
 };
 
