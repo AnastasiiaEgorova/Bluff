@@ -105,6 +105,9 @@
     <ClCompile Include="AIPlayer3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChooseOpponentsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TextureHolder.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AIPlayer3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChooseOpponentsState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,11 +3,12 @@
 #include "State.h"
 #include "StateIdentifiers.h"
 
-#include "GameState.h"
+//#include "GameState.h"
 #include "TitleState.h"
 #include "PauseState.h"
 #include "MenuState.h"
 #include "GameOverState.h"
+#include "ChooseOpponentsState.h"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
@@ -28,7 +29,7 @@ Application::Application()
     //textures.load(TextureID::TitleScreen, "Media/Textures/TitleScreen.png");	
    
     registerStates();
-    stateStack.pushState(StateID::Game);
+    stateStack.pushState(StateID::Opponents);
 
     music.setVolume(25.f);
 }
@@ -100,7 +101,8 @@ void Application::registerStates()
     //TO DO
     // add instruction state
     stateStack.registerState<MenuState>(StateID::Menu);
-    stateStack.registerState<GameState>(StateID::Game);
+    stateStack.registerState<ChooseOpponentsState>(StateID::Opponents);
+    //stateStack.registerState<GameState>(StateID::Game);
     stateStack.registerState<PauseState>(StateID::Pause);
     stateStack.registerState<GameOverState>(StateID::GameOver);
 }

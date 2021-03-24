@@ -5,6 +5,7 @@
 #include "ResourceHolder.h"
 #include "ResourceIdentifiers.h"
 #include "StateStack.h"
+#include "Player.h"
 #include "HumanPlayer.h"
 #include "MusicPlayer.h"
 #include "SoundPlayer.h"
