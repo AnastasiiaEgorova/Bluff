@@ -24,16 +24,19 @@ private:
 	void					updateStatistics(sf::Time et);
 	void					registerStates();
 
+	std::vector<int>		opponentPlayers;
+
 private:
 	static const sf::Time	TimePerFrame;
 
 	// context
-	sf::RenderWindow		window;
-	TextureHolder_t			textures;
-	FontHolder_t			fonts;
-	HumanPlayer				player;
-	MusicPlayer				music;
-	SoundPlayer				sounds;
+	sf::RenderWindow				window;
+	TextureHolder_t					textures;
+	FontHolder_t					fonts;
+	HumanPlayer						player;
+	MusicPlayer						music;
+	SoundPlayer						sounds;
+
 
 	StateStack				stateStack;
 

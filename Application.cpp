@@ -3,7 +3,7 @@
 #include "State.h"
 #include "StateIdentifiers.h"
 
-//#include "GameState.h"
+#include "GameState.h"
 #include "TitleState.h"
 #include "PauseState.h"
 #include "MenuState.h"
@@ -19,7 +19,8 @@ Application::Application()
     , player()
     , music()
     , sounds()
-    , stateStack(State::Context(window, textures, fonts, player, music, sounds))
+    , opponentPlayers()
+    , stateStack(State::Context(window, textures, fonts, player, music, sounds, opponentPlayers))
     , statsUpdateTime()
     , statsNumFrames(0)
 {
@@ -102,7 +103,7 @@ void Application::registerStates()
     // add instruction state
     stateStack.registerState<MenuState>(StateID::Menu);
     stateStack.registerState<ChooseOpponentsState>(StateID::Opponents);
-    //stateStack.registerState<GameState>(StateID::Game);
+    stateStack.registerState<GameState>(StateID::Game);
     stateStack.registerState<PauseState>(StateID::Pause);
     stateStack.registerState<GameOverState>(StateID::GameOver);
 }

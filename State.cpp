@@ -32,7 +32,8 @@ State::Context::Context(sf::RenderWindow& window,
 	FontHolder_t& fonts, 
 	HumanPlayer& player,
 	MusicPlayer& music,
-	SoundPlayer& sounds)
+	SoundPlayer& sounds,
+	std::vector<int>& opponentPlayers)
 	// in context all fields are pointers => taking addresses of objects
 	: window(&window)
 	, textures(&textures)
@@ -40,5 +41,11 @@ State::Context::Context(sf::RenderWindow& window,
 	, player(&player)
 	, music(&music)
 	, sounds(&sounds)
+	, opponentPlayers(&opponentPlayers)
 {
+}
+
+void State::setOpponents(std::vector<int> o)
+{
+	context.opponentPlayers = &o;
 }

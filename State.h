@@ -31,14 +31,16 @@ public:
 			FontHolder_t& fonts,
 			HumanPlayer& player,
 			MusicPlayer& music,
-			SoundPlayer& sounds);
+			SoundPlayer& sounds,
+			std::vector<int>& opponentPlayers);
 
-		sf::RenderWindow*	window;
-		TextureHolder_t*	textures;
-		FontHolder_t*		fonts;
-		HumanPlayer*		player;
-		MusicPlayer*		music;
-		SoundPlayer*		sounds;
+		sf::RenderWindow*		window;
+		TextureHolder_t*		textures;
+		FontHolder_t*			fonts;
+		HumanPlayer*			player;
+		MusicPlayer*			music;
+		SoundPlayer*			sounds;
+		std::vector<int>*		opponentPlayers;
 	};
 
 					State(StateStack& stack, Context context);
@@ -47,6 +49,8 @@ public:
 	virtual void	draw() = 0;
 	virtual bool	update(sf::Time dt) = 0;
 	virtual bool	handleEvent(const sf::Event& event) = 0;
+
+	void			setOpponents(std::vector<int> o);
 	 
 protected:
 	void			requestStackPush(StateID stateID);

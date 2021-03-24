@@ -30,5 +30,7 @@ private:
 	std::vector<sf::Text>	opponents;
 	std::size_t				opponentsIndex;
 
+	std::map<int, bool>		opponentsChosen;
+
 	sf::Color				backgroundColour;
 };
