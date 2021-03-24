@@ -23,7 +23,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	cup2 = setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9);
 
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
-	setChipPosition(1);
+	setChipInitialPosition(1);
 	setChipRotation(1);
 
 	newChipPosition = sf::Vector2f(358.f, 185.f);
@@ -55,15 +55,6 @@ void World::draw()
 {
 	target.setView(worldView);
 	target.draw(sceneGraph);
-
-	//float currentPosX = world.getChipPosition().x;
-	//float currentPosY = world.getChipPosition().y;
-	//while (currentPosX != world.getNewChipPosition().x && currentPosY != world.getNewChipPosition().y) {
-	//	world.moveChip(board.getCurrentBid());
-	//	world.drawChip();
-	//}
-
-	//target.draw(*clock2);
 }
 
 void World::updateErrorMessage(std::string message)
@@ -304,7 +295,7 @@ void World::moveChip(Bid bid)
 	if (currentPosY != newChipPosition.y)										// move y position
 		chip->setPosition(currentPosX, currentPosY += dy / 40.f);
 	if (chip->getRotation() != newChipAngle)									// move rotation
-		chip->setRotation(currentAngle += dAngle);
+		chip->setRotation(currentAngle += dAngle / 180.f);
 
 	if (abs(currentPosX - newChipPosition.x) < 10.f && abs(currentPosY - newChipPosition.y) < 10.f) {
 		chip->setPosition(newChipPosition);
@@ -321,7 +312,7 @@ void World::moveChip(Bid bid)
 	//	setStarChip(bid.getNumber());
 }
 
-void World::setChipPosition(int number)
+void World::setChipInitialPosition(int number)
 {
 	sf::Vector2f pos = Board::BidPositions.find(number)->second;
 	chip->setPosition(pos);
@@ -356,16 +347,16 @@ void World::setChipTexture(Dice::Face face)
 	}
 }
 
-void World::setStarChip(int number)
-{
-	sf::Vector2f pos = Board::BidStarsPositions.find(number)->second;
-	chip->setPosition(pos);
-
-	float rot = Board::BidStarsRotations.find(number)->second;
-	chip->setRotation(rot);
-
-	chip->setTexture(textures.get(TextureID::ChipStar));
-}
+//void World::setStarChip(int number)
+//{
+//	sf::Vector2f pos = Board::BidStarsPositions.find(number)->second;
+//	chip->setPosition(pos);
+//
+//	float rot = Board::BidStarsRotations.find(number)->second;
+//	chip->setRotation(rot);
+//
+//	chip->setTexture(textures.get(TextureID::ChipStar));
+//}
 
 void World::setChipNewPosition(Bid bid)
 {

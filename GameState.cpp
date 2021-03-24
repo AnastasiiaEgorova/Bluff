@@ -26,8 +26,6 @@ GameState::GameState(StateStack& stack, Context context)
 	world.drawDice(players.front()->showDice());
 
 	world.moveChip(board.getCurrentBid());
-
-	//newChipPosition = sf::Vector2f(358.f, 185.f);
 }
 
 void GameState::draw()
@@ -35,11 +33,7 @@ void GameState::draw()
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
 	world.drawCup();
-	//world.moveChip(board.getCurrentBid());
 	world.drawChip();
-
-	//float currentPosX = world.getChipPosition().x;
-	//float currentPosY = world.getChipPosition().y;
 
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
@@ -137,17 +131,21 @@ void GameState::play()
 				if (board.isMoveValid(newBid)) {
 					board.setCurrentBid(newBid);
 
-					if (currentPlayer != 2)
-						(dynamic_cast<AIPlayer3*>(players[2]))->updateInfoForPlayer(newBid);
+
+
+					//if (currentPlayer != 2)
+					//	(dynamic_cast<AIPlayer3*>(players[2]))->updateInfoForPlayer(newBid);
+					updateMoveForPlayers(currentPlayer, newBid);
 
 					errorMessage = "";
 					world.setChipTexture(newBid.getFace());
 
 					//TO DO change later
-					if (currentPlayer != 0)
-						std::this_thread::sleep_for(std::chrono::seconds(2));
+					//if (currentPlayer != 0)
+					//	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 					world.setChipNewPosition(newBid);
+					world.setNewChipAngle(newBid);
 					nextPlayer();
 				}
 				else
@@ -164,5 +162,17 @@ void GameState::play()
 	else {
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 		requestStackPush(StateID::GameOver);
+	}
+}
+
+void GameState::updateMoveForPlayers(int currentPlayer, Bid& bid)
+{
+	for (int i = 0; i < players.size(); ++i) {
+		if (currentPlayer != i) {
+			if (dynamic_cast<AIPlayer2*>(players[i]) != nullptr)
+				(dynamic_cast<AIPlayer2*>(players[i]))->updateInfoForPlayer(bid);
+			else if (dynamic_cast<AIPlayer3*>(players[i]) != nullptr)
+				(dynamic_cast<AIPlayer3*>(players[i]))->updateInfoForPlayer(bid);
+		} 
 	}
 }

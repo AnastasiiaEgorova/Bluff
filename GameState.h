@@ -33,6 +33,8 @@ private:
 
 	void			play();
 
+	void			updateMoveForPlayers(int currentPlayer, Bid& bid);
+
 private:
 	sf::RenderWindow&			window;
 
@@ -48,8 +50,6 @@ private:
 	int							currentPlayer;
 	bool						isBluffCalled;
 	std::string					errorMessage;
-
-	//sf::Vector2f				newChipPosition;
 
 	const int					BLUFF = 0;
 

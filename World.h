@@ -62,10 +62,10 @@ private:
 
 	SpriteNode*							setSpriteNode(TextureID text, sf::Vector2f pos, float scale);
 
-	void								setChipPosition(int number);
+	void								setChipInitialPosition(int number);
 	void								setChipRotation(int number);
 
-	void								setStarChip(int number);
+	//void								setStarChip(int number);
 
 private:
 
