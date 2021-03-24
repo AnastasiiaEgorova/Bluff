@@ -47,5 +47,5 @@ State::Context::Context(sf::RenderWindow& window,
 
 void State::setOpponents(std::vector<int> o)
 {
-	context.opponentPlayers = &o;
+	*context.opponentPlayers = o;
 }

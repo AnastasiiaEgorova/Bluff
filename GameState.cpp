@@ -18,8 +18,23 @@ GameState::GameState(StateStack& stack, Context context)
 	//context.music->play(MusicID::MissionTheme);
 
 	players.push_back(&player);
-	players.push_back(new AIPlayer1(3));
-	players.push_back(new AIPlayer3(3));
+
+	for (int i = 0; i < context.opponentPlayers->size(); ++i) {
+		switch (i) {
+		case 1:
+			players.push_back(new AIPlayer1(context.opponentPlayers->size() + 1));
+			break;
+		case 2:
+			players.push_back(new AIPlayer2(context.opponentPlayers->size() + 1));
+			break;
+		case 3:
+			players.push_back(new AIPlayer3(context.opponentPlayers->size() + 1));
+			break;
+		}
+	}
+
+	//players.push_back(new AIPlayer1(3));
+	//players.push_back(new AIPlayer3(3));
 
 	player.initializeButtons(*context.fonts);	
 
