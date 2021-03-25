@@ -29,7 +29,7 @@ namespace sf {
 class World : public sf::NonCopyable
 {
 public:
-	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds);
+	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds, int numberOfOpponents);
 	void								update(sf::Time dt);
 	void								draw();
 	void								updateErrorMessage(std::string message);
@@ -43,7 +43,7 @@ public:
 	void								updateCurrentBidText(Bid b);
 
 	void								drawSandTimer(int player);
-	void								drawCup();
+	void								drawCups();
 	void								drawChip();
 
 	void								moveChip(Bid bid);
@@ -82,6 +82,7 @@ private:
 	TextureHolder_t						textures;
 	const FontHolder_t&					fonts;
 	SoundPlayer&						sounds;
+	int									numberOfOpponents;
 
 	SceneNode							sceneGraph;
 	std::array<SceneNode*, LayerCount>	sceneLayers;	
@@ -92,11 +93,16 @@ private:
 	TextNode*							currentBid;
 	TextNode*							errorMessage;
 
-	SpriteNode*						    clock;
-	SpriteNode*							cup;
+	std::vector<SpriteNode*>			clocks;
+	std::vector<SpriteNode*>			cups;
 
-	SpriteNode*							clock2;
-	SpriteNode*							cup2;
+
+
+	//SpriteNode*							clock2;
+	//SpriteNode*							cup2;
+
+	//SpriteNode*							clock3;
+	//SpriteNode*							cup3;
 
 	SpriteNode*							chip;
 

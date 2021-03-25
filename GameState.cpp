@@ -7,7 +7,7 @@
 GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
 	, window(*context.window)
-	, world(*context.window, *context.fonts, *context.sounds)
+	, world(*context.window, *context.fonts, *context.sounds, context.opponentPlayers->size())
 	, player(*context.player)
 	, currentPlayer(0)
 	, board()
@@ -47,8 +47,8 @@ void GameState::draw()
 {
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
-	world.drawCup();
-	world.drawChip();
+	//world.drawCups();
+	//world.drawChip();
 
 	if (isBluffCalled)
 		world.drawOpponentDice(players[1]->showDice());
@@ -62,11 +62,11 @@ bool GameState::update(sf::Time dt)
 	if (world.getChipPosition().x == world.getNewChipPosition().x && world.getChipPosition().y == world.getNewChipPosition().y)
 		play();
 	else {
+		world.moveChip(board.getCurrentBid());
 		world.draw();
 		player.drawButtons(&world.getRenderTarget());
-		world.drawCup();
-		world.moveChip(board.getCurrentBid());
-		world.drawChip();
+	    //world.drawCups();
+		//world.drawChip();
 	}
 	
 	world.update(dt);
@@ -146,10 +146,6 @@ void GameState::play()
 				if (board.isMoveValid(newBid)) {
 					board.setCurrentBid(newBid);
 
-
-
-					//if (currentPlayer != 2)
-					//	(dynamic_cast<AIPlayer3*>(players[2]))->updateInfoForPlayer(newBid);
 					updateMoveForPlayers(currentPlayer, newBid);
 
 					errorMessage = "";

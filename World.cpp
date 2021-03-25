@@ -1,12 +1,13 @@
 #include "World.h"
 
-World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& sounds)
+World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& sounds, int numberOfOpponents)
 	: target(outputTarget)
 	, sceneTexture()
 	, worldView(target.getDefaultView())
 	, textures()
 	, fonts(fonts)
 	, sounds(sounds)
+	, numberOfOpponents(numberOfOpponents)
 	, sceneGraph()
 	, sceneLayers()
 	, worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
@@ -16,11 +17,18 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	loadTextures();
 	buildScene();
 
-	clock = setSpriteNode(TextureID::Clock, sf::Vector2f(150, 140), 0.3);
-	cup = setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9);
-
-	clock2 = setSpriteNode(TextureID::Clock, sf::Vector2f(1000, 140), 0.3);
-	cup2 = setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9);
+	for (int i = 0; i < numberOfOpponents; ++i) {
+		switch (i) {
+		case 0:
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9));
+			break;
+		case 1:
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9));
+			break;
+		case 2:
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(100, 520), 0.9));
+		}
+	}
 
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
 	setChipInitialPosition(1);
@@ -55,6 +63,9 @@ void World::draw()
 {
 	target.setView(worldView);
 	target.draw(sceneGraph);
+
+	drawCups();
+	drawChip();
 }
 
 void World::updateErrorMessage(std::string message)
@@ -266,16 +277,20 @@ sf::RenderTarget& World::getRenderTarget()
 
 void World::drawSandTimer(int player)
 {
-	if (player == 1)
-		target.draw(*clock);
-	else if (player == 2)
-		target.draw(*clock2);
+	//if (player == 1)
+	//	target.draw(*clock);
+	//else if (player == 2)
+	//	target.draw(*clock2);
 }
 
-void World::drawCup()
+void World::drawCups()
 {
-	target.draw(*cup);
-	target.draw(*cup2);
+	for (auto cup : cups) {
+		target.draw(*cup);
+	}
+	//target.draw(*cup);
+	//target.draw(*cup2);
+	//target.draw(*cup3);
 }
 
 void World::drawChip()
