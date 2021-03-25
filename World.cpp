@@ -20,15 +20,17 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	for (int i = 0; i < numberOfOpponents; ++i) {
 		switch (i) {
 		case 0:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9));
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(100, 420), 0.9));
 			break;
 		case 1:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9));
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9));
 			break;
 		case 2:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(100, 520), 0.9));
+			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9));
 		}
 	}
+
+	setOpponentsDicePositions(numberOfOpponents);
 
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
 	setChipInitialPosition(1);
@@ -116,14 +118,15 @@ void World::drawDice(std::vector<Dice> playersDice)
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
-void World::drawOpponentDice(std::vector<Dice> playersDice)
+void World::drawOpponentDice(std::vector<Dice> playersDice, int opponent)
 {
 	// dice1
 	sf::Texture& dice1Texture = textures.get(loadDice(playersDice.at(0).getFace()));
 	dice1Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
-	dice1->setPosition(60, 180);
+	sf::Vector2f n = opponetsDicePositions[opponent][0];
+	dice1->setPosition(n);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
 	// dice2
@@ -131,7 +134,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice2Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
-	dice2->setPosition(30, 240);
+	dice2->setPosition(opponetsDicePositions[opponent][1]);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
@@ -139,7 +142,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice3Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
-	dice3->setPosition(120, 220);
+	dice3->setPosition(opponetsDicePositions[opponent][2]);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
@@ -147,7 +150,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice4Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
-	dice4->setPosition(30, 300);
+	dice4->setPosition(opponetsDicePositions[opponent][3]);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
@@ -155,7 +158,7 @@ void World::drawOpponentDice(std::vector<Dice> playersDice)
 	dice5Texture.setRepeated(false);
 
 	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
-	dice5->setPosition(120, 290);
+	dice5->setPosition(opponetsDicePositions[opponent][4]);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
@@ -407,4 +410,48 @@ void World::setNewChipAngle(Bid bid)
 float World::getNewChipAngle()
 {
 	return newChipAngle;
+}
+
+void World::setOpponentsDicePositions(int numberOfPlayers)
+{
+	for (int i = 0; i < numberOfPlayers; ++i) {
+
+		switch (i) {
+		case 0: {
+			std::vector<sf::Vector2f> dicePlayer1;
+			dicePlayer1.push_back(sf::Vector2f(70, 550));
+			dicePlayer1.push_back(sf::Vector2f(130, 550));
+			dicePlayer1.push_back(sf::Vector2f(70, 615));
+			dicePlayer1.push_back(sf::Vector2f(130, 615));
+			dicePlayer1.push_back(sf::Vector2f(190, 615));
+
+			opponetsDicePositions.push_back(dicePlayer1);
+			break;
+		}
+
+		case 1: {
+			std::vector<sf::Vector2f> dicePlayer2;
+			dicePlayer2.push_back(sf::Vector2f(110, 140));
+			dicePlayer2.push_back(sf::Vector2f(170, 140));
+			dicePlayer2.push_back(sf::Vector2f(50, 200));
+			dicePlayer2.push_back(sf::Vector2f(110, 200));
+			dicePlayer2.push_back(sf::Vector2f(170, 200));
+
+			opponetsDicePositions.push_back(dicePlayer2);
+			break;
+		}
+
+		case 2: {
+			std::vector<sf::Vector2f> dicePlayer3;
+			dicePlayer3.push_back(sf::Vector2f(960, 70));
+			dicePlayer3.push_back(sf::Vector2f(1020, 70));
+			dicePlayer3.push_back(sf::Vector2f(960, 130));
+			dicePlayer3.push_back(sf::Vector2f(1020, 130));
+			dicePlayer3.push_back(sf::Vector2f(1020, 190));
+
+			opponetsDicePositions.push_back(dicePlayer3);
+			break;
+		}
+		}
+	}
 }

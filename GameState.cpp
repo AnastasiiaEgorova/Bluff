@@ -21,20 +21,17 @@ GameState::GameState(StateStack& stack, Context context)
 
 	for (int i = 0; i < context.opponentPlayers->size(); ++i) {
 		switch (i) {
-		case 1:
+		case 0:
 			players.push_back(new AIPlayer1(context.opponentPlayers->size() + 1));
 			break;
-		case 2:
+		case 1:
 			players.push_back(new AIPlayer2(context.opponentPlayers->size() + 1));
 			break;
-		case 3:
+		case 2:
 			players.push_back(new AIPlayer3(context.opponentPlayers->size() + 1));
 			break;
 		}
 	}
-
-	//players.push_back(new AIPlayer1(3));
-	//players.push_back(new AIPlayer3(3));
 
 	player.initializeButtons(*context.fonts);	
 
@@ -50,8 +47,12 @@ void GameState::draw()
 	//world.drawCups();
 	//world.drawChip();
 
-	if (isBluffCalled)
-		world.drawOpponentDice(players[1]->showDice());
+	if (isBluffCalled) {
+		for (int i = 0; i < players.size()- 1; ++i) {
+			world.drawOpponentDice(players[i]->showDice(), i);
+		}
+	}
+		//world.drawOpponentDice(players[1]->showDice());
 
 	if (currentPlayer != 0 && !isBluffCalled)
 		world.drawSandTimer(currentPlayer);
@@ -65,8 +66,6 @@ bool GameState::update(sf::Time dt)
 		world.moveChip(board.getCurrentBid());
 		world.draw();
 		player.drawButtons(&world.getRenderTarget());
-	    //world.drawCups();
-		//world.drawChip();
 	}
 	
 	world.update(dt);

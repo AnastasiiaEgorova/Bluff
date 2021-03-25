@@ -34,7 +34,7 @@ public:
 	void								draw();
 	void								updateErrorMessage(std::string message);
 	void								drawDice(std::vector<Dice> playersDice);
-	void								drawOpponentDice(std::vector<Dice> playersDice);
+	void								drawOpponentDice(std::vector<Dice> playersDice, int opponent);
 	CommandQueue&						getCommands();
 
 	sf::RenderTarget&					getRenderTarget();
@@ -64,6 +64,8 @@ private:
 
 	void								setChipInitialPosition(int number);
 	void								setChipRotation(int number);
+
+	void								setOpponentsDicePositions(int numberOfPlayers);
 
 	//void								setStarChip(int number);
 
@@ -96,13 +98,7 @@ private:
 	std::vector<SpriteNode*>			clocks;
 	std::vector<SpriteNode*>			cups;
 
-
-
-	//SpriteNode*							clock2;
-	//SpriteNode*							cup2;
-
-	//SpriteNode*							clock3;
-	//SpriteNode*							cup3;
+	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 
 	SpriteNode*							chip;
 
