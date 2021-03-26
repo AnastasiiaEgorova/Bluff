@@ -54,5 +54,7 @@ void State::setOpponents(std::vector<int> o)
 
 void State::setWinner(std::string w)
 {
-	context.winner->setString(w);
+	sf::Text s;
+	s.setString("AI " + w + " won!");
+	*context.winner = s;
 }

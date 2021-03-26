@@ -17,5 +17,7 @@ private:
 	sf::Time		elapsedTime;
 
 	sf::Color		backgroundColour;
+
+	sf::RectangleShape backgroundShape;
 };
 

@@ -25,12 +25,18 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	//	backgroundColour = sf::Color(0, 255, 0, 100);
 	//}
 	
-	gameOverText = *context.winner;
+	gameOverText.setFont(font);
+	gameOverText.setString(context.winner->getString());
+	//gameOverText.setString("Winner");
 	backgroundColour = sf::Color(255, 0, 0, 100);
 	
 	gameOverText.setCharacterSize(100);
+	gameOverText.setFillColor(sf::Color::White);
 	centerOrigin(gameOverText);
 	gameOverText.setPosition(0.5f * windowSize.x, 0.4f * windowSize.y);
+
+	backgroundShape.setFillColor(backgroundColour);
+	backgroundShape.setSize(context.window->getView().getSize());
 }
 
 void GameOverState::draw()
@@ -38,9 +44,9 @@ void GameOverState::draw()
 	sf::RenderWindow& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
-	sf::RectangleShape backgroundShape;
-	backgroundShape.setFillColor(backgroundColour);
-	backgroundShape.setSize(window.getView().getSize());
+	//sf::RectangleShape backgroundShape;
+	//backgroundShape.setFillColor(backgroundColour);
+	//backgroundShape.setSize(window.getView().getSize());
 
 	window.draw(backgroundShape);
 	window.draw(gameOverText);
