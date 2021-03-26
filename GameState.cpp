@@ -44,15 +44,12 @@ void GameState::draw()
 {
 	world.draw();
 	player.drawButtons(&world.getRenderTarget());
-	//world.drawCups();
-	//world.drawChip();
 
 	if (isBluffCalled) {
 		for (int i = 0; i < players.size()- 1; ++i) {
 			world.drawOpponentDice(players[i]->showDice(), i);
 		}
 	}
-		//world.drawOpponentDice(players[1]->showDice());
 
 	if (currentPlayer != 0 && !isBluffCalled)
 		world.drawSandTimer(currentPlayer);
@@ -171,6 +168,7 @@ void GameState::play()
 	}
 	else {
 		std::this_thread::sleep_for(std::chrono::seconds(1));
+		setWinner(getWinner());
 		requestStackPush(StateID::GameOver);
 	}
 }
@@ -185,4 +183,43 @@ void GameState::updateMoveForPlayers(int currentPlayer, Bid& bid)
 				(dynamic_cast<AIPlayer3*>(players[i]))->updateInfoForPlayer(bid);
 		} 
 	}
+}
+
+std::string GameState::getWinner()
+{
+	std::vector<Dice> allDice;
+
+	for (auto& p : players) {							// check all dice
+		for (auto& d : p->showDice())
+			allDice.push_back(d);
+	}
+	//for (auto d : players[0]->showDice())
+	//	allDice.push_back(d);
+
+	//for (auto d : players[1]->showDice())
+	//	allDice.push_back(d);
+
+	int numberOfFaceOnTable = 0;
+
+	for (auto& d : allDice)
+		if (d.getFace() == board.getCurrentBid().getFace() || d.getFace() == Dice::Face::Star)
+			numberOfFaceOnTable++;
+
+	bool isCallingBluffWon = true;
+	if (board.getCurrentBid().getNumber() <= numberOfFaceOnTable)
+		isCallingBluffWon = false;
+
+	std::stringstream stream;
+
+	if (isCallingBluffWon)
+		stream << currentPlayer;
+	else
+		stream << currentPlayer - 1;
+
+	return stream.str();
+
+	//if ((currentPlayer == 0 && isCallingBluffWon) || (currentPlayer != 0 && !isCallingBluffWon))
+	//	player.setStatus(HumanPlayer::Status::Success);
+	//else
+	//	player.setStatus(HumanPlayer::Status::Failure);
 }

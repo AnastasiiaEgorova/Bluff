@@ -291,9 +291,6 @@ void World::drawCups()
 	for (auto cup : cups) {
 		target.draw(*cup);
 	}
-	//target.draw(*cup);
-	//target.draw(*cup2);
-	//target.draw(*cup3);
 }
 
 void World::drawChip()
@@ -309,9 +306,9 @@ void World::moveChip(Bid bid)
 	float currentAngle = chip->getRotation();
 
 	if (currentPosX != newChipPosition.x)										// move x position
-		chip->setPosition(currentPosX += dx / 40.f, currentPosY);
+		chip->setPosition(currentPosX += dx / 60.f, currentPosY);
 	if (currentPosY != newChipPosition.y)										// move y position
-		chip->setPosition(currentPosX, currentPosY += dy / 40.f);
+		chip->setPosition(currentPosX, currentPosY += dy / 60.f);
 	if (chip->getRotation() != newChipAngle)									// move rotation
 		chip->setRotation(currentAngle += dAngle / 180.f);
 
@@ -320,14 +317,6 @@ void World::moveChip(Bid bid)
 		setChipRotation(bid.getNumber());
 		setChipTexture(bid.getFace());
 	}
-
-	//if (bid.getFace() != Dice::Face::Star) {
-	//	setChipPosition(bid.getNumber());
-	//	setChipRotation(bid.getNumber());
-	//	setChipTexture(bid.getFace());
-	//}
-	//else
-	//	setStarChip(bid.getNumber());
 }
 
 void World::setChipInitialPosition(int number)

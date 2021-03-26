@@ -8,13 +8,15 @@ ChooseOpponentsState::ChooseOpponentsState(StateStack& stack, Context context)
 	, opponentsIndex(0)
 {
 	sf::Font& font = context.fonts->get(FontID::Main);
-	//sf::Vector2f windowSize(context.window->getSize());
+	titleSprite.setTexture(context.textures->get(TextureID::Title));
+	centerOrigin(titleSprite);
+	titleSprite.setPosition(context.window->getView().getCenter().x, titleSprite.getLocalBounds().height / 2.f);
 
 	sf::Text opponentAI1;
 	opponentAI1.setFont(font);
 	opponentAI1.setString("AI 1");
 	centerOrigin(opponentAI1);
-	opponentAI1.setPosition(context.window->getView().getSize() / 2.f);
+	opponentAI1.setPosition(context.window->getView().getSize().x / 2.f, context.window->getView().getSize().y / 1.5f);
 	opponents.push_back(opponentAI1);
 	opponentsChosen[0] = false;
 
@@ -37,15 +39,15 @@ ChooseOpponentsState::ChooseOpponentsState(StateStack& stack, Context context)
 	chooseOpponentsText.setFont(font);
 	chooseOpponentsText.setString("Choose opponents to play with");
 	centerOrigin(chooseOpponentsText);
-	chooseOpponentsText.setPosition(opponentAI1.getPosition() - sf::Vector2f(0.f, 120.f));
+	chooseOpponentsText.setPosition(opponentAI1.getPosition() - sf::Vector2f(0.f, 50.f));
 
 	instructionText.setFont(font);
 	instructionText.setCharacterSize(20);
 	instructionText.setString("Press Space to choose/unchoose opponent. Press Enter to continue.");
 	centerOrigin(instructionText);
-	instructionText.setPosition(opponentAI3.getPosition() + sf::Vector2f(0.f, 160.f));
+	instructionText.setPosition(opponentAI3.getPosition() + sf::Vector2f(0.f, 100.f));
 
-	backgroundColour = sf::Color(0, 255, 0, 100);
+	backgroundColour = sf::Color(0, 255, 0, 0);
 
 	updateOpponentsText();
 }
@@ -58,8 +60,9 @@ void ChooseOpponentsState::draw()
 	sf::RectangleShape backgroundShape;
 	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(window.getView().getSize());
-
 	window.draw(backgroundShape);
+
+	window.draw(titleSprite);
 
 	window.draw(chooseOpponentsText);
 	for (const auto& text : opponents) {

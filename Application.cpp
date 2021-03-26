@@ -20,14 +20,14 @@ Application::Application()
     , music()
     , sounds()
     , opponentPlayers()
-    , stateStack(State::Context(window, textures, fonts, player, music, sounds, opponentPlayers))
+    , stateStack(State::Context(window, textures, fonts, player, music, sounds, opponentPlayers, winner))
     , statsUpdateTime()
     , statsNumFrames(0)
 {
     window.setKeyRepeatEnabled(false);
 
     fonts.load(FontID::Main, "Media/Sansation.ttf");
-    //textures.load(TextureID::TitleScreen, "Media/Textures/TitleScreen.png");	
+    textures.load(TextureID::Title, "Media/Textures/Title.jpg");	
    
     registerStates();
     stateStack.pushState(StateID::Opponents);

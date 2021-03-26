@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <sstream>
 
 class GameState : public State
 {
@@ -34,6 +35,8 @@ private:
 	void			play();
 
 	void			updateMoveForPlayers(int currentPlayer, Bid& bid);
+
+	std::string		getWinner();
 
 private:
 	sf::RenderWindow&			window;

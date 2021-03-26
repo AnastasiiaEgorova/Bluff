@@ -24,8 +24,6 @@ private:
 	void					updateStatistics(sf::Time et);
 	void					registerStates();
 
-	std::vector<int>		opponentPlayers;
-
 private:
 	static const sf::Time	TimePerFrame;
 
@@ -36,6 +34,8 @@ private:
 	HumanPlayer						player;
 	MusicPlayer						music;
 	SoundPlayer						sounds;
+	std::vector<int>				opponentPlayers;
+	sf::Text						winner;
 
 
 	StateStack				stateStack;

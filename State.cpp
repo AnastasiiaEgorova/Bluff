@@ -33,7 +33,8 @@ State::Context::Context(sf::RenderWindow& window,
 	HumanPlayer& player,
 	MusicPlayer& music,
 	SoundPlayer& sounds,
-	std::vector<int>& opponentPlayers)
+	std::vector<int>& opponentPlayers,
+	sf::Text& winner)
 	// in context all fields are pointers => taking addresses of objects
 	: window(&window)
 	, textures(&textures)
@@ -42,10 +43,16 @@ State::Context::Context(sf::RenderWindow& window,
 	, music(&music)
 	, sounds(&sounds)
 	, opponentPlayers(&opponentPlayers)
+	, winner(&winner)
 {
 }
 
 void State::setOpponents(std::vector<int> o)
 {
 	*context.opponentPlayers = o;
+}
+
+void State::setWinner(std::string w)
+{
+	context.winner->setString(w);
 }

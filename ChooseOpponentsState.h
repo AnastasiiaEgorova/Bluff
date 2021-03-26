@@ -32,5 +32,7 @@ private:
 
 	std::map<int, bool>		opponentsChosen;
 
+	sf::Sprite				titleSprite;
+
 	sf::Color				backgroundColour;
 };

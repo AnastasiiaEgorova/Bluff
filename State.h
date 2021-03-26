@@ -32,7 +32,8 @@ public:
 			HumanPlayer& player,
 			MusicPlayer& music,
 			SoundPlayer& sounds,
-			std::vector<int>& opponentPlayers);
+			std::vector<int>& opponentPlayers,
+			sf::Text& winner);
 
 		sf::RenderWindow*		window;
 		TextureHolder_t*		textures;
@@ -41,6 +42,7 @@ public:
 		MusicPlayer*			music;
 		SoundPlayer*			sounds;
 		std::vector<int>*		opponentPlayers;
+		sf::Text*				winner;
 	};
 
 					State(StateStack& stack, Context context);
@@ -51,6 +53,7 @@ public:
 	virtual bool	handleEvent(const sf::Event& event) = 0;
 
 	void			setOpponents(std::vector<int> o);
+	void			setWinner(std::string w);
 	 
 protected:
 	void			requestStackPush(StateID stateID);

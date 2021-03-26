@@ -15,15 +15,18 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	sf::Font& font = context.fonts->get(FontID::Main);
 	sf::Vector2f windowSize(context.window->getSize());	
 	
-	gameOverText.setFont(font);
-	if (context.player->getStatus() == HumanPlayer::Status::Failure) {
-		gameOverText.setString("What a Loser!!!");
-		backgroundColour = sf::Color(255, 0, 0, 100);
-	}
-	else {
-		gameOverText.setString("You won!");
-		backgroundColour = sf::Color(0, 255, 0, 100);
-	}
+	//gameOverText.setFont(font);
+	//if (context.player->getStatus() == HumanPlayer::Status::Failure) {
+	//	gameOverText.setString("What a Loser!!!");
+	//	backgroundColour = sf::Color(255, 0, 0, 100);
+	//}
+	//else {
+	//	gameOverText.setString("You won!");
+	//	backgroundColour = sf::Color(0, 255, 0, 100);
+	//}
+	
+	gameOverText = *context.winner;
+	backgroundColour = sf::Color(255, 0, 0, 100);
 	
 	gameOverText.setCharacterSize(100);
 	centerOrigin(gameOverText);
