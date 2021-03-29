@@ -10,6 +10,7 @@
 #include "Bid.h"
 #include "Button.h"
 #include "Board.h"
+#include "Actor.h"
 #include <sstream>
 #include <string>
 
@@ -97,6 +98,8 @@ private:
 
 	std::vector<SpriteNode*>			clocks;
 	std::vector<SpriteNode*>			cups;
+
+	Actor*								abed;
 
 	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 

@@ -19,9 +19,9 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 
 	for (int i = 0; i < numberOfOpponents; ++i) {
 		switch (i) {
-		case 0:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(100, 420), 0.9));
-			break;
+		//case 0:
+			//cups.push_back(setSpriteNode(TextureID::Abed, sf::Vector2f(100, 420), 0.9));
+			//break;
 		case 1:
 			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9));
 			break;
@@ -191,6 +191,8 @@ void World::loadTextures()
 	textures.load(TextureID::Chip4, "Media/Textures/Chip4.png");
 	textures.load(TextureID::Chip5, "Media/Textures/Chip5.png");
 	textures.load(TextureID::ChipStar, "Media/Textures/ChipStar.png");
+
+	textures.load(TextureID::Abed, "Media/Textures/hero2.png");
 }
 
 void World::buildScene()
@@ -240,6 +242,12 @@ void World::buildScene()
 
 	errorMessage = errorMessageField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
+
+	//Hero (for now)
+	std::unique_ptr<Actor> abedNew(new Actor(Actor::Type::Abed, textures, fonts));
+	abed = abedNew.get();
+	abedNew->setPosition(sf::Vector2f(100, 420));
+	sceneLayers[TableLayer]->attachChild(std::move(abedNew));
 }
 
 

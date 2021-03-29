@@ -1,46 +1,34 @@
-#pragma once
-
-#include <SFML/Graphics/Sprite.hpp>
+#include <vector>
 #include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
-class Animation : public sf::Drawable, public sf::Transformable
+using Frame = sf::IntRect;
+
+class Animation
 {
 public:
-	Animation();
-	explicit 				Animation(const sf::Texture& texture);	
-	
-	void 					setTexture(const sf::Texture& texture);
-	const sf::Texture*		getTexture() const;	
-	
-	void 					setFrameSize(sf::Vector2i mFrameSize);
-	sf::Vector2i		 	getFrameSize() const;	
-	
-	void 					setNumFrames(std::size_t numFrames);
-	std::size_t 			getNumFrames() const;	
-	
+	explicit 				Animation(bool repeat = true);
+
+	void					addFrame(Frame frame);
+	void					addFrameSet(std::vector<Frame> frames);
 	void 					setDuration(sf::Time duration);
-	sf::Time 				getDuration() const;	
-	
+	sf::Time 				getDuration() const;
+
 	void 					setRepeating(bool flag);
-	bool 					isRepeating() const;	
-	
+	bool 					isRepeating() const;
+
 	void 					restart();
-	bool 					isFinished() const;	
-	
-	sf::FloatRect 			getLocalBounds() const;
-	sf::FloatRect 			getGlobalBounds() const;	
 
-	void 					update(sf::Time dt); 
+	bool 					isFinished() const;
 
-private:
-	void 					draw(sf::RenderTarget& target, sf::RenderStates states) const; 
+	Frame					getCurrentFrame() const;
+
+	Frame 					update(sf::Time dt);
 
 private:
-	sf::Sprite 				sprite;
-	sf::Vector2i 			frameSize;
-	std::size_t 			numFrames;
-	std::size_t 			currentFrame;
-	sf::Time 				duration;
-	sf::Time 				elapsedTime;
-	bool 					repeat;
+	std::vector<Frame>		frames_;
+	std::size_t 			currentFrame_;
+	sf::Time 				duration_;
+	sf::Time 				elapsedTime_;
+	bool 					repeat_;
 };

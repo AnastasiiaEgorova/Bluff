@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AIPlayer.cpp" />
     <ClCompile Include="AIPlayer1.cpp" />
     <ClCompile Include="AIPLayer2.cpp" />
@@ -159,10 +160,12 @@
     <ClCompile Include="ChooseOpponentsState.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
+    <ClCompile Include="DataTables.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
+    <ClCompile Include="JsonFrameParser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
@@ -180,6 +183,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="AIPlayer.h" />
     <ClInclude Include="AIPlayer1.h" />
     <ClInclude Include="AIPLayer2.h" />
@@ -193,10 +197,13 @@
     <ClInclude Include="ChooseOpponentsState.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandQueue.h" />
+    <ClInclude Include="DataTables.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HumanPlayer.h" />
+    <ClInclude Include="json.h" />
+    <ClInclude Include="JsonFrameParser.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="PauseState.h" />

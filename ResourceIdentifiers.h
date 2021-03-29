@@ -42,7 +42,9 @@ enum class TextureID {
 	Chip4,
 	Chip5,
 	ChipStar,
-	Title
+	Title,
+
+	Abed
 };
 
 enum class FontID {
