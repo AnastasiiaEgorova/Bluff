@@ -28,9 +28,6 @@ private:
 	void			updateMousePosition();
 
 	void			nextPlayer();
-	bool			isValidMove();
-
-	void			setIsHumanPlayerWon();
 
 	void			play();
 

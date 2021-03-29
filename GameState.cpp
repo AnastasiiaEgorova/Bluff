@@ -64,7 +64,8 @@ bool GameState::update(sf::Time dt)
 		world.draw();
 		player.drawButtons(&world.getRenderTarget());
 	}
-	
+
+	world.updatePlayerAnimationState(currentPlayer);
 	world.update(dt);
 	
 	world.updateCurrentBidText(board.getCurrentBid());
@@ -99,37 +100,6 @@ void GameState::nextPlayer()
 	currentPlayer = (currentPlayer + 1) % players.size();
 }
 
-bool GameState::isValidMove()
-{
-	return true;
-}
-
-void GameState::setIsHumanPlayerWon()
-{
-	std::vector<Dice> allDice;
-
-	for (auto d : players[0]->showDice())
-		allDice.push_back(d);
-
-	for (auto d : players[1]->showDice())
-		allDice.push_back(d);
-		
-	int numberOfFaceOnTable = 0;
-
-	for (auto d : allDice)
-		if (d.getFace() == board.getCurrentBid().getFace() || d.getFace() == Dice::Face::Star)
-			numberOfFaceOnTable++;
-
-	bool isCallingBluffWon = true;
-	if (board.getCurrentBid().getNumber() <= numberOfFaceOnTable)
-		isCallingBluffWon = false;
-
-	if ((currentPlayer == 0 && isCallingBluffWon) || (currentPlayer != 0 && !isCallingBluffWon))
-		player.setStatus(HumanPlayer::Status::Success);
-	else
-		player.setStatus(HumanPlayer::Status::Failure);
-}
-
 void GameState::play()
 {
 	if (!isBluffCalled) {
@@ -160,7 +130,7 @@ void GameState::play()
 			}
 			else {
 				isBluffCalled = true;
-				setIsHumanPlayerWon();
+				setWinner(getWinner());
 			}
 			draw();
 
@@ -168,7 +138,6 @@ void GameState::play()
 	}
 	else {
 		std::this_thread::sleep_for(std::chrono::seconds(1));
-		setWinner(getWinner());
 		requestStackPush(StateID::GameOver);
 	}
 }

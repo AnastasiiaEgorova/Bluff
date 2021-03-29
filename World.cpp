@@ -453,3 +453,9 @@ void World::setOpponentsDicePositions(int numberOfPlayers)
 		}
 	}
 }
+
+void World::updatePlayerAnimationState(int currentPlayer)
+{
+	if (currentPlayer == 1 && abed->getState() == Actor::State::Idle)
+		abed->setState(Actor::State::Think);
+}

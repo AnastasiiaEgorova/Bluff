@@ -56,6 +56,8 @@ public:
 	float								getNewChipAngle();
 	void								setChipTexture(Dice::Face face);
 
+	void								updatePlayerAnimationState(int currentPlayer);
+
 private:
 	void								loadTextures();
 	void								buildScene();

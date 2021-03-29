@@ -34,8 +34,8 @@ Actor::State Actor::getState() const
 
 void Actor::updateStates()
 {
-	state_ = State::Idle;
-	animations_[state_].restart();
+	if (state_ == State::Think && animations_[state_].isFinished())
+		state_ = State::Idle;
 }
 
 void Actor::updateCurrent(sf::Time dt, CommandQueue& commands)

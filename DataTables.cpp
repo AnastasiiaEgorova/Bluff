@@ -9,8 +9,12 @@ std::map<Actor::Type, AbedData> initializeAbedData()
 	JsonFrameParser frames = JsonFrameParser("Media/Textures/Abed.json");
 
 	data[Actor::Type::Abed].animations[Actor::State::Idle].addFrameSet(frames.getFramesFor("idle")); //TODO change for addFrameSet later
-	data[Actor::Type::Abed].animations[Actor::State::Idle].setDuration(sf::seconds(1.f));
+	data[Actor::Type::Abed].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Abed].animations[Actor::State::Idle].setRepeating(true);
+
+	data[Actor::Type::Abed].animations[Actor::State::Think].addFrameSet(frames.getFramesFor("think")); //TODO change for addFrameSet later
+	data[Actor::Type::Abed].animations[Actor::State::Think].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Abed].animations[Actor::State::Think].setRepeating(false);
 
 	return data;
 }
