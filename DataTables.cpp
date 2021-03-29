@@ -6,7 +6,7 @@ std::map<Actor::Type, AbedData> initializeAbedData()
 
 	data[Actor::Type::Abed].texture = TextureID::Abed;
 	
-	JsonFrameParser frames = JsonFrameParser("Media/Textures/hero2.json");
+	JsonFrameParser frames = JsonFrameParser("Media/Textures/Abed.json");
 
 	data[Actor::Type::Abed].animations[Actor::State::Idle].addFrameSet(frames.getFramesFor("idle")); //TODO change for addFrameSet later
 	data[Actor::Type::Abed].animations[Actor::State::Idle].setDuration(sf::seconds(1.f));

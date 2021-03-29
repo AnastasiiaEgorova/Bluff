@@ -192,7 +192,7 @@ void World::loadTextures()
 	textures.load(TextureID::Chip5, "Media/Textures/Chip5.png");
 	textures.load(TextureID::ChipStar, "Media/Textures/ChipStar.png");
 
-	textures.load(TextureID::Abed, "Media/Textures/hero2.png");
+	textures.load(TextureID::Abed, "Media/Textures/Abed.png");
 }
 
 void World::buildScene()
@@ -247,6 +247,7 @@ void World::buildScene()
 	std::unique_ptr<Actor> abedNew(new Actor(Actor::Type::Abed, textures, fonts));
 	abed = abedNew.get();
 	abedNew->setPosition(sf::Vector2f(100, 420));
+	abedNew->setScale(5.f, 5.f);
 	sceneLayers[TableLayer]->attachChild(std::move(abedNew));
 }
 
