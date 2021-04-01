@@ -7,7 +7,7 @@
 GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
 	, window(*context.window)
-	, world(*context.window, *context.fonts, *context.sounds, context.opponentPlayers->size())
+	, world(*context.window, *context.fonts, *context.sounds, *context.opponentPlayers)
 	, player(*context.player)
 	, currentPlayer(0)
 	, board()

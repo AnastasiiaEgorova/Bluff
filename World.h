@@ -30,7 +30,7 @@ namespace sf {
 class World : public sf::NonCopyable
 {
 public:
-	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds, int numberOfOpponents);
+	explicit							World(sf::RenderTarget& window, FontHolder_t& fonts, SoundPlayer& sounds, std::vector<int>& opponents);
 	void								update(sf::Time dt);
 	void								draw();
 	void								updateErrorMessage(std::string message);
@@ -98,10 +98,13 @@ private:
 	TextNode*							currentBid;
 	TextNode*							errorMessage;
 
-	std::vector<SpriteNode*>			clocks;
-	std::vector<SpriteNode*>			cups;
+	//std::vector<SpriteNode*>			clocks;
+	//std::vector<SpriteNode*>			cups;
+	std::vector<Actor*>					actors;
 
 	Actor*								abed;
+	Actor*								drake;
+	Actor*								bender;
 
 	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 

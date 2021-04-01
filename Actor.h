@@ -16,7 +16,7 @@ class Actor : public SceneNode
 {
 public:
     enum class Type {
-        Abed, Count
+        Abed, Drake, Bender, Count
     };
 
     enum class State {

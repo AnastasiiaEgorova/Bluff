@@ -1,13 +1,13 @@
 #include "World.h"
 
-World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& sounds, int numberOfOpponents)
+World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& sounds, std::vector<int>& opponents)
 	: target(outputTarget)
 	, sceneTexture()
 	, worldView(target.getDefaultView())
 	, textures()
 	, fonts(fonts)
 	, sounds(sounds)
-	, numberOfOpponents(numberOfOpponents)
+	, numberOfOpponents(opponents.size())
 	, sceneGraph()
 	, sceneLayers()
 	, worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
@@ -17,16 +17,31 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	loadTextures();
 	buildScene();
 
-	for (int i = 0; i < numberOfOpponents; ++i) {
-		switch (i) {
-		//case 0:
-			//cups.push_back(setSpriteNode(TextureID::Abed, sf::Vector2f(100, 420), 0.9));
-			//break;
-		case 1:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(50, 30), 0.9));
+	for (int i = 0; i < opponents.size(); ++i) {
+		switch (opponents[i]) {
+		case 0: {
+			std::unique_ptr<Actor> abedNew(new Actor(Actor::Type::Abed, textures, fonts));
+			actors.push_back(abedNew.get());
+			abedNew->setPosition(sf::Vector2f(100, 420));
+			abedNew->setScale(2.f, 2.f);
+			sceneLayers[TableLayer]->attachChild(std::move(abedNew));
 			break;
-		case 2:
-			cups.push_back(setSpriteNode(TextureID::Cup, sf::Vector2f(850, 20), 0.9));
+		}
+		case 1: {
+			std::unique_ptr<Actor> drakeNew(new Actor(Actor::Type::Drake, textures, fonts));
+			actors.push_back(drakeNew.get());
+			drakeNew->setPosition(sf::Vector2f(80, 80));
+			sceneLayers[TableLayer]->attachChild(std::move(drakeNew));
+			break;
+		}
+		case 2: {
+			std::unique_ptr<Actor> benderNew(new Actor(Actor::Type::Bender, textures, fonts));
+			actors.push_back(benderNew.get());
+			benderNew->setPosition(sf::Vector2f(850, 50));
+			benderNew->setScale(2.f, 2.f);
+			sceneLayers[TableLayer]->attachChild(std::move(benderNew));
+			break;
+		}
 		}
 	}
 
@@ -37,7 +52,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	setChipRotation(1);
 
 	newChipPosition = sf::Vector2f(358.f, 185.f);
-}
+ }
 
 CommandQueue& World::getCommands() {
 	return commandQueue;
@@ -184,7 +199,7 @@ void World::loadTextures()
 	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
 	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
-	textures.load(TextureID::Cup, "Media/Textures/Cup.jpg");
+	//textures.load(TextureID::Cup, "Media/Textures/Cup.jpg");
 	textures.load(TextureID::Chip1, "Media/Textures/Chip1.png");
 	textures.load(TextureID::Chip2, "Media/Textures/Chip2.png");
 	textures.load(TextureID::Chip3, "Media/Textures/Chip3.png");
@@ -193,6 +208,8 @@ void World::loadTextures()
 	textures.load(TextureID::ChipStar, "Media/Textures/ChipStar.png");
 
 	textures.load(TextureID::Abed, "Media/Textures/Abed.png");
+	textures.load(TextureID::Drake, "Media/Textures/Drake.png");
+	textures.load(TextureID::Bender, "Media/Textures/Bender.png");
 }
 
 void World::buildScene()
@@ -242,13 +259,6 @@ void World::buildScene()
 
 	errorMessage = errorMessageField.get();
 	sceneLayers[TableLayer]->attachChild(std::move(errorMessageField));
-
-	//Hero (for now)
-	std::unique_ptr<Actor> abedNew(new Actor(Actor::Type::Abed, textures, fonts));
-	abed = abedNew.get();
-	abedNew->setPosition(sf::Vector2f(100, 420));
-	abedNew->setScale(5.f, 5.f);
-	sceneLayers[TableLayer]->attachChild(std::move(abedNew));
 }
 
 
@@ -297,9 +307,9 @@ void World::drawSandTimer(int player)
 
 void World::drawCups()
 {
-	for (auto cup : cups) {
-		target.draw(*cup);
-	}
+	//for (auto cup : cups) {
+	//	target.draw(*cup);
+	//}
 }
 
 void World::drawChip()
@@ -456,6 +466,12 @@ void World::setOpponentsDicePositions(int numberOfPlayers)
 
 void World::updatePlayerAnimationState(int currentPlayer)
 {
-	if (currentPlayer == 1 && abed->getState() == Actor::State::Idle)
-		abed->setState(Actor::State::Think);
+	//if (currentPlayer == 1 && abed->getState() == Actor::State::Idle)
+	//	abed->setState(Actor::State::Think);
+
+	if (currentPlayer != 0 && actors[currentPlayer - 1]->getState() == Actor::State::Idle)
+		actors[currentPlayer - 1]->setState(Actor::State::Think);
+
+	//if (currentPlayer == 2 && bender->getState() == Actor::State::Idle)
+	//	bender->setState(Actor::State::Think);
 }

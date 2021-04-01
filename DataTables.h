@@ -11,11 +11,12 @@
 #include "JsonFrameParser.h"
 #include "Actor.h"
 
-struct AbedData {
+struct ActorData {
 	TextureID							texture;
 	std::map<Actor::State, Animation>	animations;
 };
 
-std::map<Actor::Type, AbedData> initializeAbedData();
+std::map<Actor::Type, ActorData> initializeAbedData();
+
 
 

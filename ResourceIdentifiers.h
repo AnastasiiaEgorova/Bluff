@@ -44,7 +44,9 @@ enum class TextureID {
 	ChipStar,
 	Title,
 
-	Abed
+	Abed,
+	Drake,
+	Bender
 };
 
 enum class FontID {
