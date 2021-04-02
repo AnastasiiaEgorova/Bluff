@@ -43,8 +43,6 @@ public:
 	void								updateSounds();
 	void								updateCurrentBidText(Bid b);
 
-	void								drawSandTimer(int player);
-	void								drawCups();
 	void								drawChip();
 
 	void								moveChip(Bid bid);
@@ -70,7 +68,7 @@ private:
 
 	void								setOpponentsDicePositions(int numberOfPlayers);
 
-	//void								setStarChip(int number);
+	void								setOpponents(std::vector<int>& opponents);
 
 private:
 
@@ -87,7 +85,7 @@ private:
 	TextureHolder_t						textures;
 	const FontHolder_t&					fonts;
 	SoundPlayer&						sounds;
-	int									numberOfOpponents;
+	//int									numberOfOpponents;
 
 	SceneNode							sceneGraph;
 	std::array<SceneNode*, LayerCount>	sceneLayers;	
@@ -98,13 +96,7 @@ private:
 	TextNode*							currentBid;
 	TextNode*							errorMessage;
 
-	//std::vector<SpriteNode*>			clocks;
-	//std::vector<SpriteNode*>			cups;
 	std::vector<Actor*>					actors;
-
-	Actor*								abed;
-	Actor*								drake;
-	Actor*								bender;
 
 	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 

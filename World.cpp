@@ -7,7 +7,6 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	, textures()
 	, fonts(fonts)
 	, sounds(sounds)
-	, numberOfOpponents(opponents.size())
 	, sceneGraph()
 	, sceneLayers()
 	, worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
@@ -17,35 +16,9 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 	loadTextures();
 	buildScene();
 
-	for (int i = 0; i < opponents.size(); ++i) {
-		switch (opponents[i]) {
-		case 0: {
-			std::unique_ptr<Actor> abedNew(new Actor(Actor::Type::Abed, textures, fonts));
-			actors.push_back(abedNew.get());
-			abedNew->setPosition(sf::Vector2f(100, 420));
-			abedNew->setScale(2.f, 2.f);
-			sceneLayers[TableLayer]->attachChild(std::move(abedNew));
-			break;
-		}
-		case 1: {
-			std::unique_ptr<Actor> drakeNew(new Actor(Actor::Type::Drake, textures, fonts));
-			actors.push_back(drakeNew.get());
-			drakeNew->setPosition(sf::Vector2f(80, 80));
-			sceneLayers[TableLayer]->attachChild(std::move(drakeNew));
-			break;
-		}
-		case 2: {
-			std::unique_ptr<Actor> benderNew(new Actor(Actor::Type::Bender, textures, fonts));
-			actors.push_back(benderNew.get());
-			benderNew->setPosition(sf::Vector2f(850, 50));
-			benderNew->setScale(2.f, 2.f);
-			sceneLayers[TableLayer]->attachChild(std::move(benderNew));
-			break;
-		}
-		}
-	}
+	setOpponents(opponents);
 
-	setOpponentsDicePositions(numberOfOpponents);
+	setOpponentsDicePositions(opponents.size());
 
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
 	setChipInitialPosition(1);
@@ -192,14 +165,14 @@ void World::loadTextures()
 {
 	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
 	textures.load(TextureID::Board, "Media/Textures/Board.jpg");
+
 	textures.load(TextureID::Dice1, "Media/Textures/Dice1.jpg");
 	textures.load(TextureID::Dice2, "Media/Textures/Dice2.jpg");
 	textures.load(TextureID::Dice3, "Media/Textures/Dice3.jpg");
 	textures.load(TextureID::Dice4, "Media/Textures/Dice4.jpg");
 	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
 	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
-	textures.load(TextureID::Clock, "Media/Textures/SandClock.png");
-	//textures.load(TextureID::Cup, "Media/Textures/Cup.jpg");
+
 	textures.load(TextureID::Chip1, "Media/Textures/Chip1.png");
 	textures.load(TextureID::Chip2, "Media/Textures/Chip2.png");
 	textures.load(TextureID::Chip3, "Media/Textures/Chip3.png");
@@ -210,6 +183,9 @@ void World::loadTextures()
 	textures.load(TextureID::Abed, "Media/Textures/Abed.png");
 	textures.load(TextureID::Drake, "Media/Textures/Drake.png");
 	textures.load(TextureID::Bender, "Media/Textures/Bender.png");
+	textures.load(TextureID::Dean, "Media/Textures/Dean.png");
+	textures.load(TextureID::TroyAndAbed, "Media/Textures/TroyAbed.png");
+	textures.load(TextureID::Brittasaurus, "Media/Textures/Brittasaurus.png");
 }
 
 void World::buildScene()
@@ -297,21 +273,6 @@ sf::RenderTarget& World::getRenderTarget()
 	return target;
 }
 
-void World::drawSandTimer(int player)
-{
-	//if (player == 1)
-	//	target.draw(*clock);
-	//else if (player == 2)
-	//	target.draw(*clock2);
-}
-
-void World::drawCups()
-{
-	//for (auto cup : cups) {
-	//	target.draw(*cup);
-	//}
-}
-
 void World::drawChip()
 {
 	chip->setScale(0.4, 0.4);
@@ -372,17 +333,6 @@ void World::setChipTexture(Dice::Face face)
 			chip->setTexture(textures.get(TextureID::ChipStar));
 	}
 }
-
-//void World::setStarChip(int number)
-//{
-//	sf::Vector2f pos = Board::BidStarsPositions.find(number)->second;
-//	chip->setPosition(pos);
-//
-//	float rot = Board::BidStarsRotations.find(number)->second;
-//	chip->setRotation(rot);
-//
-//	chip->setTexture(textures.get(TextureID::ChipStar));
-//}
 
 void World::setChipNewPosition(Bid bid)
 {
@@ -466,12 +416,38 @@ void World::setOpponentsDicePositions(int numberOfPlayers)
 
 void World::updatePlayerAnimationState(int currentPlayer)
 {
-	//if (currentPlayer == 1 && abed->getState() == Actor::State::Idle)
-	//	abed->setState(Actor::State::Think);
-
 	if (currentPlayer != 0 && actors[currentPlayer - 1]->getState() == Actor::State::Idle)
 		actors[currentPlayer - 1]->setState(Actor::State::Think);
+}
 
-	//if (currentPlayer == 2 && bender->getState() == Actor::State::Idle)
-	//	bender->setState(Actor::State::Think);
+void World::setOpponents(std::vector<int>& opponents)
+{
+	for (int i = 0; i < opponents.size(); ++i) {
+		switch (opponents[i]) {
+		case 0: {
+			std::unique_ptr<Actor> britta(new Actor(Actor::Type::Brittasaurus, textures, fonts));
+			actors.push_back(britta.get());
+			britta->setPosition(sf::Vector2f(100, 420));
+			britta->setScale(2.f, 2.f);
+			sceneLayers[TableLayer]->attachChild(std::move(britta));
+			break;
+		}
+		case 1: {
+			std::unique_ptr<Actor> dean(new Actor(Actor::Type::Dean, textures, fonts));
+			actors.push_back(dean.get());
+			dean->setPosition(sf::Vector2f(80, 80));
+			dean->setScale(2.f, 2.f);
+			sceneLayers[TableLayer]->attachChild(std::move(dean));
+			break;
+		}
+		case 2: {
+			std::unique_ptr<Actor> troyAndAbed(new Actor(Actor::Type::TroyAndAbed, textures, fonts));
+			actors.push_back(troyAndAbed.get());
+			troyAndAbed->setPosition(sf::Vector2f(850, 50));
+			troyAndAbed->setScale(2.f, 2.f);
+			sceneLayers[TableLayer]->attachChild(std::move(troyAndAbed));
+			break;
+		}
+		}
+	}
 }

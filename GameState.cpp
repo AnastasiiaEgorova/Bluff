@@ -20,7 +20,7 @@ GameState::GameState(StateStack& stack, Context context)
 	players.push_back(&player);
 
 	for (int i = 0; i < context.opponentPlayers->size(); ++i) {
-		switch (i) {
+		switch (context.opponentPlayers->at(i)) {
 		case 0:
 			players.push_back(new AIPlayer1(context.opponentPlayers->size() + 1));
 			break;
@@ -162,11 +162,6 @@ std::string GameState::getWinner()
 		for (auto& d : p->showDice())
 			allDice.push_back(d);
 	}
-	//for (auto d : players[0]->showDice())
-	//	allDice.push_back(d);
-
-	//for (auto d : players[1]->showDice())
-	//	allDice.push_back(d);
 
 	int numberOfFaceOnTable = 0;
 
@@ -186,9 +181,4 @@ std::string GameState::getWinner()
 		stream << currentPlayer - 1;
 
 	return stream.str();
-
-	//if ((currentPlayer == 0 && isCallingBluffWon) || (currentPlayer != 0 && !isCallingBluffWon))
-	//	player.setStatus(HumanPlayer::Status::Success);
-	//else
-	//	player.setStatus(HumanPlayer::Status::Failure);
 }

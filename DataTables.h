@@ -16,7 +16,7 @@ struct ActorData {
 	std::map<Actor::State, Animation>	animations;
 };
 
-std::map<Actor::Type, ActorData> initializeAbedData();
+std::map<Actor::Type, ActorData> initializeActorData();
 
 
 

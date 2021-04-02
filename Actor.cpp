@@ -3,7 +3,7 @@
 
 namespace
 {
-	const std::map<Actor::Type, ActorData> TABLE = initializeAbedData();
+	const std::map<Actor::Type, ActorData> TABLE = initializeActorData();
 }
 
 Actor::Actor(Type type, const TextureHolder_t& textures, const FontHolder_t& fonts)
