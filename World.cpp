@@ -18,7 +18,7 @@ World::World(sf::RenderTarget& outputTarget, FontHolder_t& fonts, SoundPlayer& s
 
 	setOpponents(opponents);
 
-	setOpponentsDicePositions(opponents.size());
+	setOpponentsDicePositions(opponents);
 
 	chip = new SpriteNode(textures.get(TextureID::Chip1));
 	setChipInitialPosition(1);
@@ -54,7 +54,6 @@ void World::draw()
 	target.setView(worldView);
 	target.draw(sceneGraph);
 
-	drawCups();
 	drawChip();
 }
 
@@ -370,11 +369,11 @@ float World::getNewChipAngle()
 	return newChipAngle;
 }
 
-void World::setOpponentsDicePositions(int numberOfPlayers)
+void World::setOpponentsDicePositions(std::vector<int>& opponents)
 {
-	for (int i = 0; i < numberOfPlayers; ++i) {
+	for (int i = 0; i < opponents.size(); ++i) {
 
-		switch (i) {
+		switch (opponents[i]) {
 		case 0: {
 			std::vector<sf::Vector2f> dicePlayer1;
 			dicePlayer1.push_back(sf::Vector2f(70, 550));
@@ -418,6 +417,11 @@ void World::updatePlayerAnimationState(int currentPlayer)
 {
 	if (currentPlayer != 0 && actors[currentPlayer - 1]->getState() == Actor::State::Idle)
 		actors[currentPlayer - 1]->setState(Actor::State::Think);
+}
+
+Actor* World::getOpponent(int number)
+{
+	return actors[number];
 }
 
 void World::setOpponents(std::vector<int>& opponents)

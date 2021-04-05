@@ -1,6 +1,6 @@
-#include "AIPlayer3.h"
+#include "AIPlayerTroyAndAbed.h"
 
-AIPlayer3::AIPlayer3(int n) : AIPlayer(n)
+AIPlayerTroyAndAbed::AIPlayerTroyAndAbed(int n) : AIPlayer(n)
 {
 	numberOfPlayers = n;
 
@@ -10,7 +10,7 @@ AIPlayer3::AIPlayer3(int n) : AIPlayer(n)
 	initializeFacesWerePlayed();
 }
 
-Bid AIPlayer3::makeMove(Bid currentBid)
+Bid AIPlayerTroyAndAbed::makeMove(Bid currentBid)
 {
 	if (currentBid.getFace() == Dice::Face::Star) {
 		if ((currentBid).getNumber() > numberOfPlayers)
@@ -27,7 +27,7 @@ Bid AIPlayer3::makeMove(Bid currentBid)
 	}
 }
 
-Bid AIPlayer3::makeBid(Bid currentBid)
+Bid AIPlayerTroyAndAbed::makeBid(Bid currentBid)
 {
 	int currentNumber = 0;
 
@@ -62,7 +62,12 @@ Bid AIPlayer3::makeBid(Bid currentBid)
 	return Bid(currentNumber, face);
 }
 
-void AIPlayer3::setPlayersDiceAmount()
+std::string AIPlayerTroyAndAbed::getName() 
+{
+	return "Troy and Abed";
+}
+
+void AIPlayerTroyAndAbed::setPlayersDiceAmount()
 {
 	for (auto& f : playersDice) {
 		++playersDiceAmount[f.getFace()];
@@ -76,7 +81,7 @@ void AIPlayer3::setPlayersDiceAmount()
 	}
 }
 
-void AIPlayer3::initializeFacesWerePlayed()
+void AIPlayerTroyAndAbed::initializeFacesWerePlayed()
 {
 	facesWerePlayed[Dice::Face::One] = 0;
 	facesWerePlayed[Dice::Face::Two] = 0;
@@ -86,7 +91,7 @@ void AIPlayer3::initializeFacesWerePlayed()
 	facesWerePlayed[Dice::Face::Star] = 0;
 }
 
-void AIPlayer3::initializeBidsPlayed()
+void AIPlayerTroyAndAbed::initializeBidsPlayed()
 {
 	bidsPlayed[Dice::Face::One] = 0;
 	bidsPlayed[Dice::Face::Two] = 0;
@@ -96,23 +101,23 @@ void AIPlayer3::initializeBidsPlayed()
 	bidsPlayed[Dice::Face::Star] = 0;
 }
 
-void AIPlayer3::updateInfoForPlayer(const Bid& bid)
+void AIPlayerTroyAndAbed::updateInfoForPlayer(const Bid& bid)
 {
 	updateBidsPlayed(bid);
 	updateFacesWerePlayed(bid);
 }
 
-void AIPlayer3::updateBidsPlayed(const Bid& bid)
+void AIPlayerTroyAndAbed::updateBidsPlayed(const Bid& bid)
 {
 	bidsPlayed.find(bid.getFace())->second = bid.getNumber();
 }
 
-void AIPlayer3::updateFacesWerePlayed(const Bid& bid)
+void AIPlayerTroyAndAbed::updateFacesWerePlayed(const Bid& bid)
 {
 	facesWerePlayed.find(bid.getFace())->second++;
 }
 
-Dice::Face AIPlayer3::calculateFaceValue()
+Dice::Face AIPlayerTroyAndAbed::calculateFaceValue()
 {
 	Dice::Face face;
 	int currentNumber = 0;

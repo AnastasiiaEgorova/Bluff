@@ -149,9 +149,9 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AIPlayer.cpp" />
-    <ClCompile Include="AIPlayer1.cpp" />
-    <ClCompile Include="AIPLayer2.cpp" />
-    <ClCompile Include="AIPlayer3.cpp" />
+    <ClCompile Include="AIPlayerBrittasaurus.cpp" />
+    <ClCompile Include="AIPLayerDean.cpp" />
+    <ClCompile Include="AIPlayerTroyAndAbed.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Bid.cpp" />
@@ -185,9 +185,9 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AIPlayer.h" />
-    <ClInclude Include="AIPlayer1.h" />
-    <ClInclude Include="AIPLayer2.h" />
-    <ClInclude Include="AIPlayer3.h" />
+    <ClInclude Include="AIPlayerBrittasaurus.h" />
+    <ClInclude Include="AIPLayerDean.h" />
+    <ClInclude Include="AIPlayerTroyAndAbed.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Bid.h" />

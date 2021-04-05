@@ -1,6 +1,6 @@
-#include "AIPLayer2.h"
+#include "AIPLayerDean.h"
 
-AIPlayer2::AIPlayer2(int n) : AIPlayer(n)
+AIPlayerDean::AIPlayerDean(int n) : AIPlayer(n)
 {
 	numberOfPlayers = n;
 
@@ -9,7 +9,7 @@ AIPlayer2::AIPlayer2(int n) : AIPlayer(n)
 	initializeFacesWerePlayed();
 }
 
-Bid AIPlayer2::makeMove(Bid currentBid)
+Bid AIPlayerDean::makeMove(Bid currentBid)
 {
 	if (currentBid.getFace() == Dice::Face::Star) {
 		if ((currentBid).getNumber() > numberOfPlayers)
@@ -26,7 +26,7 @@ Bid AIPlayer2::makeMove(Bid currentBid)
 	}
 }
 
-Bid AIPlayer2::makeBid(Bid currentBid)
+Bid AIPlayerDean::makeBid(Bid currentBid)
 {
 	int currentNumber = 0;
 
@@ -58,7 +58,12 @@ Bid AIPlayer2::makeBid(Bid currentBid)
 	return Bid(currentNumber, face);
 }
 
-void AIPlayer2::setPlayersDiceAmount()
+std::string AIPlayerDean::getName()
+{
+	return "Dean";
+}
+
+void AIPlayerDean::setPlayersDiceAmount()
 {
 	for (auto& f : playersDice) {
 		++playersDiceAmount[f.getFace()];
@@ -72,7 +77,7 @@ void AIPlayer2::setPlayersDiceAmount()
 	}
 }
 
-void AIPlayer2::initializeFacesWerePlayed()
+void AIPlayerDean::initializeFacesWerePlayed()
 {
 	facesWerePlayed[Dice::Face::One] = 0;
 	facesWerePlayed[Dice::Face::Two] = 0;
@@ -82,12 +87,12 @@ void AIPlayer2::initializeFacesWerePlayed()
 	facesWerePlayed[Dice::Face::Star] = 0;
 }
 
-void AIPlayer2::updateInfoForPlayer(const Bid& bid)
+void AIPlayerDean::updateInfoForPlayer(const Bid& bid)
 {
 	updateFacesWerePlayed(bid);
 }
 
-void AIPlayer2::updateFacesWerePlayed(const Bid& bid)
+void AIPlayerDean::updateFacesWerePlayed(const Bid& bid)
 {
 	facesWerePlayed.find(bid.getFace())->second++;
 }

@@ -93,16 +93,16 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIPlayer1.cpp">
+    <ClCompile Include="AIPlayerBrittasaurus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AIPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIPLayer2.cpp">
+    <ClCompile Include="AIPLayerDean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AIPlayer3.cpp">
+    <ClCompile Include="AIPlayerTroyAndAbed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChooseOpponentsState.cpp">
@@ -209,16 +209,16 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIPlayer1.h">
+    <ClInclude Include="AIPlayerBrittasaurus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AIPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIPLayer2.h">
+    <ClInclude Include="AIPLayerDean.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AIPlayer3.h">
+    <ClInclude Include="AIPlayerTroyAndAbed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ChooseOpponentsState.h">

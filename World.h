@@ -56,6 +56,8 @@ public:
 
 	void								updatePlayerAnimationState(int currentPlayer);
 
+	Actor*								getOpponent(int number);
+
 private:
 	void								loadTextures();
 	void								buildScene();
@@ -66,7 +68,7 @@ private:
 	void								setChipInitialPosition(int number);
 	void								setChipRotation(int number);
 
-	void								setOpponentsDicePositions(int numberOfPlayers);
+	void								setOpponentsDicePositions(std::vector<int>& opponents);
 
 	void								setOpponents(std::vector<int>& opponents);
 
@@ -85,7 +87,6 @@ private:
 	TextureHolder_t						textures;
 	const FontHolder_t&					fonts;
 	SoundPlayer&						sounds;
-	//int									numberOfOpponents;
 
 	SceneNode							sceneGraph;
 	std::array<SceneNode*, LayerCount>	sceneLayers;	

@@ -15,25 +15,19 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	sf::Font& font = context.fonts->get(FontID::Main);
 	sf::Vector2f windowSize(context.window->getSize());	
 	
-	//gameOverText.setFont(font);
-	//if (context.player->getStatus() == HumanPlayer::Status::Failure) {
-	//	gameOverText.setString("What a Loser!!!");
-	//	backgroundColour = sf::Color(255, 0, 0, 100);
-	//}
-	//else {
-	//	gameOverText.setString("You won!");
-	//	backgroundColour = sf::Color(0, 255, 0, 100);
-	//}
-	
 	gameOverText.setFont(font);
 	gameOverText.setString(context.winner->getString());
-	//gameOverText.setString("Winner");
 	backgroundColour = sf::Color(255, 0, 0, 100);
 	
 	gameOverText.setCharacterSize(100);
 	gameOverText.setFillColor(sf::Color::White);
 	centerOrigin(gameOverText);
-	gameOverText.setPosition(0.5f * windowSize.x, 0.4f * windowSize.y);
+	gameOverText.setPosition(0.5f * windowSize.x, 0.5f * windowSize.y);
+
+
+	bender.setTexture(context.textures->get(TextureID::Bender));
+	bender.setScale(0.4, 0.4);
+	bender.setPosition(0.65f * windowSize.x, 0.1f * windowSize.y);
 
 	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(context.window->getView().getSize());
@@ -50,6 +44,8 @@ void GameOverState::draw()
 
 	window.draw(backgroundShape);
 	window.draw(gameOverText);
+
+	window.draw(bender);
 }
 
 bool GameOverState::update(sf::Time dt)

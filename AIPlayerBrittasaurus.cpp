@@ -1,6 +1,6 @@
-#include "AIPlayer1.h"
+#include "AIPlayerBrittasaurus.h"
 
-AIPlayer1::AIPlayer1(int n) : AIPlayer(n) 
+AIPlayerBrittasaurus::AIPlayerBrittasaurus(int n) : AIPlayer(n) 
 {
 	numberOfPlayers = n;
 
@@ -13,7 +13,7 @@ AIPlayer1::AIPlayer1(int n) : AIPlayer(n)
 	topFace = findTopFaceInHand(counters);
 }
 
-Bid AIPlayer1::makeMove(Bid currentBid)
+Bid AIPlayerBrittasaurus::makeMove(Bid currentBid)
 {
 	if ((currentBid).getNumber() > amountTopFace + numberOfPlayers * 2)
 		return callBluff();
@@ -21,7 +21,7 @@ Bid AIPlayer1::makeMove(Bid currentBid)
 		return makeBid(currentBid);
 }
 
-Bid AIPlayer1::makeBid(Bid currentBid)
+Bid AIPlayerBrittasaurus::makeBid(Bid currentBid)
 {
 	if (currentBid.getFace() != Dice::Face::Star)
 		return Bid(currentBid.getNumber() + 1, topFace);
@@ -29,7 +29,12 @@ Bid AIPlayer1::makeBid(Bid currentBid)
 		return ++currentBid;
 }
 
-Dice::Face AIPlayer1::findTopFaceInHand(std::map<Dice::Face, int> &counters)
+std::string AIPlayerBrittasaurus::getName()
+{
+	return "Brittasaurus";
+}
+
+Dice::Face AIPlayerBrittasaurus::findTopFaceInHand(std::map<Dice::Face, int> &counters)
 {
 	amountTopFace = 0;
 	 

@@ -22,13 +22,13 @@ GameState::GameState(StateStack& stack, Context context)
 	for (int i = 0; i < context.opponentPlayers->size(); ++i) {
 		switch (context.opponentPlayers->at(i)) {
 		case 0:
-			players.push_back(new AIPlayer1(context.opponentPlayers->size() + 1));
+			players.push_back(new AIPlayerBrittasaurus(context.opponentPlayers->size() + 1));
 			break;
 		case 1:
-			players.push_back(new AIPlayer2(context.opponentPlayers->size() + 1));
+			players.push_back(new AIPlayerDean(context.opponentPlayers->size() + 1));
 			break;
 		case 2:
-			players.push_back(new AIPlayer3(context.opponentPlayers->size() + 1));
+			players.push_back(new AIPlayerTroyAndAbed(context.opponentPlayers->size() + 1));
 			break;
 		}
 	}
@@ -50,23 +50,23 @@ void GameState::draw()
 			world.drawOpponentDice(players[i]->showDice(), i);
 		}
 	}
-
-	if (currentPlayer != 0 && !isBluffCalled)
-		world.drawSandTimer(currentPlayer);
 }
 
 bool GameState::update(sf::Time dt)
 {
-	if (world.getChipPosition().x == world.getNewChipPosition().x && world.getChipPosition().y == world.getNewChipPosition().y)
-		play();
+	if (world.getChipPosition().x == world.getNewChipPosition().x && world.getChipPosition().y == world.getNewChipPosition().y) {
+
+		if (currentPlayer == 0 || world.getOpponent(currentPlayer - 1)->getState() != Actor::State::Think)   // play() possible only when it's human player or opponent in idle state
+			play();
+
+		world.updatePlayerAnimationState(currentPlayer);
+		world.update(dt);
+	}
 	else {
 		world.moveChip(board.getCurrentBid());
 		world.draw();
 		player.drawButtons(&world.getRenderTarget());
 	}
-
-	world.updatePlayerAnimationState(currentPlayer);
-	world.update(dt);
 	
 	world.updateCurrentBidText(board.getCurrentBid());
 	world.updateErrorMessage(errorMessage);
@@ -117,10 +117,6 @@ void GameState::play()
 					errorMessage = "";
 					world.setChipTexture(newBid.getFace());
 
-					//TO DO change later
-					//if (currentPlayer != 0)
-					//	std::this_thread::sleep_for(std::chrono::seconds(1));
-
 					world.setChipNewPosition(newBid);
 					world.setNewChipAngle(newBid);
 					nextPlayer();
@@ -137,7 +133,6 @@ void GameState::play()
 		}
 	}
 	else {
-		std::this_thread::sleep_for(std::chrono::seconds(1));
 		requestStackPush(StateID::GameOver);
 	}
 }
@@ -146,10 +141,10 @@ void GameState::updateMoveForPlayers(int currentPlayer, Bid& bid)
 {
 	for (int i = 0; i < players.size(); ++i) {
 		if (currentPlayer != i) {
-			if (dynamic_cast<AIPlayer2*>(players[i]) != nullptr)
-				(dynamic_cast<AIPlayer2*>(players[i]))->updateInfoForPlayer(bid);
-			else if (dynamic_cast<AIPlayer3*>(players[i]) != nullptr)
-				(dynamic_cast<AIPlayer3*>(players[i]))->updateInfoForPlayer(bid);
+			if (dynamic_cast<AIPlayerDean*>(players[i]) != nullptr)
+				(dynamic_cast<AIPlayerDean*>(players[i]))->updateInfoForPlayer(bid);
+			else if (dynamic_cast<AIPlayerTroyAndAbed*>(players[i]) != nullptr)
+				(dynamic_cast<AIPlayerTroyAndAbed*>(players[i]))->updateInfoForPlayer(bid);
 		} 
 	}
 }
@@ -173,12 +168,19 @@ std::string GameState::getWinner()
 	if (board.getCurrentBid().getNumber() <= numberOfFaceOnTable)
 		isCallingBluffWon = false;
 
-	std::stringstream stream;
+	int winningPlayer;
 
 	if (isCallingBluffWon)
-		stream << currentPlayer;
+		winningPlayer = currentPlayer;
 	else
-		stream << currentPlayer - 1;
+		winningPlayer = currentPlayer - 1;
+
+	std::stringstream stream;
+	if (winningPlayer == 0)
+		stream << "You";
+	else {
+		stream << dynamic_cast<AIPlayer*>(players[winningPlayer])->getName();
+	}
 
 	return stream.str();
 }

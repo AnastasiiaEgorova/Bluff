@@ -1,16 +1,17 @@
 #pragma once
 #include "AIPlayer.h"
 
-class AIPlayer2 : public AIPlayer
+class AIPlayerDean : public AIPlayer
 {
 public:
-									AIPlayer2(int n);
+									AIPlayerDean(int n);
 
 	Bid								makeMove(Bid currentBid) override;
 	void							updateInfoForPlayer(const Bid& bid);
 
 private:
 	Bid								makeBid(Bid currentBid) override;
+	std::string						getName() override;
 
 	void							setPlayersDiceAmount();
 	void							initializeFacesWerePlayed();
