@@ -176,7 +176,7 @@ std::string GameState::getWinner()
 		winningPlayer = currentPlayer - 1;
 
 	std::stringstream stream;
-	if (winningPlayer == 0)
+	if (winningPlayer == 0 || winningPlayer == -1)
 		stream << "You";
 	else {
 		stream << dynamic_cast<AIPlayer*>(players[winningPlayer])->getName();
