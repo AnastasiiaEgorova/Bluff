@@ -17,17 +17,18 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	
 	gameOverText.setFont(font);
 	gameOverText.setString(context.winner->getString());
-	backgroundColour = sf::Color(255, 0, 0, 100);
+	backgroundColour = sf::Color(165, 203, 206, 200);
 	
 	gameOverText.setCharacterSize(100);
-	gameOverText.setFillColor(sf::Color::White);
+	gameOverText.setFillColor(sf::Color(80, 61, 44));
+	gameOverText.setOutlineThickness(1);
 	centerOrigin(gameOverText);
 	gameOverText.setPosition(0.5f * windowSize.x, 0.5f * windowSize.y);
 
 
 	bender.setTexture(context.textures->get(TextureID::Bender));
-	bender.setScale(0.4, 0.4);
-	bender.setPosition(0.65f * windowSize.x, 0.1f * windowSize.y);
+	bender.setScale(0.3, 0.3);
+	bender.setPosition(0.5f * windowSize.x, 0.05f * windowSize.y);
 
 	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(context.window->getView().getSize());

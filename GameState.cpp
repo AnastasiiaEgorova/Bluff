@@ -170,13 +170,19 @@ std::string GameState::getWinner()
 
 	int winningPlayer;
 
-	if (isCallingBluffWon)
-		winningPlayer = currentPlayer;
+	if (isCallingBluffWon) 
+			winningPlayer = currentPlayer;
 	else
-		winningPlayer = currentPlayer - 1;
+	{
+		if (currentPlayer == 0)
+			winningPlayer = players.size() - 1;
+		else
+			winningPlayer = currentPlayer - 1;
+	}
+		
 
 	std::stringstream stream;
-	if (winningPlayer == 0 || winningPlayer == -1)
+	if (winningPlayer == 0)
 		stream << "You";
 	else {
 		stream << dynamic_cast<AIPlayer*>(players[winningPlayer])->getName();
