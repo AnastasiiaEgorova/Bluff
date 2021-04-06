@@ -18,9 +18,9 @@ public:
 
 private:
 	enum OpponentPlayers {
-		AI_1 = 0,
-		AI_2 = 1,
-		AI_3 = 2,
+		AI_Brittasaurus = 0,
+		AI_Dean = 1,
+		AI_TroyAndAbed = 2,
 	};
 
 private:

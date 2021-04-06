@@ -18,11 +18,12 @@ public:
 private:
 	enum OptionNames {
 		Play = 0,
-		Exit = 1,
+		Instruction = 1,
+		Exit = 2,
 	};
 
 private:
-	sf::Sprite				backgroundSprite;
+	sf::Sprite				titleSprite;
 
 	std::vector<sf::Text>	options;
 	std::size_t				optionIndex;

@@ -14,7 +14,7 @@ ChooseOpponentsState::ChooseOpponentsState(StateStack& stack, Context context)
 
 	sf::Text opponentAI1;
 	opponentAI1.setFont(font);
-	opponentAI1.setString("AI 1");
+	opponentAI1.setString("Brittasaurus Rex");
 	centerOrigin(opponentAI1);
 	opponentAI1.setPosition(context.window->getView().getSize().x / 2.f, context.window->getView().getSize().y / 1.5f);
 	opponents.push_back(opponentAI1);
@@ -22,7 +22,7 @@ ChooseOpponentsState::ChooseOpponentsState(StateStack& stack, Context context)
 
 	sf::Text opponentAI2;
 	opponentAI2.setFont(font);
-	opponentAI2.setString("AI 2");
+	opponentAI2.setString("Dean");
 	centerOrigin(opponentAI2);
 	opponentAI2.setPosition(opponentAI1.getPosition() + sf::Vector2f(0.f, 30.f));
 	opponents.push_back(opponentAI2);
@@ -30,7 +30,7 @@ ChooseOpponentsState::ChooseOpponentsState(StateStack& stack, Context context)
 
 	sf::Text opponentAI3;
 	opponentAI3.setFont(font);
-	opponentAI3.setString("AI 3");
+	opponentAI3.setString("Troy and Abed");
 	centerOrigin(opponentAI3);
 	opponentAI3.setPosition(opponentAI2.getPosition() + sf::Vector2f(0.f, 30.f));
 	opponents.push_back(opponentAI3);

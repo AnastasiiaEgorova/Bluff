@@ -6,6 +6,7 @@ enum  class StateID
 	Title,
 	Menu,
 	Opponents,
+	Instruction,
 	Game,
 	Loading,
 	Pause,

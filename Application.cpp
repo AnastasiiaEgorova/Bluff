@@ -31,7 +31,7 @@ Application::Application()
     textures.load(TextureID::Bender, "Media/Textures/Bender_Applause.png");
    
     registerStates();
-    stateStack.pushState(StateID::Opponents);
+    stateStack.pushState(StateID::Menu);
 
     music.setVolume(25.f);
 }

@@ -12,25 +12,34 @@ MenuState::MenuState(StateStack& stack, Context context)
 {
 	sf::Font& font = context.fonts->get(FontID::Main);
 
-	//backgroundSprite.setTexture(context.textures->get(TextureID::TitleScreen));
+	titleSprite.setTexture(context.textures->get(TextureID::Title));
+	centerOrigin(titleSprite);
+	titleSprite.setPosition(context.window->getView().getCenter().x, titleSprite.getLocalBounds().height / 2.f);
 
 	sf::Text playOption;
 	playOption.setFont(font);
 	playOption.setString("Play");
 	centerOrigin(playOption);
-	playOption.setPosition(context.window->getView().getSize() / 2.f);
+	playOption.setPosition(context.window->getView().getSize() / 2.f + sf::Vector2f(0.f, 80.f));
 	options.push_back(playOption);
+
+	sf::Text instructionOption;
+	instructionOption.setFont(font);
+	instructionOption.setString("Instructions");
+	centerOrigin(instructionOption);
+	instructionOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
+	options.push_back(instructionOption);
 
 	sf::Text exitOption;
 	exitOption.setFont(font);
 	exitOption.setString("Exit");
 	centerOrigin(exitOption);
-	exitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
+	exitOption.setPosition(instructionOption.getPosition() + sf::Vector2f(0.f, 30.f));
 	options.push_back(exitOption);
 
 	updateOptionText();
 
-	context.music->play(MusicID::MenuTheme);
+	//context.music->play(MusicID::MenuTheme);
 }
 
 void MenuState::draw()
@@ -38,7 +47,7 @@ void MenuState::draw()
 	auto& window = *getContext().window;
 
 	window.setView(window.getDefaultView());
-	window.draw(backgroundSprite);
+	window.draw(titleSprite);
 
 	for (const auto& text : options) {
 		window.draw(text);
@@ -58,7 +67,11 @@ bool MenuState::handleEvent(const sf::Event& event)
 	if (event.key.code == sf::Keyboard::Return) {  // Enter is pressed
 		if (optionIndex == Play) {
 			requestStackPop();
-			requestStackPush(StateID::Game);
+			requestStackPush(StateID::Opponents);
+		}
+		else if (optionIndex == Instruction) {
+			requestStackPop();
+			requestStackPush(StateID::Instruction);
 		}
 		else if (optionIndex == Exit) {
 			requestStackPop();
