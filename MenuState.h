@@ -25,6 +25,8 @@ private:
 private:
 	sf::Sprite				titleSprite;
 
+	sf::Text				titleText;
+
 	std::vector<sf::Text>	options;
 	std::size_t				optionIndex;
 };

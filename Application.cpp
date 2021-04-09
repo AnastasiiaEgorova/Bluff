@@ -4,6 +4,7 @@
 #include "StateIdentifiers.h"
 
 #include "GameState.h"
+#include "InstructionState.h"
 #include "TitleState.h"
 #include "PauseState.h"
 #include "MenuState.h"
@@ -100,9 +101,8 @@ void Application::updateStatistics(sf::Time et)
 void Application::registerStates()
 {
     stateStack.registerState<TitleState>(StateID::Title);
-    //TO DO
-    // add instruction state
     stateStack.registerState<MenuState>(StateID::Menu);
+    stateStack.registerState<InstructionState>(StateID::Instruction);
     stateStack.registerState<ChooseOpponentsState>(StateID::Opponents);
     stateStack.registerState<GameState>(StateID::Game);
     stateStack.registerState<PauseState>(StateID::Pause);

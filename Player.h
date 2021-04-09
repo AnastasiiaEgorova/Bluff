@@ -17,6 +17,7 @@ public:
 	virtual Bid			makeMove(Bid currentBid) = 0;
 
 	std::vector<Dice>	showDice();
+	//void				handleEvent(const sf::Event& event, CommandQueue& commands);
 
 private:
 	virtual Bid			makeBid(Bid currentBid) = 0;
