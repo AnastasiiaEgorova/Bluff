@@ -61,7 +61,7 @@ public:
 private:
 	void								loadTextures();
 	void								buildScene();
-	TextureID							loadDice(Dice::Face face);
+	Actor::Type							loadDice(Dice::Face face);
 
 	SpriteNode*							setSpriteNode(TextureID text, sf::Vector2f pos, float scale);
 
@@ -98,6 +98,8 @@ private:
 	TextNode*							errorMessage;
 
 	std::vector<Actor*>					actors;
+
+	//std::vector<Actor*>					dice;
 
 	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 

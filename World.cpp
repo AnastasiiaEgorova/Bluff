@@ -65,87 +65,72 @@ void World::updateErrorMessage(std::string message)
 void World::drawDice(std::vector<Dice> playersDice)
 {
 	// dice1
-	sf::Texture& dice1Texture = textures.get(loadDice(playersDice.at(0).getFace()));
-	dice1Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
+	std::unique_ptr<Actor> dice1(new Actor(loadDice(playersDice.at(0).getFace()), textures, fonts));
 	dice1->setPosition(worldBounds.width - 280, worldBounds.height - 90);
+	dice1->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
-	// dice2
-	sf::Texture& dice2Texture = textures.get(loadDice(playersDice.at(1).getFace()));
-	dice2Texture.setRepeated(false);
 
-	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
+	// dice2
+	std::unique_ptr<Actor> dice2(new Actor(loadDice(playersDice.at(1).getFace()), textures, fonts));
 	dice2->setPosition(worldBounds.width - 320, worldBounds.height - 150);
+	dice2->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
-	sf::Texture& dice3Texture = textures.get(loadDice(playersDice.at(2).getFace()));
-	dice3Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
+	std::unique_ptr<Actor> dice3(new Actor(loadDice(playersDice.at(2).getFace()), textures, fonts));
 	dice3->setPosition(worldBounds.width - 380, worldBounds.height - 120);
+	dice3->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
-	sf::Texture& dice4Texture = textures.get(loadDice(playersDice.at(3).getFace()));
-	dice4Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
+	std::unique_ptr<Actor> dice4(new Actor(loadDice(playersDice.at(3).getFace()), textures, fonts));
 	dice4->setPosition(worldBounds.width - 440, worldBounds.height - 130);
+	dice4->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
-	sf::Texture& dice5Texture = textures.get(loadDice(playersDice.at(4).getFace()));
-	dice5Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
+	std::unique_ptr<Actor> dice5(new Actor(loadDice(playersDice.at(4).getFace()), textures, fonts));
 	dice5->setPosition(worldBounds.width - 500, worldBounds.height - 100);
+	dice5->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
 void World::drawOpponentDice(std::vector<Dice> playersDice, int opponent)
 {
 	// dice1
-	sf::Texture& dice1Texture = textures.get(loadDice(playersDice.at(0).getFace()));
-	dice1Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice1(new SpriteNode(dice1Texture));
-	sf::Vector2f n = opponetsDicePositions[opponent][0];
-	dice1->setPosition(n);
+	std::unique_ptr<Actor> dice1(new Actor(loadDice(playersDice.at(0).getFace()), textures, fonts));
+	sf::Vector2f pos = opponetsDicePositions[opponent][0];
+	dice1->setPosition(pos);
+	dice1->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
 	// dice2
-	sf::Texture& dice2Texture = textures.get(loadDice(playersDice.at(1).getFace()));
-	dice2Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice2(new SpriteNode(dice2Texture));
-	dice2->setPosition(opponetsDicePositions[opponent][1]);
+	std::unique_ptr<Actor> dice2(new Actor(loadDice(playersDice.at(1).getFace()), textures, fonts));
+	pos = opponetsDicePositions[opponent][1];
+	dice2->setPosition(pos);
+	dice2->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
-	sf::Texture& dice3Texture = textures.get(loadDice(playersDice.at(2).getFace()));
-	dice3Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice3(new SpriteNode(dice3Texture));
-	dice3->setPosition(opponetsDicePositions[opponent][2]);
+	std::unique_ptr<Actor> dice3(new Actor(loadDice(playersDice.at(2).getFace()), textures, fonts));
+	pos = opponetsDicePositions[opponent][2];
+	dice3->setPosition(pos);
+	dice3->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
-	sf::Texture& dice4Texture = textures.get(loadDice(playersDice.at(3).getFace()));
-	dice4Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice4(new SpriteNode(dice4Texture));
-	dice4->setPosition(opponetsDicePositions[opponent][3]);
+	std::unique_ptr<Actor> dice4(new Actor(loadDice(playersDice.at(3).getFace()), textures, fonts));
+	pos = opponetsDicePositions[opponent][3];
+	dice4->setPosition(pos);
+	dice4->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
-	sf::Texture& dice5Texture = textures.get(loadDice(playersDice.at(4).getFace()));
-	dice5Texture.setRepeated(false);
-
-	std::unique_ptr<SpriteNode> dice5(new SpriteNode(dice5Texture));
-	dice5->setPosition(opponetsDicePositions[opponent][4]);
+	std::unique_ptr<Actor> dice5(new Actor(loadDice(playersDice.at(4).getFace()), textures, fonts));
+	pos = opponetsDicePositions[opponent][4];
+	dice5->setPosition(pos);
+	dice5->setScale(0.6f, 0.6f);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 
@@ -185,6 +170,8 @@ void World::loadTextures()
 	textures.load(TextureID::Dean, "Media/Textures/Dean.png");
 	textures.load(TextureID::TroyAndAbed, "Media/Textures/TroyAbed.png");
 	textures.load(TextureID::Brittasaurus, "Media/Textures/Brittasaurus.png");
+
+	textures.load(TextureID::Dice, "Media/Textures/dice.png");
 }
 
 void World::buildScene()
@@ -243,27 +230,27 @@ void World::updateSounds()
 	//sounds.removeStoppedSounds();
 }
 
-TextureID World::loadDice(Dice::Face face)
+Actor::Type World::loadDice(Dice::Face face)
 {
 	switch (face) {
 
 	case Dice::Face::One:
-		return TextureID::Dice1;
+		return Actor::Type::Dice1;
 
 	case Dice::Face::Two:
-		return TextureID::Dice2;
+		return Actor::Type::Dice2;
 
 	case Dice::Face::Three:
-		return TextureID::Dice3;
+		return Actor::Type::Dice3;
 
 	case Dice::Face::Four:
-		return TextureID::Dice4;
+		return Actor::Type::Dice4;
 
 	case Dice::Face::Five:
-		return TextureID::Dice5;
+		return Actor::Type::Dice5;
 
 	default:
-		return TextureID::DiceStar;
+		return Actor::Type::DiceStar;
 	}
 }
 

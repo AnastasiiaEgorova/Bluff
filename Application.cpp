@@ -6,7 +6,6 @@
 #include "GameState.h"
 #include "InstructionState.h"
 #include "TitleState.h"
-#include "PauseState.h"
 #include "MenuState.h"
 #include "GameOverState.h"
 #include "ChooseOpponentsState.h"
@@ -105,6 +104,5 @@ void Application::registerStates()
     stateStack.registerState<InstructionState>(StateID::Instruction);
     stateStack.registerState<ChooseOpponentsState>(StateID::Opponents);
     stateStack.registerState<GameState>(StateID::Game);
-    stateStack.registerState<PauseState>(StateID::Pause);
     stateStack.registerState<GameOverState>(StateID::GameOver);
 }

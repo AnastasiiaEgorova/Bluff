@@ -12,8 +12,8 @@
 #include "Actor.h"
 
 struct ActorData {
-	TextureID							texture;
-	std::map<Actor::State, Animation>	animations;
+	TextureID								texture;
+	std::map<Actor::State, Animation>		animations;
 };
 
 std::map<Actor::Type, ActorData> initializeActorData();

@@ -22,6 +22,14 @@ public:
         Dean, 
         TroyAndAbed,
         Brittasaurus,
+
+        Dice1,
+        Dice2,
+        Dice3,
+        Dice4,
+        Dice5,
+        DiceStar,
+
         Count
     };
 
@@ -35,6 +43,7 @@ public:
 
     void                            setState(State state);
     Actor::State                    getState() const;
+
 private:
     void                            updateStates();
     void                            updateCurrent(sf::Time dt, CommandQueue& commands);
