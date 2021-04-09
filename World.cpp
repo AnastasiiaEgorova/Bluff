@@ -150,13 +150,6 @@ void World::loadTextures()
 	textures.load(TextureID::Table, "Media/Textures/Table.jpg");
 	textures.load(TextureID::Board, "Media/Textures/Board.jpg");
 
-	textures.load(TextureID::Dice1, "Media/Textures/Dice1.jpg");
-	textures.load(TextureID::Dice2, "Media/Textures/Dice2.jpg");
-	textures.load(TextureID::Dice3, "Media/Textures/Dice3.jpg");
-	textures.load(TextureID::Dice4, "Media/Textures/Dice4.jpg");
-	textures.load(TextureID::Dice5, "Media/Textures/Dice5.jpg");
-	textures.load(TextureID::DiceStar, "Media/Textures/DiceStar.jpg");
-
 	textures.load(TextureID::Chip1, "Media/Textures/Chip1.png");
 	textures.load(TextureID::Chip2, "Media/Textures/Chip2.png");
 	textures.load(TextureID::Chip3, "Media/Textures/Chip3.png");

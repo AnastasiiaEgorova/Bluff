@@ -99,8 +99,6 @@ private:
 
 	std::vector<Actor*>					actors;
 
-	//std::vector<Actor*>					dice;
-
 	std::vector<std::vector<sf::Vector2f>>			opponetsDicePositions;
 
 	SpriteNode*							chip;

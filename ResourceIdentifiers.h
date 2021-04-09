@@ -29,19 +29,7 @@ enum class TextureID {
 	Table,
 	Board,
 
-	Dice1,
-	Dice2,
-	Dice3,
-	Dice4,
-	Dice5,
-	DiceStar,
-
 	Dice,
-	//DiceTwo,
-	//DiceThree,
-	//DiceFour,
-	//DiceFive,
-	//DiceStar2,
 
 	Clock,
 	Cup,
