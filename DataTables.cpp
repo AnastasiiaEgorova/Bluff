@@ -97,7 +97,7 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice2].animations[Actor::State::Idle].setRepeating(true);
 
 	data[Actor::Type::Dice2].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_2"));
-	data[Actor::Type::Dice2].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice2].animations[Actor::State::Roll].setDuration(sf::seconds(2.3f));
 	data[Actor::Type::Dice2].animations[Actor::State::Roll].setRepeating(false);
 
 
@@ -108,7 +108,7 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice3].animations[Actor::State::Idle].setRepeating(true);
 
 	data[Actor::Type::Dice3].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_3"));
-	data[Actor::Type::Dice3].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice3].animations[Actor::State::Roll].setDuration(sf::seconds(2.5f));
 	data[Actor::Type::Dice3].animations[Actor::State::Roll].setRepeating(false);
 
 	data[Actor::Type::Dice4].texture = TextureID::Dice;
@@ -118,7 +118,7 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice4].animations[Actor::State::Idle].setRepeating(true);
 
 	data[Actor::Type::Dice4].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_4"));
-	data[Actor::Type::Dice4].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice4].animations[Actor::State::Roll].setDuration(sf::seconds(1.8f));
 	data[Actor::Type::Dice4].animations[Actor::State::Roll].setRepeating(false);
 
 	data[Actor::Type::Dice5].texture = TextureID::Dice;
@@ -128,7 +128,7 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice5].animations[Actor::State::Idle].setRepeating(true);
 
 	data[Actor::Type::Dice5].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_5"));
-	data[Actor::Type::Dice5].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice5].animations[Actor::State::Roll].setDuration(sf::seconds(2.2f));
 	data[Actor::Type::Dice5].animations[Actor::State::Roll].setRepeating(false);
 
 	data[Actor::Type::DiceStar].texture = TextureID::Dice;

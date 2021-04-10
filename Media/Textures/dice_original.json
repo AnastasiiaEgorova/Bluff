@@ -128,6 +128,27 @@
 			}
 		},
 		{
+			"filename": "roll.png",
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"sourceSize": {
+				"w": 130,
+				"h": 130
+			}
+		},
+		{
 			"filename": "roll_1 1.png",
 			"frame": {
 				"x": 2340,
@@ -338,51 +359,9 @@
 			}
 		},
 		{
-			"filename": "roll_2 00.png",
-			"frame": {
-				"x": 1170,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {
-				"x": 1170,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"sourceSize": {
-				"w": 130,
-				"h": 130
-			}
-		},
-		{
-			"filename": "roll_2 01.png",
-			"frame": {
-				"x": 390,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {
-				"x": 390,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"sourceSize": {
-				"w": 130,
-				"h": 130
-			}
-		},
-		{
 			"filename": "roll_2 1.png",
 			"frame": {
-				"x": 650,
+				"x": 1170,
 				"y": 0,
 				"w": 130,
 				"h": 130
@@ -390,7 +369,7 @@
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
-				"x": 650,
+				"x": 1170,
 				"y": 0,
 				"w": 130,
 				"h": 130
@@ -590,6 +569,48 @@
 			}
 		},
 		{
+			"filename": "roll_3 1.png",
+			"frame": {
+				"x": 650,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 650,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"sourceSize": {
+				"w": 130,
+				"h": 130
+			}
+		},
+		{
+			"filename": "roll_3 2.png",
+			"frame": {
+				"x": 910,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 910,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"sourceSize": {
+				"w": 130,
+				"h": 130
+			}
+		},
+		{
 			"filename": "roll_3 3.png",
 			"frame": {
 				"x": 1430,
@@ -748,6 +769,27 @@
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 1560,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"sourceSize": {
+				"w": 130,
+				"h": 130
+			}
+		},
+		{
+			"filename": "roll_4 1.png",
+			"frame": {
+				"x": 650,
+				"y": 0,
+				"w": 130,
+				"h": 130
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 650,
 				"y": 0,
 				"w": 130,
 				"h": 130
@@ -937,27 +979,6 @@
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 2210,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"sourceSize": {
-				"w": 130,
-				"h": 130
-			}
-		},
-		{
-			"filename": "roll_5 0.png",
-			"frame": {
-				"x": 780,
-				"y": 0,
-				"w": 130,
-				"h": 130
-			},
-			"rotated": false,
-			"trimmed": false,
-			"spriteSourceSize": {
-				"x": 780,
 				"y": 0,
 				"w": 130,
 				"h": 130
