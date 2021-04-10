@@ -68,6 +68,7 @@ void World::drawDice(std::vector<Dice> playersDice)
 	std::unique_ptr<Actor> dice1(new Actor(loadDice(playersDice.at(0).getFace()), textures, fonts));
 	dice1->setPosition(worldBounds.width - 280, worldBounds.height - 90);
 	dice1->setScale(0.6f, 0.6f);
+	dice1->setState(Actor::State::Roll);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice1));
 
 
@@ -75,24 +76,28 @@ void World::drawDice(std::vector<Dice> playersDice)
 	std::unique_ptr<Actor> dice2(new Actor(loadDice(playersDice.at(1).getFace()), textures, fonts));
 	dice2->setPosition(worldBounds.width - 320, worldBounds.height - 150);
 	dice2->setScale(0.6f, 0.6f);
+	dice2->setState(Actor::State::Roll);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice2));
 
 	// dice3
 	std::unique_ptr<Actor> dice3(new Actor(loadDice(playersDice.at(2).getFace()), textures, fonts));
 	dice3->setPosition(worldBounds.width - 380, worldBounds.height - 120);
 	dice3->setScale(0.6f, 0.6f);
+	dice3->setState(Actor::State::Roll);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice3));
 
 	// dice4
 	std::unique_ptr<Actor> dice4(new Actor(loadDice(playersDice.at(3).getFace()), textures, fonts));
 	dice4->setPosition(worldBounds.width - 440, worldBounds.height - 130);
 	dice4->setScale(0.6f, 0.6f);
+	dice4->setState(Actor::State::Roll);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice4));
 
 	// dice5
 	std::unique_ptr<Actor> dice5(new Actor(loadDice(playersDice.at(4).getFace()), textures, fonts));
 	dice5->setPosition(worldBounds.width - 500, worldBounds.height - 100);
 	dice5->setScale(0.6f, 0.6f);
+	dice5->setState(Actor::State::Roll);
 	sceneLayers[BoardLayer]->attachChild(std::move(dice5));
 }
 

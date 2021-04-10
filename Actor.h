@@ -34,7 +34,10 @@ public:
     };
 
     enum class State {
-        Idle, Think, Count
+        Idle, 
+        Think,
+        Roll,
+        Count
     };
 
 public:

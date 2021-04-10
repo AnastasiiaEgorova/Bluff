@@ -36,6 +36,9 @@ void Actor::updateStates()
 {
 	if (state_ == State::Think && animations_[state_].isFinished())
 		state_ = State::Idle;
+
+	if (state_ == State::Roll && animations_[state_].isFinished())
+		state_ = State::Idle;
 }
 
 void Actor::updateCurrent(sf::Time dt, CommandQueue& commands)

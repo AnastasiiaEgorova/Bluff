@@ -84,6 +84,10 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice1].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Dice1].animations[Actor::State::Idle].setRepeating(true);
 
+  	data[Actor::Type::Dice1].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_1"));
+	data[Actor::Type::Dice1].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice1].animations[Actor::State::Roll].setRepeating(false);
+
 	data[Actor::Type::Dice2].texture = TextureID::Dice;
 
 	//frames = JsonFrameParser("Media/Textures/dice.json");
@@ -92,11 +96,20 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice2].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Dice2].animations[Actor::State::Idle].setRepeating(true);
 
+	data[Actor::Type::Dice2].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_2"));
+	data[Actor::Type::Dice2].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice2].animations[Actor::State::Roll].setRepeating(false);
+
+
 	data[Actor::Type::Dice3].texture = TextureID::Dice;
 
 	data[Actor::Type::Dice3].animations[Actor::State::Idle].addFrameSet(frames.getFramesFor("idle3"));
 	data[Actor::Type::Dice3].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Dice3].animations[Actor::State::Idle].setRepeating(true);
+
+	data[Actor::Type::Dice3].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_3"));
+	data[Actor::Type::Dice3].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice3].animations[Actor::State::Roll].setRepeating(false);
 
 	data[Actor::Type::Dice4].texture = TextureID::Dice;
 
@@ -104,11 +117,19 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::Dice4].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Dice4].animations[Actor::State::Idle].setRepeating(true);
 
+	data[Actor::Type::Dice4].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_4"));
+	data[Actor::Type::Dice4].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice4].animations[Actor::State::Roll].setRepeating(false);
+
 	data[Actor::Type::Dice5].texture = TextureID::Dice;
 
 	data[Actor::Type::Dice5].animations[Actor::State::Idle].addFrameSet(frames.getFramesFor("idle5"));
 	data[Actor::Type::Dice5].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::Dice5].animations[Actor::State::Idle].setRepeating(true);
+
+	data[Actor::Type::Dice5].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_5"));
+	data[Actor::Type::Dice5].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::Dice5].animations[Actor::State::Roll].setRepeating(false);
 
 	data[Actor::Type::DiceStar].texture = TextureID::Dice;
 
@@ -116,41 +137,9 @@ std::map<Actor::Type, ActorData> initializeActorData()
 	data[Actor::Type::DiceStar].animations[Actor::State::Idle].setDuration(sf::seconds(2.f));
 	data[Actor::Type::DiceStar].animations[Actor::State::Idle].setRepeating(true);
 
+	data[Actor::Type::DiceStar].animations[Actor::State::Roll].addFrameSet(frames.getFramesFor("roll_star"));
+	data[Actor::Type::DiceStar].animations[Actor::State::Roll].setDuration(sf::seconds(2.f));
+	data[Actor::Type::DiceStar].animations[Actor::State::Roll].setRepeating(false);
+
 	return data;
 }
-
-
-//std::map<DiceImage::Type, DiceData> initializeDiceData()
-//{
-//	std::map<DiceImage::Type, DiceData> data;
-//
-//	data[DiceImage::Type::One].texture = TextureID::DiceOne;
-//
-//	JsonFrameParser frames = JsonFrameParser("Media/Textures/dice.json");
-//
-//	data[DiceImage::Type::One].animations[DiceImage::State::Idle1].addFrameSet(frames.getFramesFor("idle1"));
-//	data[DiceImage::Type::One].animations[DiceImage::State::Idle1].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::One].animations[DiceImage::State::Idle1].setRepeating(true);
-//
-//	data[DiceImage::Type::Two].animations[DiceImage::State::Idle2].addFrameSet(frames.getFramesFor("idle2"));
-//	data[DiceImage::Type::Two].animations[DiceImage::State::Idle2].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::Two].animations[DiceImage::State::Idle2].setRepeating(true);
-//
-//	data[DiceImage::Type::Three].animations[DiceImage::State::Idle3].addFrameSet(frames.getFramesFor("idle3"));
-//	data[DiceImage::Type::Three].animations[DiceImage::State::Idle3].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::Three].animations[DiceImage::State::Idle3].setRepeating(true);
-//
-//	data[DiceImage::Type::Four].animations[DiceImage::State::Idle4].addFrameSet(frames.getFramesFor("idle4"));
-//	data[DiceImage::Type::Four].animations[DiceImage::State::Idle4].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::Four].animations[DiceImage::State::Idle4].setRepeating(true);
-//
-//	data[DiceImage::Type::Five].animations[DiceImage::State::Idle5].addFrameSet(frames.getFramesFor("idle5"));
-//	data[DiceImage::Type::Five].animations[DiceImage::State::Idle5].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::Five].animations[DiceImage::State::Idle5].setRepeating(true);
-//
-//	data[DiceImage::Type::Star].animations[DiceImage::State::IdleStar].addFrameSet(frames.getFramesFor("idlestar"));
-//	data[DiceImage::Type::Star].animations[DiceImage::State::IdleStar].setDuration(sf::seconds(2.f));
-//	data[DiceImage::Type::Star].animations[DiceImage::State::IdleStar].setRepeating(true);
-//
-//	return data;
-//}
