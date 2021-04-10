@@ -47,7 +47,7 @@ void GameState::draw()
 
 	if (isBluffCalled) {
 		for (int i = 0; i < players.size()- 1; ++i) {
-			world.drawOpponentDice(players[i]->showDice(), i);
+			world.drawOpponentDice(players[i+1]->showDice(), i);
 		}
 	}
 }
@@ -168,7 +168,7 @@ std::string GameState::getWinner()
 	int winningPlayer;
 
 	if (isCallingBluffWon) 
-			winningPlayer = currentPlayer;
+		winningPlayer = currentPlayer;
 	else
 	{
 		if (currentPlayer == 0)

@@ -15,7 +15,7 @@ AIPlayerBrittasaurus::AIPlayerBrittasaurus(int n) : AIPlayer(n)
 
 Bid AIPlayerBrittasaurus::makeMove(Bid currentBid)
 {
-	if ((currentBid).getNumber() > amountTopFace + numberOfPlayers * 2)
+	if ((currentBid).getNumber() > amountTopFace + numberOfPlayers / 2)
 		return callBluff();
 	else
 		return makeBid(currentBid);
