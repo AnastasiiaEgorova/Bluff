@@ -17,7 +17,7 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	
 	gameOverText.setFont(font);
 	gameOverText.setString(context.winner->getString());
-	backgroundColour = sf::Color(165, 203, 206, 200);
+	backgroundColour = sf::Color(165, 203, 206, 150);
 	
 	gameOverText.setCharacterSize(100);
 	gameOverText.setFillColor(sf::Color(80, 61, 44));
@@ -27,8 +27,8 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 
 
 	bender.setTexture(context.textures->get(TextureID::Bender));
-	bender.setScale(0.3, 0.3);
-	bender.setPosition(0.5f * windowSize.x, 0.05f * windowSize.y);
+	bender.setScale(0.28, 0.28);
+	bender.setPosition(0.2f * windowSize.x, 0.05f * windowSize.y);
 
 	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(context.window->getView().getSize());
@@ -38,10 +38,6 @@ void GameOverState::draw()
 {
 	sf::RenderWindow& window = *getContext().window;
 	window.setView(window.getDefaultView());
-
-	//sf::RectangleShape backgroundShape;
-	//backgroundShape.setFillColor(backgroundColour);
-	//backgroundShape.setSize(window.getView().getSize());
 
 	window.draw(backgroundShape);
 	window.draw(gameOverText);
@@ -54,15 +50,18 @@ bool GameOverState::update(sf::Time dt)
 	const int COUNTDOWN_TIME = 3;
 
 	elapsedTime += dt;
-	//if (elapsedTime > sf::seconds(COUNTDOWN_TIME)) {
-	//	requestStackClear();
-	//	requestStackPush(StateID::Menu);
-	//}
 
     return false;
 }
 
 bool GameOverState::handleEvent(const sf::Event& event)
 {
-    return false;
+	if (event.type == sf::Event::KeyPressed)
+	{
+		requestStackPop();
+		requestStackPop();
+		requestStackPush(StateID::Menu);
+	}
+
+    return true;
 }

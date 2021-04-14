@@ -22,7 +22,7 @@ enum class EffectID
 enum class MusicID
 {
 	MenuTheme,
-	MissionTheme,
+	GameTheme,
 };
 
 enum class TextureID {

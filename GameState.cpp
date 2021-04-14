@@ -14,8 +14,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, isBluffCalled(false)
 	, errorMessage("")
 {
-	//TO DO
-	//context.music->play(MusicID::MissionTheme);
+	context.music->play(MusicID::GameTheme);
 
 	players.push_back(&player);
 

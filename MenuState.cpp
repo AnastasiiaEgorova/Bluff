@@ -46,7 +46,7 @@ MenuState::MenuState(StateStack& stack, Context context)
 
 	updateOptionText();
 
-	//context.music->play(MusicID::MenuTheme);
+	context.music->play(MusicID::MenuTheme);
 }
 
 void MenuState::draw()
