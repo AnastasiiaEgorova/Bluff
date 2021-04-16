@@ -81,8 +81,14 @@ bool GameState::update(sf::Time dt)
 bool GameState::handleEvent(const sf::Event& event)
 {
 	// Escape pressed, trigger the pause screen
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+		requestStackPop();
+		requestStackPush(StateID::Menu);
+	}
+
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::I)
 		requestStackPush(StateID::Instruction);
+		
 
 	return false;
 }
