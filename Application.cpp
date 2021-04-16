@@ -29,6 +29,7 @@ Application::Application()
     fonts.load(FontID::Main, "Media/Sansation.ttf");
     textures.load(TextureID::Title, "Media/Textures/Title.jpg");	
     textures.load(TextureID::Bender, "Media/Textures/Bender_Applause.png");
+    textures.load(TextureID::Ostrich, "Media/Textures/Ostrich.png");
    
     registerStates();
     stateStack.pushState(StateID::Menu);

@@ -44,10 +44,12 @@ enum class TextureID {
 
 	Abed,
 	Drake,
-	Bender,
 	Dean,
 	TroyAndAbed,
-	Brittasaurus
+	Brittasaurus,
+
+	Bender,
+	Ostrich
 };
 
 enum class FontID {

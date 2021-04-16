@@ -30,6 +30,10 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	bender.setScale(0.28, 0.28);
 	bender.setPosition(0.2f * windowSize.x, 0.05f * windowSize.y);
 
+	ostrich.setTexture(context.textures->get(TextureID::Ostrich));
+	ostrich.setScale(0.6, 0.6);
+	ostrich.setPosition(0.2f * windowSize.x, 0.7f * windowSize.y);
+
 	backgroundShape.setFillColor(backgroundColour);
 	backgroundShape.setSize(context.window->getView().getSize());
 }
@@ -43,6 +47,7 @@ void GameOverState::draw()
 	window.draw(gameOverText);
 
 	window.draw(bender);
+	window.draw(ostrich);
 }
 
 bool GameOverState::update(sf::Time dt)
@@ -58,8 +63,8 @@ bool GameOverState::handleEvent(const sf::Event& event)
 {
 	if (event.type == sf::Event::KeyPressed)
 	{
-		requestStackPop();
-		requestStackPop();
+		requestStackPop();  // for GameOver State
+		requestStackPop();	// for Game State
 		requestStackPush(StateID::Menu);
 	}
 

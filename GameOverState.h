@@ -23,5 +23,6 @@ private:
 	sf::RectangleShape	backgroundShape;
 
 	sf::Sprite			bender;
+	sf::Sprite			ostrich;
 };
 

@@ -164,7 +164,7 @@ void World::loadTextures()
 
 	textures.load(TextureID::Abed, "Media/Textures/Abed.png");
 	textures.load(TextureID::Drake, "Media/Textures/Drake.png");
-	textures.load(TextureID::Bender, "Media/Textures/Bender.png");
+
 	textures.load(TextureID::Dean, "Media/Textures/Dean.png");
 	textures.load(TextureID::TroyAndAbed, "Media/Textures/TroyAbed.png");
 	textures.load(TextureID::Brittasaurus, "Media/Textures/Brittasaurus.png");
