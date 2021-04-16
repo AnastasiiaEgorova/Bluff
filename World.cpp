@@ -373,11 +373,11 @@ void World::setOpponentsDicePositions(std::vector<int>& opponents)
 
 		case 1: {
 			std::vector<sf::Vector2f> dicePlayer2;
-			dicePlayer2.push_back(sf::Vector2f(110, 140));
-			dicePlayer2.push_back(sf::Vector2f(170, 140));
-			dicePlayer2.push_back(sf::Vector2f(50, 200));
-			dicePlayer2.push_back(sf::Vector2f(110, 200));
-			dicePlayer2.push_back(sf::Vector2f(170, 200));
+			dicePlayer2.push_back(sf::Vector2f(110, 180));
+			dicePlayer2.push_back(sf::Vector2f(170, 180));
+			dicePlayer2.push_back(sf::Vector2f(50, 240));
+			dicePlayer2.push_back(sf::Vector2f(110, 240));
+			dicePlayer2.push_back(sf::Vector2f(170, 240));
 
 			opponetsDicePositions.push_back(dicePlayer2);
 			break;
@@ -417,7 +417,7 @@ void World::setOpponents(std::vector<int>& opponents)
 			std::unique_ptr<Actor> britta(new Actor(Actor::Type::Brittasaurus, textures, fonts));
 			actors.push_back(britta.get());
 			britta->setPosition(sf::Vector2f(100, 420));
-			britta->setScale(2.f, 2.f);
+			britta->setScale(3.f, 3.f);
 			sceneLayers[TableLayer]->attachChild(std::move(britta));
 			break;
 		}
@@ -425,7 +425,7 @@ void World::setOpponents(std::vector<int>& opponents)
 			std::unique_ptr<Actor> dean(new Actor(Actor::Type::Dean, textures, fonts));
 			actors.push_back(dean.get());
 			dean->setPosition(sf::Vector2f(80, 80));
-			dean->setScale(2.f, 2.f);
+			dean->setScale(3.f, 3.f);
 			sceneLayers[TableLayer]->attachChild(std::move(dean));
 			break;
 		}
@@ -433,7 +433,7 @@ void World::setOpponents(std::vector<int>& opponents)
 			std::unique_ptr<Actor> troyAndAbed(new Actor(Actor::Type::TroyAndAbed, textures, fonts));
 			actors.push_back(troyAndAbed.get());
 			troyAndAbed->setPosition(sf::Vector2f(850, 50));
-			troyAndAbed->setScale(2.f, 2.f);
+			troyAndAbed->setScale(3.f, 3.f);
 			sceneLayers[TableLayer]->attachChild(std::move(troyAndAbed));
 			break;
 		}

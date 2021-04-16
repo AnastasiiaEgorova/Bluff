@@ -23,6 +23,7 @@ enum class MusicID
 {
 	MenuTheme,
 	GameTheme,
+	DiceThrown
 };
 
 enum class TextureID {

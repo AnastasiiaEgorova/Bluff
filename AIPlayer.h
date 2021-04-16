@@ -5,6 +5,8 @@ class AIPlayer : public Player
 {
 public:
 							AIPlayer(int opponents);
+	virtual					~AIPlayer() {};
+
 	virtual std::string		getName() = 0;
 
 protected:

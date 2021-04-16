@@ -46,11 +46,12 @@ public:
 
     void                            setState(State state);
     Actor::State                    getState() const;
+    void                            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
     void                            updateStates();
     void                            updateCurrent(sf::Time dt, CommandQueue& commands);
-    void                            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+
 
 private:
     Type                            type_;

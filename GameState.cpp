@@ -15,7 +15,8 @@ GameState::GameState(StateStack& stack, Context context)
 	, errorMessage("")
 {
 	context.music->play(MusicID::GameTheme);
-
+	
+	player.throwDice();
 	players.push_back(&player);
 
 	for (int i = 0; i < context.opponentPlayers->size(); ++i) {

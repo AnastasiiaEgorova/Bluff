@@ -7,6 +7,7 @@ MusicPlayer::MusicPlayer()
 {
 	filenames[MusicID::MenuTheme] = "Media/Music/Community_Piano.ogg";
 	filenames[MusicID::GameTheme] = "Media/Music/Community_8bit.ogg";
+	filenames[MusicID::DiceThrown] = "Media/Music/DiceThrown.ogg";
 }
 
 void MusicPlayer::play(MusicID theme)
